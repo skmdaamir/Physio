@@ -1,0 +1,29 @@
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /* background-color: #25d366; /* Green for WhatsApp */
+  /* color: white; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 20px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+.floating-btn:hover {
+  transform: scale(1.1);
+}
+/* Phone Button - Left Side */
+.phone-btn {
+  left: 20px;
+  background-color: #34b7f1; /* Blue for Call */
+}
+/* WhatsApp Button - Right Side */
+.whatsapp-btn {
+  right: 20px;
+  background-color: #25d366;
+}
