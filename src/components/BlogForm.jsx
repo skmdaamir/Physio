@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+
+
+
+
 const BlogForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [blogs, setBlogs] = useState([]);
+
+  const fetchBlogs = async () => {
+    const response = await axios.get("http://localhost:5000/api/blogs");
+    setBlogs(response.data);
+  };
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
@@ -12,7 +22,9 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(title);
+    console.log(content);
+    console.log(image);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -20,12 +32,15 @@ const BlogForm = () => {
 
     try {
       await axios.post("http://localhost:5000/api/blogs", formData);
+      fetchBlogs();
       setTitle("");
       setContent("");
       setImage(null);
       // Update blog list or show success
+      alert("Blog added successfully!");
     } catch (err) {
       console.error("Error uploading blog:", err);
+      alert("Failed to add blog.");
     }
   };
 

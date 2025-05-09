@@ -18,13 +18,23 @@ const AdminPanel = () => {
   }, []);
 
   const fetchAppointments = async () => {
-    const res = await axios.get("/api/appointments");
-    setAppointments(res.data);
+    try {
+      const res = await axios.get("http://localhost:5000/api/appointments");
+      setAppointments(res.data);
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+      // Optionally, update the UI to inform the user
+    }
   };
 
   const fetchBlogs = async () => {
-    const res = await axios.get("/api/blogs");
-    setBlogs(res.data);
+    try {
+      const res = await axios.get("http://localhost:5000/api/allBlogs");
+      setBlogs(res.data);
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+      // Optionally, update the UI to inform the user
+    }
   };
 
   const handleBlogChange = (e) => {

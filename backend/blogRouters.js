@@ -94,4 +94,14 @@ router.get("/blogs/active", (req, res) => {
   });
 });
 
+// Fetch all blogs
+router.get("/allBlogs", (req, res) => {
+  const sql = `SELECT * FROM blog ORDER BY created_at DESC`;
+
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ blogs: results });
+  });
+});
+
 module.exports = router;
