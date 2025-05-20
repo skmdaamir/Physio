@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Physio/static/css/main.687333b9.css",
-    "main.js": "/Physio/static/js/main.18e9ebca.js",
+    "main.js": "/Physio/static/js/main.a08e2197.js",
     "static/media/doctor3.jpg": "/Physio/static/media/doctor3.a2a74db3b921e16f1201.jpg",
     "static/media/physiotherapy_main.jpg": "/Physio/static/media/physiotherapy_main.37a3c9232704d03b0bae.jpg",
     "static/media/doctor2.jpg": "/Physio/static/media/doctor2.d29edc6205b74c41c123.jpg",
@@ -11,10 +11,10 @@
     "static/media/medical-assistant-helping-patient-with-physiotherapy-exercises_23-2149071510.avif": "/Physio/static/media/medical-assistant-helping-patient-with-physiotherapy-exercises_23-2149071510.85c8d1a235802e460fb3.avif",
     "index.html": "/Physio/index.html",
     "main.687333b9.css.map": "/Physio/static/css/main.687333b9.css.map",
-    "main.18e9ebca.js.map": "/Physio/static/js/main.18e9ebca.js.map"
+    "main.a08e2197.js.map": "/Physio/static/js/main.a08e2197.js.map"
   },
   "entrypoints": [
     "static/css/main.687333b9.css",
-    "static/js/main.18e9ebca.js"
+    "static/js/main.a08e2197.js"
   ]
 }
