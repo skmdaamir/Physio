@@ -1,0 +1,7 @@
+@media (max-width: 576px) {
+    .modal-body .form-control,
+    .modal-body .form-select {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
