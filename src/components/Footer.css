@@ -1,3 +1,14 @@
 .footer {
     background-color: grey;
 }
+.glass-footer {
+    backdrop-filter: blur(10px);
+    background-color: rgba(29, 49, 65, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .footer-social-icons a:hover {
+    color: #4caf50 !important; /* fallback if inline hover doesn't work */
+  }
+  

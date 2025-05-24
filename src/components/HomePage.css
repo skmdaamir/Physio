@@ -1,53 +1,136 @@
 body {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 576px) {
-    body {
-        font-size: 1.1rem;
-    }
+  body {
+    font-size: 1.1rem;
+  }
 }
 
 [data-bs-theme="dark"] .card {
-    background-color: #1e1e2f !important;
-    color: #f1f1f1; }
+  background-color: #1e1e2f !important;
+  color: #f1f1f1;
+}
 
-    /* Horizontal scroll container */
+/* Horizontal scroll container */
 .horizontal-scroll-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    padding-bottom: 8px;
-    margin-left: -12px;
-    margin-right: -12px;
-  }
-  
-  /* Hide default scrollbar (optional) */
-  .horizontal-scroll-wrapper::-webkit-scrollbar {
-    height: 6px;
-  }
-  .horizontal-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: #4caf50;
-    border-radius: 3px;
-  }
-  .horizontal-scroll-wrapper::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  /* Each item in the scroll must not shrink on small screens */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+/* Hide default scrollbar (optional) */
+.horizontal-scroll-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.horizontal-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #4caf50;
+  border-radius: 3px;
+}
+
+.horizontal-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Each item in the scroll must not shrink on small screens */
+.therapy-col,
+.service-col {
+  flex: 0 0 auto;
+  width: 90vw;
+  /* almost full width on mobile */
+}
+
+/* On md and above, show 2 items per row, width auto */
+@media (min-width: 768px) {
   .therapy-col,
   .service-col {
-    flex: 0 0 auto;
-    width: 90vw; /* almost full width on mobile */
+    width: auto;
   }
-  
-  /* On md and above, show 2 items per row, width auto */
-  @media (min-width: 768px) {
+
+  .horizontal-scroll-wrapper {
+    overflow-x: visible;
+    /* no scroll on bigger screens */
+  }
+}
+
+/* Global overflow fix */
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 1.1rem;
+  }
+}
+
+[data-bs-theme="dark"] .card {
+  background-color: #1e1e2f !important;
+  color: #f1f1f1;
+}
+
+/* Horizontal scroll container */
+.horizontal-scroll-wrapper {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  gap: 1rem;
+}
+
+.horizontal-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Therapy columns /
     .therapy-col,
     .service-col {
-      width: auto;
+    flex: 0 0 auto;
+    width: 90vw; / almost full width on mobile 
+    }
+    
+    /* On md and above, show 2 items per row, width auto /
+    @media (min-width: 768px) {
+    .therapy-col,
+    .service-col {
+    width: auto;
     }
     .horizontal-scroll-wrapper {
-      overflow-x: visible; /* no scroll on bigger screens */
+    overflow-x: visible; / no scroll on bigger screens 
     }
-  }
+    }
+    
+    /* Additional tweaks for very small screens /
+    @media (max-width: 360px) {
+    .scroll-box {
+    max-height: 200px;
+    }
+    .scroll-box ul li {
+    font-size: 1.2rem !important;
+    line-height: 1.4;
+    }
+    h3.fs-2 {
+    font-size: 1.5rem !important;
+    }
+    p {
+    font-size: 1rem !important;
+    }
+    .carousel-item img {
+    max-height: 250px;
+    object-fit: cover;
+    }
+    / Adjust container padding */
+.container,
+.container-fluid {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}

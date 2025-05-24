@@ -19,6 +19,7 @@ import AdminPanel from "./components/AdminPanel";
 import Login from "./components/login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Helmet } from "react-helmet";
+import ScrollToTop from "./components/ScrollToTop";
 
 const AppContent = () => {
   const location = useLocation();
@@ -43,7 +44,7 @@ const AppContent = () => {
           <TopNav />
         </>
       )}
-
+      <ScrollToTop />
       <Routes>
         <Route
           path="/"

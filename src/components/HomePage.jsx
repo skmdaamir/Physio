@@ -296,10 +296,9 @@ const HomePage = () => {
                     darkMode ? "bg-dark text-light" : "bg-light"
                   }`}
                 >
-<ul className="list-group list-group-flush">
+                  <ul className="list-group list-group-flush">
                     {section.list.map((item, idx) => (
                       <li
-                        
                         key={idx}
                         className={`list-group-item ${
                           darkMode ? "text-light" : ""
@@ -313,7 +312,6 @@ const HomePage = () => {
                           backgroundColor: darkMode ? "#6c757d" : "transparent", // default background
                           transition: "background-color 0.3s",
                         }}
-                        
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = darkMode
                             ? "#4caf50"
