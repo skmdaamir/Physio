@@ -1,36 +1,42 @@
+/* Base FAB style */
 .floating-fab {
-  position: fixed;
-  right: 16px;
-  z-index: 1050;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease-in-out;
+  position: fixed !important;
+  bottom: 20px !important;
+  width: 72px !important;
+  height: 72px !important;
+  min-height: 72px !important;
+  border-radius: 50% !important;
+  font-size: 1.5rem;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000 !important;
 }
 
+/* Phone button on the left */
 .phone-fab {
-  bottom: 110px;
+  left: 20px !important;
+  right: auto !important;
 }
 
+/* WhatsApp button on the right */
 .whatsapp-fab {
-  bottom: 40px;
+  left: auto !important;
+  right: 20px !important;
 }
 
-.floating-fab:hover {
-  transform: scale(1.1);
+/* Make sure the SVG icon inside scales up */
+.floating-fab svg {
+  width: 32px;
+  height: 32px;
 }
 
-/* Larger and more touch-friendly on mobile */
 @media (max-width: 576px) {
-  .floating-fab {
-    width: 70px !important;
-    height: 70px !important;
-    font-size: 28px;
+  .MuiFab-root {
+    width: 64px !important;
+    height: 64px !important;
   }
-
-  .phone-fab {
-    bottom: 120px;
-  }
-
-  .whatsapp-fab {
-    bottom: 40px;
+  .MuiSvgIcon-root, svg {
+    font-size: 28px !important;
   }
 }
