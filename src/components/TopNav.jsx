@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Navbar, Nav, Offcanvas, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './TopNav.css'
+import logo from "../assets/images/logo.bmp";
 
 const TopNav = () => {
   const [show, setShow] = useState(false);
@@ -28,7 +29,12 @@ const TopNav = () => {
       >
         <Container>
           <Navbar.Brand as={Link} to="/" className="fw-bold fs-4">
-            PPRS
+            <img
+              src={logo}
+              alt="PPRS Logo"
+              height="40" // tweak as needed
+              className="d-inline-block align-top"
+            />
           </Navbar.Brand>
           <div className="d-flex align-items-center">
             <Form.Check

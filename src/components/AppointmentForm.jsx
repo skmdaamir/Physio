@@ -30,9 +30,7 @@ const AppointmentForm = () => {
   }, [form.state]);
 
   const fetchTreatments = async () => {
-    const res = await axios.get(
-       "http://localhost:5000/api/treatment"
-    );
+    const res = await axios.get("http://localhost:5000/api/treatment");
     setTreatments(res.data);
   };
 
@@ -95,24 +93,22 @@ const AppointmentForm = () => {
       //   message: `New Appointment:\nName: ${form.name}\nPhone: ${form.phone}\nTreatment: ${form.treatmentType}\nState: ${form.state}\nCity: ${form.city}\nCondition: ${form.conditions}`,
       // });
       axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-  alert("Appointment submitted successfully!");
-  setForm({
-    name: "",
-    email: "",
-    phone: "",
-    treatmentType: "",
-    state: "",
-    city: "",
-    conditions: "",
-  });
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-      
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          alert("Appointment submitted successfully!");
+          setForm({
+            name: "",
+            email: "",
+            phone: "",
+            treatmentType: "",
+            state: "",
+            city: "",
+            conditions: "",
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     } catch (error) {
       console.error("Submission error:", error);
       alert("Failed to submit appointment.");
@@ -127,7 +123,7 @@ const AppointmentForm = () => {
       <h2>Book an Appointment</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
-          <Col md={6} sm={12}>
+          <Col md={12} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -138,7 +134,7 @@ const AppointmentForm = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={6}  sm={12}>
+          <Col md={12} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -152,7 +148,7 @@ const AppointmentForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col md={6}  sm={12}>
+          <Col md={12} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>Phone</Form.Label>
               <Form.Control
@@ -163,7 +159,7 @@ const AppointmentForm = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={6} sm={12}>
+          <Col md={12} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>Treatment Type</Form.Label>
               <Form.Select
@@ -183,7 +179,7 @@ const AppointmentForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col md={6} sm={12}>
+          <Col md={12} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>State</Form.Label>
               <Form.Select
@@ -201,7 +197,7 @@ const AppointmentForm = () => {
               </Form.Select>
             </Form.Group>
           </Col>
-          <Col md={6} sm={12}>
+          <Col md={12} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>City</Form.Label>
               <Form.Select
