@@ -24,3 +24,11 @@
     transform: translateY(0);
   }
 }
+
+
+@media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 100% !important;   /* nearly full width */
+    margin: 1rem auto !important;/* reduced top/bottom gutters */
+  }
+}

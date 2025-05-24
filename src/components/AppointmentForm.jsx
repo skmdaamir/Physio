@@ -4,7 +4,7 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 const qs = require("qs");
 
-const AppointmentForm = () => {
+const AppointmentForm = ({ isModal = false }) => {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -54,7 +54,6 @@ const AppointmentForm = () => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
 
-    // Only fetch cities when state is changed
     if (name === "state") {
       fetchCities(value);
     }
@@ -87,11 +86,7 @@ const AppointmentForm = () => {
         },
         data: data,
       };
-      // WhatsApp Free API (placeholder for demonstration)
-      // await axios.post("https://api.ultramsg.com/instance120618/", {
-      //   to: "+918655319821", // Your WhatsApp number
-      //   message: `New Appointment:\nName: ${form.name}\nPhone: ${form.phone}\nTreatment: ${form.treatmentType}\nState: ${form.state}\nCity: ${form.city}\nCondition: ${form.conditions}`,
-      // });
+
       axios(config)
         .then(function (response) {
           console.log(JSON.stringify(response.data));
@@ -115,121 +110,127 @@ const AppointmentForm = () => {
     }
   };
 
-  return (
-    <Container className="py-5">
+  const FormBody = () => (
+    <Form onSubmit={handleSubmit}>
+      <Row>
+        <Col md={6} sm={12}>
+          <Form.Group className="mb-3">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+        </Col>
+        <Col md={6} sm={12}>
+          <Form.Group className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={6} sm={12}>
+          <Form.Group className="mb-3">
+            <Form.Label>Phone</Form.Label>
+            <Form.Control
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+        </Col>
+        <Col md={6} sm={12}>
+          <Form.Group className="mb-3">
+            <Form.Label>Treatment Type</Form.Label>
+            <Form.Select
+              name="treatmentType"
+              value={form.treatmentType}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select</option>
+              {treatments.map((t) => (
+                <option key={t.treatment_id} value={t.treatment_id}>
+                  {t.treatment_description}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={6} sm={12}>
+          <Form.Group className="mb-3">
+            <Form.Label>State</Form.Label>
+            <Form.Select
+              name="state"
+              value={form.state}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select</option>
+              {states.map((s) => (
+                <option key={s.state_id} value={s.state_id}>
+                  {s.state_name}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+        <Col md={6} sm={12}>
+          <Form.Group className="mb-3">
+            <Form.Label>City</Form.Label>
+            <Form.Select
+              name="city"
+              value={form.city}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select</option>
+              {cities.map((c) => (
+                <option key={c.city_id} value={c.city_id}>
+                  {c.city_name}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+      </Row>
+      <Form.Group className="mb-3">
+        <Form.Label>Brief About Your Condition</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={5}
+          name="conditions"
+          value={form.conditions}
+          onChange={handleChange}
+          maxLength={4000}
+          required
+        />
+      </Form.Group>
+      <Button type="submit">Submit Appointment</Button>
+    </Form>
+  );
+
+  return isModal ? (
+    <FormBody />
+  ) : (
+    <Container className="pt-5 mt-5">
       <Helmet>
-        <title>Apopintment Form | Physio Pulse</title>
+        <title>Appointment Form | Physio Pulse</title>
       </Helmet>
-      <h2>Book an Appointment</h2>
-      <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col md={12} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          </Col>
-          <Col md={12} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          </Col>
-          <Col md={12} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>Treatment Type</Form.Label>
-              <Form.Select
-                name="treatmentType"
-                value={form.treatmentType}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select</option>
-                {treatments.map((t) => (
-                  <option key={t.treatment_id} value={t.treatment_id}>
-                    {t.treatment_description}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>State</Form.Label>
-              <Form.Select
-                name="state"
-                value={form.state}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select</option>
-                {states.map((s) => (
-                  <option key={s.state_id} value={s.state_id}>
-                    {s.state_name}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-          <Col md={12} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>City</Form.Label>
-              <Form.Select
-                name="city"
-                value={form.city}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select</option>
-                {cities.map((c) => (
-                  <option key={c.city_id} value={c.city_id}>
-                    {c.city_name}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-        </Row>
-        <Form.Group className="mb-3">
-          <Form.Label>Brief About Your Condition</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={5}
-            name="conditions"
-            value={form.conditions}
-            onChange={handleChange}
-            maxLength={4000}
-            required
-          />
-        </Form.Group>
-        <Button type="submit">Submit Appointment</Button>
-      </Form>
+      <h2 className="mb-4">Book an Appointment</h2>
+      <FormBody />
     </Container>
   );
 };
