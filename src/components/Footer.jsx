@@ -17,22 +17,22 @@ const Footer = () => {
             <h5 className="mb-3">Menu</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="#home">Home</a>
+                <a href="/">Home</a>
               </li>
               <li>
-                <a href="#aboutus">About Us</a>
+                <a href="/about">About Us</a>
               </li>
               <li>
-                <a href="#blog">Blog</a>
+                <a href="/blog">Blog</a>
               </li>
               <li>
-                <a href="#gallery">Photo Gallery</a>
+                <a href="/">Photo Gallery</a>
               </li>
               <li>
-                <a href="#appointment">Appointment</a>
+                <a href="/appointment">Appointment</a>
               </li>
               <li>
-                <a href="#career">Career</a>
+                <a href="/">Career</a>
               </li>
             </ul>
           </Col>

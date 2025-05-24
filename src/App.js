@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Route,
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   useLocation,
 } from "react-router-dom";

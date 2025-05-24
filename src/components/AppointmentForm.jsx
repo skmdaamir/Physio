@@ -127,7 +127,7 @@ const AppointmentForm = () => {
       <h2>Book an Appointment</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
-          <Col md={6}>
+          <Col md={6} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -138,7 +138,7 @@ const AppointmentForm = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={6}  sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -152,7 +152,7 @@ const AppointmentForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col md={6}>
+          <Col md={6}  sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>Phone</Form.Label>
               <Form.Control
@@ -163,7 +163,7 @@ const AppointmentForm = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={6} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>Treatment Type</Form.Label>
               <Form.Select
@@ -183,7 +183,7 @@ const AppointmentForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col md={6}>
+          <Col md={6} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>State</Form.Label>
               <Form.Select
@@ -201,7 +201,7 @@ const AppointmentForm = () => {
               </Form.Select>
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={6} sm={12}>
             <Form.Group className="mb-3">
               <Form.Label>City</Form.Label>
               <Form.Select
