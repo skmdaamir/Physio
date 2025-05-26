@@ -1,117 +1,56 @@
-.aboutus-section {
-    background: linear-gradient(135deg, #f0f2f5 0%, #dfe3e8 100%);
-}
-
-.glass-card {
-    background: rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 1rem;
-    transition: transform 0.3s;
-}
-
-.glass-card:hover {
-    transform: translateY(-10px);
-}
-
-.team-card img {
-    height: 300px;
-    object-fit: cover;
-}
-
-.about-us-page {
-    padding-top: 80px;
-    padding-bottom: 50px;
-}
-
-.about-section img {
-    max-height: 350px;
-    object-fit: cover;
-}
-
-.doctor-card img {
-    height: fit-content;
-    object-fit: cover;
-}
-
-.card-body {
-    text-align: center;
-}
-
-h2 {
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #0056b3;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.services-section h5 {
-    font-weight: bold;
-    color: #333;
-}
-
-.services-section p {
-    font-size: 15px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .about-section {
-        text-align: center;
-    }
-
-    .about-section img {
-        margin-top: 20px;
-    }
-
-    .card-body {
-        padding: 15px;
-    }
-}
-
-/* Animation Styles */
-.fade-in {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-in.visible{
-    opacity: 1;
-    transform: translateY(0px);
-}
-
-
-.doctor-card{
-    transition: transform 0.8s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.doctor-card:hover{
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-
-}
-
-.about-page{
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInMoveUp 0.8s ease forwards;
-}
-
-@keyframes fadeInMoveUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .about-page {
-    padding-top: 100px;
-    /* Adjust this value based on your navbar height */ }
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    line-height: 1.6;
+  }
+  
+  /* Section Headings */
+  .about-section h2,
+  .doctors-section h2,
+  .services-section h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Paragraph Text */
+  .about-section p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 1rem;
+  }
+  
+  /* Card Titles */
+  .card-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+  }
+  
+  /* Card Subtitles */
+  .card-subtitle {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+  }
+  
+  /* Card Body Text */
+  .card-text {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+  }
+  
+  /* Responsive Fixes for Small Screens */
+  @media (max-width: 576px) {
+    .about-page {
+      font-size: 16px;
+    }
+  
+    .about-section p,
+    .card-text,
+    .card-subtitle,
+    .card-title {
+      font-size: 1rem !important;
+    }
+  
+    .about-section h2,
+    .doctors-section h2,
+    .services-section h2 {
+      font-size: 1.4rem !important;
+    }
+  }
+  
