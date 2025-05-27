@@ -1,56 +1,67 @@
 .about-page {
-    font-size: clamp(1rem, 2.2vw, 1.2rem);
-    line-height: 1.6;
+  font-size: clamp(14px, 2.5vw, 18px);
+  line-height: 1.6;
+  padding-bottom: 2rem;
+}
+
+.about-section h2,
+.doctors-section h2,
+.services-section h2 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.about-section p {
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+}
+
+.card-subtitle,
+.card-text {
+  font-size: clamp(0.85rem, 1.7vw, 1rem);
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card img {
+  max-height: 250px;
+  object-fit: cover;
+}
+
+@media (max-width: 576px) {
+  .about-section img {
+    margin-top: 1rem;
   }
-  
-  /* Section Headings */
-  .about-section h2,
-  .doctors-section h2,
-  .services-section h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
+
+  .card-body {
+    padding: 1rem;
   }
-  
-  /* Paragraph Text */
-  .about-section p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    margin-bottom: 1rem;
+
+  .services-section .card-title {
+    font-size: 1rem;
   }
-  
-  /* Card Titles */
-  .card-title {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    font-weight: 600;
+
+  .services-section .card-text {
+    font-size: 0.9rem;
   }
-  
-  /* Card Subtitles */
-  .card-subtitle {
-    font-size: clamp(1rem, 2vw, 1.3rem);
+}
+
+.doctor-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
-  /* Card Body Text */
-  .card-text {
-    font-size: clamp(1rem, 2vw, 1.2rem);
+  .doctor-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
-  
-  /* Responsive Fixes for Small Screens */
-  @media (max-width: 576px) {
-    .about-page {
-      font-size: 16px;
-    }
-  
-    .about-section p,
-    .card-text,
-    .card-subtitle,
-    .card-title {
-      font-size: 1rem !important;
-    }
-  
-    .about-section h2,
-    .doctors-section h2,
-    .services-section h2 {
-      font-size: 1.4rem !important;
-    }
-  }
-  

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./AboutUs.css";
-
 import doctor1 from "../assets/docs/doctor1.jpg";
 import doctor2 from "../assets/docs/doctor3.jpg";
 import doctor3 from "../assets/docs/doctor2.jpg";
 import AOS from "aos";
 import physioMain from "../assets/docs/physiotherapy_main.jpg";
-import { Card, Col, Row, Container, Button, Carousel } from "react-bootstrap";
+import { Card, Col, Row, Container, Button, Modal } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 
 const doctors = [
@@ -23,19 +22,6 @@ const doctors = [
     description: "Expert in post-surgical rehab and pain management therapies.",
     image: doctor2,
   },
-
-  {
-    name: "Dr. David Lee",
-    specialty: "Sports Injury Specialist",
-    description: "Specialized in athletic injuries and performance therapy.",
-    image: doctor3,
-  },
-  {
-    name: "Dr. David Lee",
-    specialty: "Sports Injury Specialist",
-    description: "Specialized in athletic injuries and performance therapy.",
-    image: doctor3,
-  },
   {
     name: "Dr. David Lee",
     specialty: "Sports Injury Specialist",
@@ -45,106 +31,24 @@ const doctors = [
 ];
 
 const AboutUs = () => {
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
-
-    const handleScroll = () => {
-      const elements = document.querySelectorAll(".fade-in");
-      elements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= window.innerHeight - 100) {
-          el.classList.add("visible");
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  {
-    /* Doctors Section */
-  }
-  <section className="doctors-section my-5 fade-in" data-aos="fade-up">
-    <h2
-      className="text-center mb-4"
-      style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-    >
-      Meet Our Doctors
-    </h2>
-    <Carousel
-      interval={3000}
-      controls={true}
-      indicators={true}
-      touch={true}
-      pause="hover"
-    >
-      {groupedDoctors.map((group, index) => (
-        <Carousel.Item key={index}>
-          <Row className="justify-content-center g-4">
-            {group.map((doctor, idx) => (
-              <Col xs={12} sm={6} md={4} key={idx}>
-                <Card
-                  className={`h-100 shadow-sm border-0 ${
-                    darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
-                  }`}
-                  style={{ fontSize: "0.9rem" }}
-                >
-                  <Card.Img
-                    variant="top"
-                    src={doctor.image}
-                    alt={doctor.name}
-                    style={{ height: "200px", objectFit: "cover" }}
-                  />
-                  <Card.Body>
-                    <Card.Title
-                      style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}
-                    >
-                      {doctor.name}
-                    </Card.Title>
-                    <Card.Subtitle
-                      className="mb-2 text-muted"
-                      style={{ fontSize: "clamp(0.8rem, 1.5vw, 1rem)" }}
-                    >
-                      {doctor.specialty}
-                    </Card.Subtitle>
-                    <Card.Text
-                      style={{ fontSize: "clamp(0.8rem, 1.4vw, 1rem)" }}
-                    >
-                      {doctor.description}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Carousel.Item>
-      ))}
-    </Carousel>
-  </section>;
-  const groupedDoctors = [];
-  for (let i = 0; i < doctors.length; i += 3) {
-    groupedDoctors.push(doctors.slice(i, i + 3));
-  }
 
   return (
     <div
       className={`about-page ${
         darkMode ? "bg-dark text-light" : "bg-light text-dark"
       }`}
-      style={{ minHeight: "100vh", fontSize: "clamp(14px, 2vw, 18px)" }}
     >
-      {" "}
       <Helmet>
-        {" "}
-        <title>
-          About Us | Physio Pulse & Rehabilitation Studio (PPRS)
-        </title>{" "}
+        <title>About Us | Physio Pulse & Rehabilitation Studio (PPRS)</title>
       </Helmet>
+
       <div className="d-flex justify-content-end my-3 me-4">
         <Button
           variant={darkMode ? "light" : "dark"}
@@ -154,11 +58,12 @@ const AboutUs = () => {
           {darkMode ? "Light Mode" : "Dark Mode"}
         </Button>
       </div>
-      <Container fluid className="py-5 px-3">
+
+      <Container fluid className="py-4 px-3">
         {/* About Section */}
-        <section className="about-section fade-in">
+        <section className="about-section fade-in mb-5">
           <Row className="align-items-center">
-            <Col xs={12} md={6} className="mb-4 mb-md-0">
+            <Col xs={12} md={6}>
               <h2>About Physio Pulse & Rehabilitation Studio (PPRS)</h2>
               <p>
                 At Physio Pulse & Rehabilitation Studio, we are dedicated to
@@ -168,99 +73,111 @@ const AboutUs = () => {
                 managing chronic pain, or enhancing physical performance.
               </p>
               <p>
-                Founded with a passion for movement and healing, Physio Pulse &
-                Rehabilitation Studio blends evidence-based treatments with
-                personalized care. Our team of licensed physiotherapists and
-                health professionals are committed to delivering top-notch care
-                in a supportive and welcoming environment. We specialize in a
-                range of services including manual therapy, rehabilitation,
-                posture correction, sports physiotherapy, and injury prevention
-                programs. Using the latest techniques and technologies, we
-                tailor each treatment plan to your unique needs and goals. At
-                Physio Pulse & Rehabilitation Studio, your recovery is our
-                priority—and your wellness is our pulse.
+                We specialize in a range of services including manual therapy,
+                rehabilitation, posture correction, sports physiotherapy, and
+                injury prevention programs. Using the latest techniques and
+                technologies, we tailor each treatment plan to your unique
+                needs.
               </p>
             </Col>
             <Col xs={12} md={6}>
               <img
                 src={physioMain}
                 alt="Physiotherapy"
-                className="img-fluid rounded shadow"
+                className="img-fluid rounded shadow w-100"
               />
             </Col>
           </Row>
         </section>
 
-        {/* Doctors Carousel Section */}
-        <section className="doctors-section my-5 fade-in" data-aos="fade-up">
-          <h2
-            className="text-center mb-4"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-          >
-            Meet Our Doctors
-          </h2>
-          <Carousel interval={1000} controls indicators touch pause="hover">
-            {groupedDoctors.map((group, index) => (
-              <Carousel.Item key={index}>
-                <Row className="justify-content-center g-4">
-                  {group.map((doctor, idx) => (
-                    <Col xs={12} sm={6} md={4} key={idx}>
-                      <Card
-                        className={`h-100 shadow-sm border-0 ${
-                          darkMode
-                            ? "bg-secondary text-light"
-                            : "bg-body-tertiary"
-                        }`}
-                      >
-                        <Card.Img
-                          variant="top"
-                          src={doctor.image}
-                          alt={doctor.name}
-                          className="img-fluid object-fit-cover w-50 h-50"
-                          style={{ objectFit: "cover" }}
-                        />
-                        <Card.Body>
-                          <Card.Title
-                            style={{ fontSize: "clamp(1rem, 2vw, 1.5rem)" }}
-                          >
-                            {doctor.name}
-                          </Card.Title>
-                          <Card.Subtitle
-                            className="mb-2 text-muted"
-                            style={{ fontSize: "clamp(0.9rem, 1.8vw, 1.2rem)" }}
-                          >
-                            {doctor.specialty}
-                          </Card.Subtitle>
-                          <Card.Text
-                            style={{ fontSize: "clamp(0.9rem, 1.6vw, 1.1rem)" }}
-                          >
-                            {doctor.description}
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  ))}
-                </Row>
-              </Carousel.Item>
+        {/* Doctors Section with Modal */}
+        <section className="doctors-section fade-in mb-5" data-aos="fade-up">
+          <h2 className="text-center mb-4">Meet Our Doctors</h2>
+          <p className="text-center mb-4">
+            Is it the people who make PPRS what it is and we are extremely proud
+            of the achievements of our Professionals. We all work together to
+            help our patients through recovery, providing the best possible
+            care.
+          </p>
+          <Row className="g-4">
+            {doctors.map((doctor, index) => (
+              <Col key={index} xs={12} md={4}>
+                <Card
+                  onClick={() => setSelectedDoctor(doctor)}
+                  className={`h-100 shadow doctor-card border-0 cursor-pointer ${
+                    darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
+                  }`}
+                  style={{ cursor: "pointer" }}
+                >
+                  <Card.Img
+                    variant="top"
+                    src={doctor.image}
+                    alt={doctor.name}
+                    className="img-fluid rounded-top"
+                    style={{
+                      height: "300px",
+                      objectFit: "contain",
+                      objectPosition: "top",
+                    }}
+                  />
+                  <Card.Body>
+                    <Card.Title className="mb-1 fs-5">{doctor.name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted fs-6">
+                      {doctor.specialty}
+                    </Card.Subtitle>
+                    <Card.Text>{doctor.description}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
-          </Carousel>
+          </Row>
+
+          {/* Modal */}
+          <Modal
+            show={!!selectedDoctor}
+            onHide={() => setSelectedDoctor(null)}
+            centered
+          >
+            {selectedDoctor && (
+              <>
+                <Modal.Header closeButton>
+                  <Modal.Title>{selectedDoctor.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="text-center">
+                  <img
+                    src={selectedDoctor.image}
+                    alt={selectedDoctor.name}
+                    className="img-fluid rounded mb-3"
+                    style={{ maxHeight: "300px", objectFit: "cover" }}
+                  />
+                  <h6 className="text-muted">{selectedDoctor.specialty}</h6>
+                  <p>{selectedDoctor.description}</p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant="secondary"
+                    onClick={() => setSelectedDoctor(null)}
+                  >
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </>
+            )}
+          </Modal>
         </section>
 
         {/* Services Section */}
-        <section className="services-section my-5 fade-in">
-          <h2 className="text-center mb-4" data-aos="fade-up">
-            Where We Provide Services
-          </h2>
-
+        <section className="services-section fade-in mb-5">
+          <h2>Where We Provide Services</h2>
           <Row className="g-4 text-center">
-            <Col xs={12} md={4} data-aos="fade-up" data-aos-delay="200">
+            <Col xs={12} md={4}>
               <Card
-                className={`h-100 shadow-sm border-0 ${
+                className={`h-100 shadow border-0 ${
                   darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
                 }`}
               >
                 <Card.Body>
-                  <Card.Title className="mt-3">Downtown Clinic</Card.Title>
+                  <Card.Title>Downtown Clinic</Card.Title>
                   <Card.Text>
                     State of the art facility with expert therapists available 7
                     days a week.
@@ -268,14 +185,14 @@ const AboutUs = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={12} md={4} data-aos="fade-up" data-aos-delay="300">
+            <Col xs={12} md={4}>
               <Card
-                className={`h-100 shadow-sm border-0 ${
+                className={`h-100 shadow border-0 ${
                   darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
                 }`}
               >
                 <Card.Body>
-                  <Card.Title className="mt-3">Uptown Center</Card.Title>
+                  <Card.Title>Uptown Center</Card.Title>
                   <Card.Text>
                     Specialized care for sports injuries and pediatric
                     physiotherapy treatments.
@@ -283,16 +200,14 @@ const AboutUs = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={12} md={4} data-aos="fade-up" data-aos-delay="400">
+            <Col xs={12} md={4}>
               <Card
-                className={`h-100 shadow-sm border-0 ${
+                className={`h-100 shadow border-0 ${
                   darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
                 }`}
               >
                 <Card.Body>
-                  <Card.Title className="mt-3">
-                    Suburban Rehab Center
-                  </Card.Title>
+                  <Card.Title>Suburban Rehab Center</Card.Title>
                   <Card.Text>
                     Comprehensive rehabilitation and physiotherapy solutions
                     closer to home.
