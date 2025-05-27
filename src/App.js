@@ -27,58 +27,53 @@ const AppContent = () => {
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
-    setIsPageLoaded(true); // Set the page as loaded after effects are initialized
+    setIsPageLoaded(true);
   }, []);
 
   const isAdminRoute = location.pathname === "/admin";
   const isLoginRoute = location.pathname === "/login";
 
   return (
-    <>
+    <div className="app-wrapper">
+      {" "}
+      {/* 👈 Flex container starts here */}
       <Helmet>
         <title>Welcome to Physio Pulse</title>
       </Helmet>
-      {/* Render the TopNav and Footer only if not on admin/login routes */}
-      {!isAdminRoute && !isLoginRoute && (
-        <>
-          <TopNav />
-        </>
-      )}
+      {!isAdminRoute && !isLoginRoute && <TopNav />}
       <ScrollToTop />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              {/* Render the page content (like carousel) */}
-              <CarouselSlide />
-              <HomePage />
-            </>
-          }
-        />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/appointment" element={<AppointmentForm />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminPanel />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-
-      {/* Render Footer only on non-admin and non-login routes */}
+      <main className="main-content">
+        {" "}
+        {/* 👈 Main area gets flex: 1 */}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <CarouselSlide />
+                <HomePage />
+              </>
+            }
+          />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/appointment" element={<AppointmentForm />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPanel />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </main>
       {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />}
-
-      {/* Always render FloatingButtons */}
       <FloatingButtons />
-    </>
+    </div>
   );
 };
-
 const App = () => {
   return (
     <Router>

@@ -16,7 +16,7 @@ const Footer = ({ darkMode }) => {
 
   return (
     <footer
-      className={`glass-footer py-5 ${darkMode ? "text-light" : "text-dark"}`}
+      className={`glass-footer py-3 ${darkMode ? "text-light" : "text-dark"}`}
       data-aos="fade-up"
       style={{
         backgroundColor: darkMode ? "#1d3141dd" : "#1d3141cc",
