@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Physio/static/css/main.7a29d4d1.css",
-    "main.js": "/Physio/static/js/main.db340dad.js",
+    "main.css": "/Physio/static/css/main.7c531ac0.css",
+    "main.js": "/Physio/static/js/main.adf3a9d9.js",
     "static/media/doctor3.jpg": "/Physio/static/media/doctor3.a2a74db3b921e16f1201.jpg",
     "static/media/physiotherapy_main.jpg": "/Physio/static/media/physiotherapy_main.37a3c9232704d03b0bae.jpg",
     "static/media/Banner.jpeg": "/Physio/static/media/Banner.f39c199141c53379e96c.jpeg",
@@ -12,11 +12,11 @@
     "static/media/doctor1.jpg": "/Physio/static/media/doctor1.cb810c4ce83a08e99fc4.jpg",
     "static/media/medical-assistant-helping-patient-with-physiotherapy-exercises_23-2149071510.avif": "/Physio/static/media/medical-assistant-helping-patient-with-physiotherapy-exercises_23-2149071510.85c8d1a235802e460fb3.avif",
     "index.html": "/Physio/index.html",
-    "main.7a29d4d1.css.map": "/Physio/static/css/main.7a29d4d1.css.map",
-    "main.db340dad.js.map": "/Physio/static/js/main.db340dad.js.map"
+    "main.7c531ac0.css.map": "/Physio/static/css/main.7c531ac0.css.map",
+    "main.adf3a9d9.js.map": "/Physio/static/js/main.adf3a9d9.js.map"
   },
   "entrypoints": [
-    "static/css/main.7a29d4d1.css",
-    "static/js/main.db340dad.js"
+    "static/css/main.7c531ac0.css",
+    "static/js/main.adf3a9d9.js"
   ]
 }
