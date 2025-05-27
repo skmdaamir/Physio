@@ -10,52 +10,44 @@ import {
   BsTrophyFill,
 } from "react-icons/bs";
 import "./HomePage.css";
+import Rating from "react-rating";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  // const [reviews, setReviews] = useState([]);
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   useEffect(() => {
     setShowModal(true);
+    // fetch("http://localhost:5000/api/approved-reviews") // ✅ this should return only reviews with showOnHomePage: true
+    //   .then((res) => res.json())
+    //   .then((data) => setReviews(data))
+    //   .catch((err) => console.error("Error fetching reviews:", err));
   }, []);
 
   const iconColor = darkMode ? "#4caf50" : "#198754";
 
   const reviews = [
-    {
-      quote:
-        "Amazing service! Helped me recover after my knee surgery much faster than expected.",
-      name: "- John Doe",
-    },
-    {
-      quote: "Professional and friendly staff. Great experience overall!",
-      name: "- Sarah Williams",
-    },
-    {
-      quote:
-        "Highly recommend Physio Clinic for sports injury recovery. Great techniques!",
-      name: "- Michael Brown",
-    },
+    { description: "Best physiotherapist", rating: 5, name: "XYZ ABC" },
+    { description: "Excellent Service", rating: 3.5, name: "Shaikh XYZ" },
+    { description: "Very Talented Doctors", rating: 4.5, name: "Amir Shaikh" },
   ];
 
   // New data arrays
   const therapists = [
     "Post-COVID Physiotherapy",
-    "Shockwave Therapy",
     "Chest Physiotherapy",
     "Cryotherapy (Cold Therapy)",
     "Pelvic floor Physical Therapy",
     "Traction Therapy",
     "Soft Tissue Mobilization",
     "Myofascial Release (MFR)",
-    "Acupuncture",
     "Cupping Therapy",
     "Kinesio Taping / Taping Therapy",
     "Chiropractic Therapy",
-    "Spinal Decompression / Traction Therapy",
     "Dry Needling Therapy",
-    "Wax Therapy",
     "THERMOTHERAPY (Heat Therapy)",
     "Manual Therapy",
     "LASER Therapy",
@@ -65,11 +57,10 @@ const HomePage = () => {
   ];
 
   const services = [
-    "Cardiac Rehabilitation",
-    "TELE-PHYSIOTHERAPY",
+    "Home Care Physiotherapy",
+    "Tele-physiotherapy (online)",
     "Therapeutic Massage",
-    "Workplace Ergonomics : Assessment & Training",
-    "Strength Training",
+    "Cardiac Rehabilitation",
     "Vestibular Rehabilitation (VR)",
     "Musculoskeletal Physiotherapy",
     "Pre and Post Surgery Rehabilitation",
@@ -77,73 +68,38 @@ const HomePage = () => {
     "Sports Physiotherapy",
     "Geriatric Physiotherapy",
     "Pediatric Physiotherapy",
-    "Chiropractor Treatment",
-    "Home Care Physiotherapy",
     "Neuro Physiotherapy - Rehab",
+    "Chiropractor Treatment",
   ];
   const conditions = [
-    {
-      text: "Varicose Veins",
-      url: "https://drsinghphysiocare.com/varicose-veins",
-    },
-    {
-      text: "Popliteal (Baker's) Cyst",
-      url: "https://drsinghphysiocare.com/bakers-cyst",
-    },
-    {
-      text: "Posterior Cruciate Ligament(PCL) Injury",
-      url: "https://drsinghphysiocare.com/posterior-cruciate-ligament-pcl-injury/",
-    },
-    {
-      text: "Lateral Collateral Ligament(LCL) Injury",
-      url: "https://drsinghphysiocare.com/lateral-collateral-ligament-lcl-injury",
-    },
-    {
-      text: "Medial Collateral Ligament (MCL) Injury",
-      url: "https://drsinghphysiocare.com/medial-collateral-ligamentmclinjury/",
-    },
-    {
-      text: "Patella Dislocation",
-      url: "https://drsinghphysiocare.com/patella-discolation/",
-    },
-    {
-      text: "Patellar Fracture",
-      url: "https://drsinghphysiocare.com/patella-fracture/",
-    },
-    {
-      text: "Meralgia Paresthetica",
-      url: "https://drsinghphysiocare.com/meralgia-paresthetica/",
-    },
-    {
-      text: "Hip Osteoarthritis",
-      url: "https://drsinghphysiocare.com/hip-osteoarthritis/",
-    },
-    // ... add the rest of the items here
+    { text: "Hip Osteoarthritis", url: "#" },
     { text: "Frozen Shoulder", url: "#" },
     { text: "Cervical Spondylosis", url: "#" },
     { text: "Lumbar Spondylosis", url: "#" },
+    { text: "Lateral Collateral Ligament(LCL) Injury", url: "#" },
+    { text: "Medial Collateral Ligament (MCL) Injury", url: "#" },
+    { text: "Patella Dislocation", url: "#" },
+    { text: "Patellar Fracture", url: "#" },
+    { text: "Meralgia Paresthetica", url: "#" },
   ];
 
   const symptoms = [
+    { text: "Joint Pain", url: "#" },
+    { text: "Neck Pain", url: "#" },
+    { text: "Shoulder Pain", url: "#" },
+    { text: "Back Pain", url: "#" },
+    { text: "Knee pain", url: "#" },
     { text: "Muscle Spasm", url: "#" },
     { text: "Tremors", url: "#" },
     { text: "Joint Cracking", url: "#" },
     { text: "Foot Pain", url: "#" },
     { text: "SPRAINS AND STRAINS", url: "#" },
-    {
-      text: "Shortness of Breath",
-      url: "https://drsinghphysiocare.com/what-is-shortness-of-breath/",
-    },
+    { text: "Shortness of Breath", url: "#" },
     { text: "Headache", url: "#" },
     { text: "Numbness and Tingling", url: "#" },
     { text: "Inflammation", url: "#" },
     { text: "Loss of Balance", url: "#" },
     { text: "Muscle Stiffness", url: "#" },
-    { text: "Shoulder Pain", url: "#" },
-    { text: "Joint Pain", url: "#" },
-    { text: "Neck Pain", url: "#" },
-    { text: "Back Pain", url: "#" },
-    { text: "Knee pain", url: "#" },
   ];
 
   return (
@@ -223,15 +179,34 @@ const HomePage = () => {
                                   }`}
                                 >
                                   <Card.Body>
-                                    <Card.Text className="fs-5 fst-italic">
-                                      "{review.quote}"
+                                    <Card.Text className="fs-5 fst-italic mt-2">
+                                      "{review.description}"
                                     </Card.Text>
+                                    <Rating
+                                      initialRating={review.rating}
+                                      readonly
+                                      emptySymbol={
+                                        <FaRegStar
+                                          color={darkMode ? "#bbb" : "#ccc"}
+                                          size={20}
+                                        />
+                                      }
+                                      fullSymbol={
+                                        <FaStar
+                                          color={
+                                            darkMode ? "#ffd700" : "#f5b301"
+                                          }
+                                          size={20}
+                                        />
+                                      }
+                                    />
+
                                     <Card.Title
-                                      className={`mt-4 ${
+                                      className={`mt-3 ${
                                         darkMode ? "text-info" : "text-primary"
                                       }`}
                                     >
-                                      {review.name}
+                                      ~{review.name}
                                     </Card.Title>
                                   </Card.Body>
                                 </Card>

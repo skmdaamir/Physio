@@ -13,6 +13,8 @@ const statesRoute = require("./routes/states");
 const citiesRoute = require("./routes/cities");
 const treatmentRoute = require("./routes/treatment");
 const appointmentRoute = require("./routes/appointment");
+const reviewRoutes = require("./routes/reviews");
+
 
 // Session Configuration
 app.use(
@@ -60,6 +62,7 @@ app.use("/api/states", statesRoute);
 app.use("/api/cities", citiesRoute);
 app.use("/api/treatment", treatmentRoute);
 app.use("/api/appointments", appointmentRoute);
+app.use("/api", reviewRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.get("/test", (req, res) => {

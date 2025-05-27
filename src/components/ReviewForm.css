@@ -1,0 +1,16 @@
+.star:hover,
+.star-rating i:hover ~ i {
+  color: #ffc107 !important;
+}
+
+.star-rating i {
+  transition: color 0.3s;
+}
+.star-rating span {
+    font-family: Arial, sans-serif !important;
+  }
+
+  .rating-symbol {
+    font-size: 30px !important;
+    color: #ffd700;
+  }

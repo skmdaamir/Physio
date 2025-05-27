@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Route,
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   useLocation,
 } from "react-router-dom";
@@ -20,6 +20,7 @@ import Login from "./components/login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "./components/ScrollToTop";
+import ReviewForm from "./components/ReviewForm";
 
 const AppContent = () => {
   const location = useLocation();
@@ -59,6 +60,7 @@ const AppContent = () => {
           <Route path="/appointment" element={<AppointmentForm />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/review" element={<ReviewForm />} />
           <Route
             path="/admin"
             element={
