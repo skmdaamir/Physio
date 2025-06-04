@@ -318,9 +318,9 @@ const HomePage = () => {
             OUR OFFERING
           </h3>
           <p className="text-center mb-3">
-            At Physio Puls & Rehabilitation (PPRS) we use physio care approach
-            providing a combination of therapies for comprehensive healing
-            appoved modalities are used only
+            At Physio Pulse & Rehabilitation (PPRS) We follow a holistic physio
+            care approach, combining approved therapeutic modalities for
+            comprehensive healing.
           </p>
           <Row className="gx-4 gy-4 mt-4">
             {[

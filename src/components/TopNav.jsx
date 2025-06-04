@@ -14,9 +14,9 @@ const TopNav = () => {
     { path: "/", name: "Home" },
     { path: "/about", name: "About Us" },
     { path: "/blog", name: "Blog" },
-    { path: "/", name: "Photo Gallery" },
+    { path: "/gallery", name: "Photo Gallery" },
     { path: "/appointment", name: "Appointment" },
-    { path: "/", name: "Career" },
+    { path: "/career", name: "Career" },
   ];
 
   return (

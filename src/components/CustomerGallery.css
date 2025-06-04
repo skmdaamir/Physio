@@ -1,0 +1,13 @@
+/* Add this to App.css or your global stylesheet */
+.hover-zoom:hover {
+  transform: scale(1.05);
+}
+
+.text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hover-zoom {
+  transition: transform 0.3s ease;
+}

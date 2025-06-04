@@ -40,7 +40,7 @@ const handleCloseModal = () => {
   }, []);
 
   return (
-    <section className="blog-section py-5">
+    <section className="blog-section pt-5 mt-5">
       <Helmet>
         <title>Blogs | Physio Pulse</title>
       </Helmet>

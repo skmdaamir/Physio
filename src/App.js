@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect,useRef, useState } from "react";
 import {
   Route,
   BrowserRouter as Router,
@@ -15,12 +15,14 @@ import AOS from "aos";
 import "./App.css";
 import HomePage from "./components/HomePage";
 import Blog from "./components/Blog";
-import AdminPanel from "./components/AdminPanel";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
 import Login from "./components/login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "./components/ScrollToTop";
 import ReviewForm from "./components/ReviewForm";
+import CustomerGallery from "./components/CustomerGallery";
+import Career from "./components/Career";
 
 const AppContent = () => {
   const location = useLocation();
@@ -57,10 +59,25 @@ const AppContent = () => {
             }
           />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/appointment" element={<AppointmentForm />} />
+          <Route
+            path="/appointment"
+            element={<AppointmentForm />}
+          />
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/review" element={<ReviewForm />} />
+          <Route
+            path="/review"
+            element={<ReviewForm />}
+          />
+          <Route
+            path="/gallery"
+            element={<CustomerGallery />}
+          />
+          <Route
+            path="/career"
+            element={<Career />}
+          />
+
           <Route
             path="/admin"
             element={

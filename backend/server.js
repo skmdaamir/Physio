@@ -13,7 +13,9 @@ const statesRoute = require("./routes/states");
 const citiesRoute = require("./routes/cities");
 const treatmentRoute = require("./routes/treatment");
 const appointmentRoute = require("./routes/appointment");
+const galleryRoute = require("./routes/uploadImageVideos");
 const reviewRoutes = require("./routes/reviews");
+const careerRoutes = require("./routes/careerRoutes");
 
 
 // Session Configuration
@@ -62,7 +64,9 @@ app.use("/api/states", statesRoute);
 app.use("/api/cities", citiesRoute);
 app.use("/api/treatment", treatmentRoute);
 app.use("/api/appointments", appointmentRoute);
+app.use("/api", galleryRoute);
 app.use("/api", reviewRoutes);
+app.use("/api", careerRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.get("/test", (req, res) => {

@@ -111,7 +111,7 @@ const AppointmentForm = ({ isModal = false }) => {
   };
 
   const FormBody = () => (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} data-aos="fade-up">
       <Row>
         <Col md={6} sm={12}>
           <Form.Group className="mb-3">
@@ -218,7 +218,9 @@ const AppointmentForm = ({ isModal = false }) => {
           required
         />
       </Form.Group>
-      <Button type="submit">Submit Appointment</Button>
+      <div className="d-flex justify-content-center">
+        <Button type="submit">Submit Appointment</Button>
+      </div>
     </Form>
   );
 

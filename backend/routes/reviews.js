@@ -19,8 +19,8 @@ router.post("/submit-review", (req, res) => {
 });
 
 // GET only approved reviews
-router.get("/approved-reviews/admin", async (req, res) => {
-  const query = `SELECT * FROM reviews WHERE visible = 1 ORDER BY created_at DESC`;
+router.get("/reviews", async (req, res) => {
+  const query = `SELECT * FROM reviews ORDER BY created_at DESC`;
   try {
     const [rows] = await db.execute(query);
     res.json(rows);
@@ -30,23 +30,21 @@ router.get("/approved-reviews/admin", async (req, res) => {
   }
 });
 
-
-// POST to toggle visibility
-router.post('/toggle-review-visibility', (req, res) => {
-  const { id, visible } = req.body;
+// PUT to toggle visibility
+router.put("/toggle-review-visibility/:id", (req, res) => {
+  const { id } = req.params;
+  const { isActive } = req.body;
 
   const query = `UPDATE reviews SET visible = ? WHERE id = ?`;
 
-  db.execute(query, [visible, id])
+  db.execute(query, [isActive, id])
     .then(() => res.status(201).json({ message: "Review visibility updated" }))
     .catch((err) => {
       console.error("Insert error:", err); // This will help identify the problem
-      res
-        .status(500)
-        .json({
-          error: "Error updating review visibility:",
-          details: err.message,
-        });
+      res.status(500).json({
+        error: "Error updating review visibility:",
+        details: err.message,
+      });
     });
 });
 
