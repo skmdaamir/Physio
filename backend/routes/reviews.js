@@ -31,7 +31,7 @@ router.get("/reviews", async (req, res) => {
 });
 
 // PUT to toggle visibility
-router.put("/toggle-review-visibility/:id", (req, res) => {
+router.put("/reviewVisibility/:id", (req, res) => {
   const { id } = req.params;
   const { isActive } = req.body;
 
