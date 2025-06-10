@@ -1,5 +1,5 @@
-import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
@@ -8,11 +8,15 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import "./Footer.css";
+import AOS from "aos";
 
 const Footer = ({ darkMode }) => {
   // Colors based on darkMode
   const linkColor = darkMode ? "#a5d6a7" : "#ffffff"; // Light green or white
   const linkHoverColor = darkMode ? "#4caf50" : "#28a745"; // Darker green or bootstrap green
+  useEffect(() => {
+    AOS.refresh();
+  }, []);
 
   return (
     <footer
@@ -127,7 +131,8 @@ const Footer = ({ darkMode }) => {
         <Row className="text-center">
           <Col>
             <small style={{ color: darkMode ? "#ccc" : "#ffffff" }}>
-              &copy; 2025 Physiotherapy App - All Rights Reserved.
+              &copy; {new Date().getFullYear()} Physiotherapy App - All Rights
+              Reserved.
             </small>
           </Col>
         </Row>

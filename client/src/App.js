@@ -1,4 +1,4 @@
-import React, { useEffect,useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Route,
   BrowserRouter as Router,
@@ -28,10 +28,28 @@ const AppContent = () => {
   const location = useLocation();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
+  // useEffect(() => {
+  //   AOS.init({ duration: 1000 });
+  //   setIsPageLoaded(true);
+  //   AOS.refresh(); // Important for route-based updates
+  // }, [location]);
   useEffect(() => {
-    AOS.init({ duration: 1000 });
-    setIsPageLoaded(true);
-  }, []);
+    
+
+    // Refresh slightly later for consistent rendering
+    setTimeout(() => {
+      
+      AOS.init({ duration: 1000 });
+      AOS.refresh();
+      setIsPageLoaded(true);
+    }, 100); // You can try 50ms to 300ms depending on render speed
+  }, [location]);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     AOS.refreshHard(); // Use refreshHard instead of refresh for better results
+  //   }, 100); // 🔄 Important: refresh AOS when location/path changes
+  // }, [location.pathname]);
 
   const isAdminRoute = location.pathname === "/admin";
   const isLoginRoute = location.pathname === "/login";
@@ -59,24 +77,12 @@ const AppContent = () => {
             }
           />
           <Route path="/about" element={<AboutUs />} />
-          <Route
-            path="/appointment"
-            element={<AppointmentForm />}
-          />
+          <Route path="/appointment" element={<AppointmentForm />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/review"
-            element={<ReviewForm />}
-          />
-          <Route
-            path="/gallery"
-            element={<CustomerGallery />}
-          />
-          <Route
-            path="/career"
-            element={<Career />}
-          />
+          <Route path="/review" element={<ReviewForm />} />
+          <Route path="/gallery" element={<CustomerGallery />} />
+          <Route path="/career" element={<Career />} />
 
           <Route
             path="/admin"
@@ -88,6 +94,7 @@ const AppContent = () => {
           />
         </Routes>
       </main>
+      {/* {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />} */}
       {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />}
       <FloatingButtons />
     </div>
