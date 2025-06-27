@@ -28,7 +28,7 @@ const Career = () => {
         <div className="text-center">
           <Spinner animation="border" />
         </div>
-      ) : (
+      ) : jobs.length > 0 ? (
         <Row>
           {jobs.map((job) => (
             <Col key={job.id} md={6} lg={4} className="mb-4" data-aos="fade-up">
@@ -44,7 +44,10 @@ const Career = () => {
             </Col>
           ))}
         </Row>
-      )}
+      ): (
+        <p className="text-center">No jobs available.</p>
+      )
+      }
     </Container>
   );
 };

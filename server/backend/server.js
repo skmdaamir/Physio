@@ -21,7 +21,7 @@ const careerRoutes = require("./routes/careerRoutes");
 // Session Configuration
 app.use(
   session({
-    secret: process.env.JWT_SECRET, // Replace with your secret
+    secret: process.env.JWT_SECRET || "fallbackSecret", // Replace with your secret
     resave: false,
     saveUninitialized: false,
     rolling: true, // Reset the cookie Max-Age on every response

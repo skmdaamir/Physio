@@ -50,7 +50,7 @@ const CustomerGallery = () => {
         <div className="text-center">
           <Spinner animation="border" variant="primary" />
         </div>
-      ) : (
+      ) : galleryItems.length > 0 ? (
         <Row>
           {galleryItems.map((item, idx) => (
             <Col
@@ -112,7 +112,10 @@ const CustomerGallery = () => {
             </Col>
           ))}
         </Row>
-      )}
+      ) : (
+        <p className="text-center">No gallery available.</p>
+      )
+      }
 
       {/* Modal */}
       <Modal show={!!modalData} onHide={handleClose} size="lg" centered>
