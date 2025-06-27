@@ -27,14 +27,10 @@ import Career from "./components/Career";
 const AppContent = () => {
   const location = useLocation();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   AOS.init({ duration: 1000 });
-  //   setIsPageLoaded(true);
-  //   AOS.refresh(); // Important for route-based updates
-  // }, [location]);
   useEffect(() => {
-    
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
 
     // Refresh slightly later for consistent rendering
     setTimeout(() => {
@@ -44,12 +40,6 @@ const AppContent = () => {
       setIsPageLoaded(true);
     }, 100); // You can try 50ms to 300ms depending on render speed
   }, [location]);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     AOS.refreshHard(); // Use refreshHard instead of refresh for better results
-  //   }, 100); // 🔄 Important: refresh AOS when location/path changes
-  // }, [location.pathname]);
 
   const isAdminRoute = location.pathname === "/admin";
   const isLoginRoute = location.pathname === "/login";

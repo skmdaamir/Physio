@@ -5,10 +5,15 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Reset scroll to top when path changes
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",// optional: "auto" for instant jump
+    });
   }, [pathname]);
 
-  return null; // This component doesn't render anything
+  return null;
 };
 
 export default ScrollToTop;

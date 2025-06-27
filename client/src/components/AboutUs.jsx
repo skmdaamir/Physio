@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AboutUs.css";
 import doctor1 from "../assets/docs/doctor1.jpg";
 import doctor2 from "../assets/docs/doctor3.jpg";
 import doctor3 from "../assets/docs/doctor2.jpg";
-import AOS from "aos";
 import physioMain from "../assets/docs/physiotherapy_main.jpg";
 import { Card, Col, Row, Container, Button, Modal } from "react-bootstrap";
 import { Helmet } from "react-helmet";
@@ -35,10 +34,6 @@ const AboutUs = () => {
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-  }, []);
-
   return (
     <div
       className={`about-page ${
@@ -61,7 +56,7 @@ const AboutUs = () => {
 
       <Container fluid className="py-4 px-3">
         {/* About Section */}
-        <section className="about-section fade-in mb-5">
+        <section className="about-section mb-5" data-aos="fade-up">
           <Row className="align-items-center">
             <Col xs={12} md={6}>
               <h2>About Physio Pulse & Rehabilitation Studio (PPRS)</h2>
@@ -85,49 +80,56 @@ const AboutUs = () => {
                 src={physioMain}
                 alt="Physiotherapy"
                 className="img-fluid rounded shadow w-100"
+                data-aos="zoom-in"
               />
             </Col>
           </Row>
         </section>
 
-        {/* Doctors Section with Modal */}
-        <section className="doctors-section fade-in mb-5" data-aos="fade-up">
+        {/* Doctors Section */}
+        <section className="doctors-section mb-5" data-aos="fade-up">
           <h2 className="text-center mb-4">Meet Our Doctors</h2>
           <p className="text-center mb-4">
-            Is it the people who make PPRS what it is and we are extremely proud
-            of the achievements of our Professionals. We all work together to
+            It’s the people who make PPRS what it is, and we are extremely proud
+            of the achievements of our professionals. We all work together to
             help our patients through recovery, providing the best possible
             care.
           </p>
           <Row className="g-4">
             {doctors.map((doctor, index) => (
               <Col key={index} xs={12} md={4}>
-                <Card
-                  onClick={() => setSelectedDoctor(doctor)}
-                  className={`h-100 shadow doctor-card border-0 cursor-pointer ${
-                    darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
-                  }`}
-                  style={{ cursor: "pointer" }}
-                >
-                  <Card.Img
-                    variant="top"
-                    src={doctor.image}
-                    alt={doctor.name}
-                    className="img-fluid rounded-top"
-                    style={{
-                      height: "300px",
-                      objectFit: "contain",
-                      objectPosition: "top",
-                    }}
-                  />
-                  <Card.Body>
-                    <Card.Title className="mb-1 fs-5">{doctor.name}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted fs-6">
-                      {doctor.specialty}
-                    </Card.Subtitle>
-                    <Card.Text>{doctor.description}</Card.Text>
-                  </Card.Body>
-                </Card>
+                <div data-aos="zoom-in" data-aos-delay={index * 100}>
+                  <Card
+                    onClick={() => setSelectedDoctor(doctor)}
+                    className={`h-100 shadow doctor-card border-0 ${
+                      darkMode
+                        ? "bg-secondary text-light"
+                        : "bg-body-tertiary"
+                    }`}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <Card.Img
+                      variant="top"
+                      src={doctor.image}
+                      alt={doctor.name}
+                      className="img-fluid rounded-top"
+                      style={{
+                        height: "300px",
+                        objectFit: "contain",
+                        objectPosition: "top",
+                      }}
+                    />
+                    <Card.Body>
+                      <Card.Title className="mb-1 fs-5">
+                        {doctor.name}
+                      </Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted fs-6">
+                        {doctor.specialty}
+                      </Card.Subtitle>
+                      <Card.Text>{doctor.description}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
               </Col>
             ))}
           </Row>
@@ -167,54 +169,40 @@ const AboutUs = () => {
         </section>
 
         {/* Services Section */}
-        <section className="services-section fade-in mb-5">
+        <section className="services-section mb-5" data-aos="fade-up">
           <h2>Where We Provide Services</h2>
           <Row className="g-4 text-center">
-            <Col xs={12} md={4}>
-              <Card
-                className={`h-100 shadow border-0 ${
-                  darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
-                }`}
-              >
-                <Card.Body>
-                  <Card.Title>Downtown Clinic</Card.Title>
-                  <Card.Text>
-                    State of the art facility with expert therapists available 7
-                    days a week.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col xs={12} md={4}>
-              <Card
-                className={`h-100 shadow border-0 ${
-                  darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
-                }`}
-              >
-                <Card.Body>
-                  <Card.Title>Uptown Center</Card.Title>
-                  <Card.Text>
-                    Specialized care for sports injuries and pediatric
-                    physiotherapy treatments.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col xs={12} md={4}>
-              <Card
-                className={`h-100 shadow border-0 ${
-                  darkMode ? "bg-secondary text-light" : "bg-body-tertiary"
-                }`}
-              >
-                <Card.Body>
-                  <Card.Title>Suburban Rehab Center</Card.Title>
-                  <Card.Text>
-                    Comprehensive rehabilitation and physiotherapy solutions
-                    closer to home.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
+            {[
+              {
+                title: "Downtown Clinic",
+                text: "State of the art facility with expert therapists available 7 days a week.",
+              },
+              {
+                title: "Uptown Center",
+                text: "Specialized care for sports injuries and pediatric physiotherapy treatments.",
+              },
+              {
+                title: "Suburban Rehab Center",
+                text: "Comprehensive rehabilitation and physiotherapy solutions closer to home.",
+              },
+            ].map((service, index) => (
+              <Col xs={12} md={4} key={index}>
+                <div data-aos="flip-left" data-aos-delay={index * 100}>
+                  <Card
+                    className={`h-100 shadow border-0 ${
+                      darkMode
+                        ? "bg-secondary text-light"
+                        : "bg-body-tertiary"
+                    }`}
+                  >
+                    <Card.Body>
+                      <Card.Title>{service.title}</Card.Title>
+                      <Card.Text>{service.text}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
+              </Col>
+            ))}
           </Row>
         </section>
       </Container>
