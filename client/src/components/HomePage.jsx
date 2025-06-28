@@ -26,9 +26,19 @@ const HomePage = () => {
   }, []);
 
   const fetchApprovedReviews = async () => {
-    const res = await axios.get(`/api/approved-reviews`);
-    setReviews(res.data);
-  }
+    try {
+      const res = await axios.get(`/api/approved-reviews`);
+      if (res.data && Array.isArray(res.data)) {
+        setReviews(res.data);
+      } else {
+        console.warn("Unexpected reviews data format:", res.data);
+        setReviews([]);
+      }
+    } catch (error) {
+      console.error("Failed to fetch approved reviews:", error);
+      setReviews([]);
+    }
+  };
   const iconColor = darkMode ? "#4caf50" : "#198754";
 
   // const reviews = [
