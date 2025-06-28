@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Table, Button, Form, Row, Col } from "react-bootstrap";
-import axios from '../../../axiosInstance';
+import axios from '../../axiosInstance';
 
 const CareersTab = () => {
   const [careers, setCareers] = useState([]);
