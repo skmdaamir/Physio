@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import axios from "../axiosInstance";
+import axios from "./axiosInstance";
 import { Helmet } from "react-helmet";
 const qs = require("qs");
 
