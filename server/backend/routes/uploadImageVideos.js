@@ -44,7 +44,7 @@ router.get("/gallery", async (req, res) => {
     res.json(rows);
   } catch (error) {
     console.error("Error fetching Treatment:", error);
-    res.status(500).json({ message: "Failed to fetch Active Reviews" });
+    res.status(500).json({ message: "Failed to fetch Treatment" });
   }
 });
 

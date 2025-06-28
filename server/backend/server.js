@@ -6,7 +6,7 @@ const session = require("express-session");
 const blogRoutes = require("./routes/blogRouters");
 
 const app = express();
-const PORT = 5000;
+const PORT = 43073;
 const adminRoutes = require("./admin");
 const bodyParser = require("body-parser");
 const statesRoute = require("./routes/states");
@@ -71,6 +71,9 @@ app.use("/api/admin", adminRoutes);
 
 app.get("/test", (req, res) => {
   res.send("API working!");
+});
+app.get("/", (req, res) => {
+  res.send("Physio API is running ✅");
 });
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
