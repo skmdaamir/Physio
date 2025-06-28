@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Card, Row, Col, Spinner } from "react-bootstrap";
-import axios from './axiosInstance';
+import axios from '../axiosInstance';
 
 const Career = () => {
   const [jobs, setJobs] = useState([]);

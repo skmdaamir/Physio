@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
-import axios from './axiosInstance';
+import axios from '../axiosInstance';
 import Loader from "./Loader";
 import { Helmet } from "react-helmet";
 

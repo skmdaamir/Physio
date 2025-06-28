@@ -8,7 +8,7 @@ import {
   Modal,
   Button,
 } from "react-bootstrap";
-import axios from './axiosInstance';
+import axios from '../axiosInstance';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./CustomerGallery.css";

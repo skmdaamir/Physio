@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from './axiosInstance';
+import axios from '../axiosInstance';
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 

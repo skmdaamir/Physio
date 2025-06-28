@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Rating from "react-rating";
 import "./ReviewForm.css";
+import axios from '../axiosInstance';
 
 const ReviewForm = () => {
   const [formData, setFormData] = useState({
@@ -28,32 +29,17 @@ const ReviewForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  try {
-    const response = await fetch("http://localhost:5000/api/submit-review", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      alert("Thank you for your feedback!");
-      setFormData({
-        name: "",
+    await axios.post("/api/appointments", formData);
+        alert("Thank you for your feedback!");
+        setFormData({
+          name: "",
         email: "",
         mobile: "",
         rating: 0,
         description: "",
-      });
-    } else {
-      alert(result.message || "Something went wrong.");
-    }
-  } catch (error) {
-    console.error("Error submitting review:", error);
-    alert("Error submitting review.");
-  }
+        });
+
+
   };
 
   return (

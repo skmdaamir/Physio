@@ -1,6 +1,6 @@
 // AdminPanel/ReviewsTab.jsx
 import { useEffect, useState } from "react";
-import axios from '../axiosInstance';
+import axios from '.../axiosInstance';
 import { Table, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 

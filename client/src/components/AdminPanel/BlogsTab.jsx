@@ -1,7 +1,7 @@
 // AdminPanel/BlogsTab.jsx
 import { useEffect, useState } from "react";
 import { Card, Button, Col, Row, Modal, Form } from "react-bootstrap";
-import axios from '../axiosInstance';
+import axios from '.../axiosInstance';
 import { toast } from "react-toastify";
 
 const BlogsTab = () => {

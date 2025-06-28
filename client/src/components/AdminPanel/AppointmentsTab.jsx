@@ -1,7 +1,7 @@
 // AdminPanel/AppointmentsTab.jsx
 import { useEffect, useState } from "react";
 import { Table, Button, Form } from "react-bootstrap";
-import axios from '../axiosInstance';
+import axios from '.../axiosInstance';
 import { toast } from "react-toastify";
 
 const AppointmentsTab = () => {
