@@ -92,7 +92,7 @@ const AppContent = () => {
 };
 const App = () => {
   return (
-    <Router basename="/https://skmdaamir.github.io/">
+    <Router basename="/skmdaamir.github.io/Physio">
       <AppContent />
     </Router>
   );
