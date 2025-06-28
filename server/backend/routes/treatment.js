@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
     console.log("GET /api/Treatment hit");
   try {
     const [rows] = await db.execute(
-      "SELECT treatment_id, treatment_description FROM Treatment ORDER BY treatment_id ASC"
+      "SELECT treatment_id, treatment_description FROM treatment ORDER BY treatment_id ASC"
     );
     res.json(rows);
   } catch (error) {
