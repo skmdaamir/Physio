@@ -111,7 +111,8 @@ const AppointmentForm = ({ isModal = false }) => {
   };
 
   const FormBody = () => (
-    <Form onSubmit={handleSubmit} data-aos="fade-up">
+    <div data-aos="fade-up">
+    <Form onSubmit={handleSubmit} >
       <Row>
         <Col md={6} sm={12}>
           <Form.Group className="mb-3">
@@ -221,7 +222,8 @@ const AppointmentForm = ({ isModal = false }) => {
       <div className="d-flex justify-content-center">
         <Button type="submit">Submit Appointment</Button>
       </div>
-    </Form>
+      </Form>
+      </div>
   );
 
   return isModal ? (
