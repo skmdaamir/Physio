@@ -54,9 +54,9 @@ const AppointmentForm = ({ isModal = false }) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
 
-    if (name === "state") {
-      fetchCities(value);
-    }
+    // if (name === "state") {
+    //   fetchCities(value);
+    // }
   };
 
   const handleSubmit = async (e) => {

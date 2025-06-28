@@ -11,29 +11,31 @@ import {
 } from "react-icons/bs";
 import "./HomePage.css";
 import Rating from "react-rating";
+import axios from '../../axiosInstance';
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  // const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   useEffect(() => {
     setShowModal(true);
-    // fetch("http://localhost:5000/api/approved-reviews") // ✅ this should return only reviews with showOnHomePage: true
-    //   .then((res) => res.json())
-    //   .then((data) => setReviews(data))
-    //   .catch((err) => console.error("Error fetching reviews:", err));
+    fetchApprovedReviews();
   }, []);
 
+  const fetchApprovedReviews = async () => {
+    const res = await axios.get(`/api/approved-reviews`);
+    setReviews(res.data);
+  }
   const iconColor = darkMode ? "#4caf50" : "#198754";
 
-  const reviews = [
-    { description: "Best physiotherapist", rating: 5, name: "XYZ ABC" },
-    { description: "Excellent Service", rating: 3.5, name: "Shaikh XYZ" },
-    { description: "Very Talented Doctors", rating: 4.5, name: "Amir Shaikh" },
-  ];
+  // const reviews = [
+  //   { description: "Best physiotherapist", rating: 5, name: "XYZ ABC" },
+  //   { description: "Excellent Service", rating: 3.5, name: "Shaikh XYZ" },
+  //   { description: "Very Talented Doctors", rating: 4.5, name: "Amir Shaikh" },
+  // ];
 
   // New data arrays
   const therapists = [
