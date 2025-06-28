@@ -64,32 +64,32 @@ const AppointmentForm = ({ isModal = false }) => {
     try {
       await axios.post("/api/appointments", form);
 
-      const selectedTreatment =
-        treatments.find((t) => t.treatment_id === parseInt(form.treatmentType))
-          ?.treatment_description || "";
-      const selectedState =
-        states.find((s) => s.state_id === parseInt(form.state))?.state_name ||
-        "";
-      const selectedCity =
-        cities.find((c) => c.city_id === parseInt(form.city))?.city_name || "";
-      var data = qs.stringify({
-        token: "o9i5g5rj1m6tr898",
-        to: "+918655319821",
-        body: `New Appointment:\nName: ${form.name}\nPhone: ${form.phone}\nTreatment: ${selectedTreatment}\nState: ${selectedState}\nCity: ${selectedCity}\nCondition: ${form.conditions}`,
-      });
+      // const selectedTreatment =
+      //   treatments.find((t) => t.treatment_id === parseInt(form.treatmentType))
+      //     ?.treatment_description || "";
+      // const selectedState =
+      //   states.find((s) => s.state_id === parseInt(form.state))?.state_name ||
+      //   "";
+      // const selectedCity =
+      //   cities.find((c) => c.city_id === parseInt(form.city))?.city_name || "";
+      // var data = qs.stringify({
+      //   token: "o9i5g5rj1m6tr898",
+      //   to: "+918655319821",
+      //   body: `New Appointment:\nName: ${form.name}\nPhone: ${form.phone}\nTreatment: ${selectedTreatment}\nState: ${selectedState}\nCity: ${selectedCity}\nCondition: ${form.conditions}`,
+      // });
 
-      var config = {
-        method: "post",
-        url: "https://api.ultramsg.com/instance120618/messages/chat",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        data: data,
-      };
+      // var config = {
+      //   method: "post",
+      //   url: "https://api.ultramsg.com/instance120618/messages/chat",
+      //   headers: {
+      //     "Content-Type": "application/x-www-form-urlencoded",
+      //   },
+      //   data: data,
+      // };
 
-      axios(config)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
+      // axios(config)
+      //   .then(function (response) {
+      //     console.log(JSON.stringify(response.data));
           alert("Appointment submitted successfully!");
           setForm({
             name: "",
@@ -100,10 +100,10 @@ const AppointmentForm = ({ isModal = false }) => {
             city: "",
             conditions: "",
           });
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
     } catch (error) {
       console.error("Submission error:", error);
       alert("Failed to submit appointment.");
