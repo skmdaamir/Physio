@@ -230,6 +230,38 @@ const AppointmentForm = ({ isModal = false }) => {
     <Container className="pt-5 mt-5">
       <Helmet>
         <title>Appointment Form | Physio Pulse</title>
+        <style>{`
+    @media (max-width: 768px) {
+      form label,
+      form input,
+      form select,
+      form textarea,
+      button {
+        font-size: 16px !important;
+      }
+
+      form .form-control,
+      form .form-select,
+      form textarea {
+        padding: 12px !important;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+      }
+
+      h2 {
+        font-size: 22px !important;
+        text-align: center;
+      }
+
+      .container {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+  `}</style>
       </Helmet>
       <h2 className="mb-4">Book an Appointment</h2>
       <FormBody />
