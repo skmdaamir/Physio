@@ -11,7 +11,7 @@ import {
 } from "react-icons/bs";
 import "./HomePage.css";
 import Rating from "react-rating";
-import axios from '../../axiosInstance';
+import axios from '../axiosInstance';
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 const HomePage = () => {
