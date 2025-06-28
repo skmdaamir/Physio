@@ -92,7 +92,7 @@ const AppContent = () => {
 };
 const App = () => {
   return (
-    <Router basename="/Physio">
+    <Router>
       <AppContent />
     </Router>
   );
