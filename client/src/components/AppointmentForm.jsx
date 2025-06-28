@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import axios from "../axiosInstance";
 import { Helmet } from "react-helmet";
 const qs = require("qs");
 
@@ -30,19 +30,19 @@ const AppointmentForm = ({ isModal = false }) => {
   }, [form.state]);
 
   const fetchTreatments = async () => {
-    const res = await axios.get("http://localhost:5000/api/treatment");
+    const res = await axios.get("/api/treatment");
     setTreatments(res.data);
   };
 
   const fetchStates = async () => {
-    const res = await axios.get("http://localhost:5000/api/states");
+    const res = await axios.get("/api/states");
     setStates(res.data);
   };
 
   const fetchCities = async (stateId) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/cities/${stateId}`
+        `/api/cities/${stateId}`
       );
       setCities(res.data);
     } catch (error) {
@@ -62,7 +62,7 @@ const AppointmentForm = ({ isModal = false }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/appointments", form);
+      await axios.post("/api/appointments", form);
 
       const selectedTreatment =
         treatments.find((t) => t.treatment_id === parseInt(form.treatmentType))

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from './axiosInstance';
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -13,7 +13,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/admin/login",
+        "/api/admin/login",
         {
           email: username,
           password,

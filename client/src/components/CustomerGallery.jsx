@@ -8,7 +8,7 @@ import {
   Modal,
   Button,
 } from "react-bootstrap";
-import axios from "axios";
+import axios from './axiosInstance';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./CustomerGallery.css";
@@ -25,7 +25,7 @@ const CustomerGallery = () => {
 
   const fetchGallery = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/gallery");
+      const res = await axios.get("/api/gallery");
       setGalleryItems(res.data);
     } catch (err) {
       console.error("Error fetching gallery:", err);
@@ -70,7 +70,7 @@ const CustomerGallery = () => {
                 {item.image_path && (
                   <Card.Img
                     variant="top"
-                    src={`http://localhost:5000/${item.image_path.replace(
+                    src={`/${item.image_path.replace(
                       /\\/g,
                       "/"
                     )}`}
@@ -127,7 +127,7 @@ const CustomerGallery = () => {
         <Modal.Body className="text-center">
           {modalData?.image_path ? (
             <img
-              src={`http://localhost:5000/${modalData.image_path.replace(
+              src={`/${modalData.image_path.replace(
                 /\\/g,
                 "/"
               )}`}

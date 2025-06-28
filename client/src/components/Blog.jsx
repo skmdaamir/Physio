@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
-import axios from "axios";
+import axios from './axiosInstance';
 import Loader from "./Loader";
 import { Helmet } from "react-helmet";
 
@@ -23,7 +23,7 @@ const handleCloseModal = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/allBlogs");
+      const res = await axios.get("/api/allBlogs");
       const activeBlogs = (res.data.blogs || res.data).filter(
         (blog) => blog.is_active === "Published" || blog.is_active === 1
       );

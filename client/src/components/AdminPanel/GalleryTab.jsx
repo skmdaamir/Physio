@@ -1,7 +1,7 @@
 // AdminPanel/GalleryTab.jsx
 import { useEffect, useState } from "react";
 import { Card, Button, Col, Row, Modal, Form } from "react-bootstrap";
-import axios from "axios";
+import axios from '../axiosInstance';
 import { toast } from "react-toastify";
 
 const GalleryTab = () => {
@@ -19,7 +19,7 @@ const GalleryTab = () => {
 
   const fetchGallery = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/gallery");
+      const res = await axios.get("/api/gallery");
       setGalleryItems(res.data);
     } catch (err) {
       console.error("Error fetching gallery:", err);
@@ -55,7 +55,7 @@ const GalleryTab = () => {
       formData.append("youtubeLink", newItem.youtubeLink);
 
     try {
-      await axios.post("http://localhost:5000/api/upload-photo", formData);
+      await axios.post("/api/upload-photo", formData);
       toast.success("Gallery item added!");
       fetchGallery();
       resetModal();
@@ -69,7 +69,7 @@ const GalleryTab = () => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/gallery/${id}`);
+      await axios.delete(`/api/gallery/${id}`);
       toast.success("Item deleted!");
       fetchGallery();
     } catch (err) {
@@ -92,7 +92,7 @@ const GalleryTab = () => {
               {item.image_path && (
                 <Card.Img
                   variant="top"
-                  src={`http://localhost:5000/${item.image_path}`}
+                  src={`/${item.image_path}`}
                   style={{ height: "200px", objectFit: "cover" }}
                 />
               )}

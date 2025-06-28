@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BlogList from "./BlogList";
 import BlogForm from "./BlogForm";
-import axios from "axios";
+import axios from './axiosInstance';
 
 const BlogSection = () => {
   const [blogs, setBlogs] = useState([]);
@@ -9,7 +9,7 @@ const BlogSection = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       const response = await axios.get(
-        "http://localhost:5000/api/blogs/active"
+        "/api/blogs/active"
       );
       setBlogs(response.data);
     };

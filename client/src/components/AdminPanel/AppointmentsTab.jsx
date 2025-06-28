@@ -1,7 +1,7 @@
 // AdminPanel/AppointmentsTab.jsx
 import { useEffect, useState } from "react";
 import { Table, Button, Form } from "react-bootstrap";
-import axios from "axios";
+import axios from '../axiosInstance';
 import { toast } from "react-toastify";
 
 const AppointmentsTab = () => {
@@ -14,7 +14,7 @@ const AppointmentsTab = () => {
 
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/appointments");
+      const res = await axios.get(`/api/appointments`);
       setAppointments(res.data);
     } catch (error) {
       console.error("Error fetching appointments:", error);
@@ -29,7 +29,7 @@ const AppointmentsTab = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/appointments/${id}/remark`, {
+      await axios.put(`/api/appointments/${id}/remark`, {
         remarks,
       });
       toast.success("Marked as done!");

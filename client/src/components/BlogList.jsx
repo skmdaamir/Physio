@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from './axiosInstance';
 import { ToastContainer, toast } from "react-toastify"; // Import toast
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
@@ -17,7 +17,7 @@ const BlogForm = () => {
   // Function to fetch blogs
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/blogs");
+      const response = await axios.get("/api/blogs");
       setBlogs(response.data); // Set the blogs state
     } catch (err) {
       console.error("Error fetching blogs:", err);
@@ -40,7 +40,7 @@ const BlogForm = () => {
 
     try {
       // Submit the blog post
-      await axios.post("http://localhost:5000/api/blogs", formData);
+      await axios.post("/api/blogs", formData);
       fetchBlogs(); // Fetch updated list of blogs
       setTitle(""); // Reset title input
       setContent(""); // Reset content input
@@ -89,7 +89,7 @@ const BlogForm = () => {
               <h5>{blog.title}</h5>
               <p>{blog.content.slice(0, 100)}...</p>
               <img
-                src={`http://localhost:5000/${blog.imagePath}`}
+                src={`/${blog.imagePath}`}
                 alt="Blog"
                 className="img-thumbnail"
                 style={{ width: "150px" }}

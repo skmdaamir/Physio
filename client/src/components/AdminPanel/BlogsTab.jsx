@@ -1,7 +1,7 @@
 // AdminPanel/BlogsTab.jsx
 import { useEffect, useState } from "react";
 import { Card, Button, Col, Row, Modal, Form } from "react-bootstrap";
-import axios from "axios";
+import axios from '../axiosInstance';
 import { toast } from "react-toastify";
 
 const BlogsTab = () => {
@@ -22,7 +22,7 @@ const BlogsTab = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/allBlogs");
+      const res = await axios.get(`/api/allBlogs`);
       console.log("Fetched blogs:", res.data.blogs);
       if (Array.isArray(res.data.blogs)) {
         setBlogs(res.data.blogs);
@@ -69,7 +69,7 @@ const BlogsTab = () => {
     if (!window.confirm("Are you sure you want to delete this blog?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/blogs/${id}`);
+      await axios.delete(`/api/blogs/${id}`);
       toast.success("Blog deleted!");
       fetchBlogs();
     } catch (err) {
@@ -93,12 +93,12 @@ const BlogsTab = () => {
     try {
       if (editMode) {
         await axios.put(
-          `http://localhost:5000/api/blogs/${selectedBlogId}`,
+          `/api/blogs/${selectedBlogId}`,
           formData
         );
         toast.success("Blog updated!");
       } else {
-        await axios.post("http://localhost:5000/api/blogs", formData);
+        await axios.post("/api/blogs", formData);
         toast.success("Blog added!");
       }
       fetchBlogs();
@@ -111,7 +111,7 @@ const BlogsTab = () => {
 
   const toggleStatus = async (id, currentStatus) => {
     try {
-      await axios.patch(`http://localhost:5000/api/blogs/${id}/status`, {
+      await axios.patch(`/api/blogs/${id}/status`, {
         is_active: currentStatus === 1 ? 0 : 1,
       });
       toast.success("Status updated!");

@@ -1,6 +1,6 @@
 // AdminPanel/ReviewsTab.jsx
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from '../axiosInstance';
 import { Table, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
@@ -13,7 +13,7 @@ const ReviewsTab = () => {
 
   const fetchReviews = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/reviews");
+      const res = await axios.get("/api/reviews");
       setReviews(res.data);
     } catch (err) {
       console.error("Error fetching reviews:", err);
@@ -24,7 +24,7 @@ const ReviewsTab = () => {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/reviews/${id}`);
+      await axios.delete(`/api/reviews/${id}`);
       toast.success("Review deleted!");
       fetchReviews();
     } catch (err) {

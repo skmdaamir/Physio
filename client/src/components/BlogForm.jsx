@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from './axiosInstance';
 import { ToastContainer, toast } from "react-toastify"; // Import toast
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
@@ -13,7 +13,7 @@ const BlogForm = () => {
   const [blogs, setBlogs] = useState([]);
 
   const fetchBlogs = async () => {
-    const response = await axios.get("http://localhost:5000/api/blogs");
+    const response = await axios.get("/api/blogs");
     setBlogs(response.data);
   };
 
@@ -36,7 +36,7 @@ const BlogForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/blogs",
+        "/api/blogs",
         formData
       );
 

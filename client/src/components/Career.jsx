@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Card, Row, Col, Spinner } from "react-bootstrap";
-import axios from "axios";
+import axios from './axiosInstance';
 
 const Career = () => {
   const [jobs, setJobs] = useState([]);
@@ -12,7 +12,7 @@ const Career = () => {
 
   const fetchJobs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/careers");
+      const res = await axios.get("/api/careers");
       setJobs(res.data);
     } catch (err) {
       console.error("Failed to fetch jobs", err);

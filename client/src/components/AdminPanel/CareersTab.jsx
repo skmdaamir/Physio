@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Table, Button, Form, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import axios from '../axiosInstance';
 
 const CareersTab = () => {
   const [careers, setCareers] = useState([]);
@@ -15,19 +15,19 @@ const CareersTab = () => {
   }, []);
 
   const fetchCareers = async () => {
-    const res = await axios.get("http://localhost:5000/api/careers");
+    const res = await axios.get("/api/careers");
     setCareers(res.data);
   };
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/api/careers", form);
+    await axios.post("/api/careers", form);
     setForm({ position: "", description: "", experience: "" });
     fetchCareers();
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/careers/${id}`);
+    await axios.delete(`/api/careers/${id}`);
     fetchCareers();
   };
 
