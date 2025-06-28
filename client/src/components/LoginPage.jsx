@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from '../axiosInstance';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ const LoginPage = () => {
 
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
-        history.push("/admin");
+        navigate("/admin");
       }
     } catch (err) {
       setError("Invalid credentials");
