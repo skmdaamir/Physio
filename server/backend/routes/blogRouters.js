@@ -5,7 +5,7 @@ const multer = require("multer");
 const path = require("path");
 
 // Full absolute path to the uploads directory
-const uploadPath = path.join("../uploads");
+const uploadPath = path.join(__dirname, "..", "uploads");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
