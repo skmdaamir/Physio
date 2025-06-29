@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Full absolute path to the uploads directory
-const uploadPath = path.join(__dirname, "..", "..", "..", "uploads");
+const uploadPath = path.join(__dirname, "..", "..", "..","..", "uploads");
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
 }

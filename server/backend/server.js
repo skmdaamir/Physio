@@ -61,7 +61,7 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
-app.use("/uploads", express.static(path.join(__dirname, "..", "..", "..", "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "..", "..", "..","..", "uploads")));
 app.use("/api", blogRoutes);
 app.use(bodyParser.json());
 app.use("/api/states", statesRoute);
