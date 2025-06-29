@@ -8,7 +8,7 @@ import {
   Modal,
   Button,
 } from "react-bootstrap";
-import axios from '../axiosInstance';
+import axios from "../axiosInstance";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./CustomerGallery.css";
@@ -70,13 +70,10 @@ const CustomerGallery = () => {
                 {item.image_path && (
                   <Card.Img
                     variant="top"
-                    src={`/${item.image_path.replace(
-                      /\\/g,
-                      "/"
-                    )}`}
+                    src={`/${item.image_path.replace(/\\/g, "/")}`}
                     className="hover-zoom"
                     style={{
-                      aspectRatio: "4 / 3",
+                      aspectRatio: "16 / 9",
                       objectFit: "cover",
                       width: "100%",
                     }}
@@ -84,7 +81,7 @@ const CustomerGallery = () => {
                 )}
 
                 {!item.image_path && item.youtube_link && (
-                  <div className="ratio ratio-16x9">
+                  <div className="video-wrapper">
                     <iframe
                       src={`https://www.youtube.com/embed/${getYouTubeID(
                         item.youtube_link
@@ -114,8 +111,7 @@ const CustomerGallery = () => {
         </Row>
       ) : (
         <p className="text-center">No gallery available.</p>
-      )
-      }
+      )}
 
       {/* Modal */}
       <Modal show={!!modalData} onHide={handleClose} size="lg" centered>
@@ -127,10 +123,7 @@ const CustomerGallery = () => {
         <Modal.Body className="text-center">
           {modalData?.image_path ? (
             <img
-              src={`/${modalData.image_path.replace(
-                /\\/g,
-                "/"
-              )}`}
+              src={`/${modalData.image_path.replace(/\\/g, "/")}`}
               alt="Enlarged"
               className="img-fluid rounded"
             />
@@ -155,6 +148,32 @@ const CustomerGallery = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Custom styling for videos */}
+      <style>{`
+        .video-wrapper {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%; /* 16:9 */
+          height: 0;
+          overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
+
+        @media (max-width: 576px) {
+          .video-wrapper {
+            padding-bottom: 65%; /* slightly bigger video on mobile */
+          }
+        }
+      `}</style>
     </Container>
   );
 };
