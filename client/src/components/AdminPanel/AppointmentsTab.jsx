@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Table, Button, Form, Container } from "react-bootstrap";
 import axios from '../../axiosInstance';
 import { toast } from "react-toastify";
+import "./AppointmentsTab.css";
 
 const AppointmentsTab = () => {
   const [appointments, setAppointments] = useState([]);
@@ -72,16 +73,16 @@ const AppointmentsTab = () => {
                 <td>{appt.treatmentType}</td>
                 <td>{appt.conditions}</td>
                 <td>{appt.created_at}</td>
-                <td>
+                <td className="p-2">
                   {appt.remarks ? (
                     <span className="text-success fw-bold">✔️ Done</span>
                   ) : (
-                    <>
+                    <div className="d-flex flex-column gap-1">
                       <Form.Control
                         type="text"
                         placeholder="Enter remarks"
                         size="sm"
-                        className="mb-1"
+                        className="w-100"
                         value={remarksMap[appt.id] || ""}
                         onChange={(e) =>
                           handleRemarksChange(appt.id, e.target.value)
@@ -95,7 +96,7 @@ const AppointmentsTab = () => {
                       >
                         Mark as Done
                       </Button>
-                    </>
+                    </div>
                   )}
                 </td>
                 <td className="text-wrap" style={{ minWidth: "120px" }}>
