@@ -137,7 +137,7 @@ const BlogsTab = () => {
             {blog.image_url && (
   <Card.Img
     variant="top"
-    src={`${BASE_URL}/uploads/${blog.image_url.replace(/\\/g, "/")}`}
+    src={`${BASE_URL}/uploads/${blog.image_url.split("/").pop()}`}
     style={{ height: "200px", objectFit: "cover" }}
   />
 )}
