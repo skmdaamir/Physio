@@ -15,6 +15,7 @@ const BlogsTab = () => {
     image: null,
     status: "0",
   });
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     fetchBlogs();
@@ -133,16 +134,16 @@ const BlogsTab = () => {
         {blogs.map((blog) => (
           <Col xs={12} sm={6} md={4} key={blog.id} className="mb-4">
             <Card>
-              {blog.image_url && (
-                <Card.Img
-                  variant="top"
-                  src={`${process.env.API_BASE_URL}/uploads/${process.env.blog.image_url}`}
-                  style={{ height: "200px", objectFit: "cover" }}
-                />
-              )}
+            {blog.image_url && (
+  <Card.Img
+    variant="top"
+    src={`${BASE_URL}/uploads/${blog.image_url.replace(/\\/g, "/")}`}
+    style={{ height: "200px", objectFit: "cover" }}
+  />
+)}
               <Card.Body className="d-flex flex-column">
                 <Card.Title>{blog.title}</Card.Title>
-                <Card.Text>{blog.content.slice(0, 100)}...</Card.Text>
+                <Card.Text>{blog.content ? `${blog.content.slice(0, 100)}...` : "No content"}</Card.Text>
                 <div className="d-flex justify-content-between mt-auto">
                   <Button size="sm" onClick={() => handleEdit(blog)}>
                     Edit

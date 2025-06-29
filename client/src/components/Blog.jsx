@@ -10,6 +10,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const handleReadMore = (blog) => {
   setSelectedBlog(blog);
@@ -64,11 +65,14 @@ const handleCloseModal = () => {
                 data-aos-delay={index * 150}
               >
                 <Card className="blog-card">
-                  {`${process.env.API_BASE_URL}/uploads/${blog.image_url}` && (
-                    <div className="blog-img-container">
-                      <Card.Img variant="top" src={`${process.env.API_BASE_URL}/uploads/${blog.image_url}`} />
-                    </div>
-                  )}
+                {blog.image_url && (
+  <div className="blog-img-container">
+    <Card.Img
+      variant="top"
+      src={`${BASE_URL}/${blog.image_url.replace(/\\/g, "/")}`}
+    />
+  </div>
+)}
                   <Card.Body>
                     <Card.Title>{blog.title}</Card.Title>
                     <Card.Text>
@@ -100,7 +104,7 @@ const handleCloseModal = () => {
               <Modal.Body>
                 {selectedBlog.image_url && (
                   <img
-                    src={selectedBlog.image_url}
+                  src={`${process.env.API_BASE_URL}/${selectedBlog.image_url.replace(/\\/g, "/")}`}
                     alt={selectedBlog.title}
                     style={{ maxWidth: "100%", borderRadius: "8px" }}
                     className="img-fluid mb-3"
