@@ -56,7 +56,7 @@ app.use((req, res, next) => {
 });
 
 app.use(cors({
-  origin: "https://skmdaamir.github.io", // ✅ your GitHub Pages frontend
+  origin: "https://physio-56ld.vercel.app", // ✅ your GitHub Pages frontend
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
