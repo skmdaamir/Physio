@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Form, Container } from "react-bootstrap";
+import { Table, Button, Form, Container, Row, Col, ButtonGroup } from "react-bootstrap";
 import axios from '../../axiosInstance';
 import { toast } from "react-toastify";
-import "./AppointmentsTab.css";
 
 const AppointmentsTab = () => {
   const [appointments, setAppointments] = useState([]);
   const [remarksMap, setRemarksMap] = useState({});
+  const [filter, setFilter] = useState("all"); // all, done, pending
 
   useEffect(() => {
     fetchAppointments();
@@ -29,9 +29,7 @@ const AppointmentsTab = () => {
     }
 
     try {
-      await axios.put(`/api/appointments/${id}/remark`, {
-        remarks,
-      });
+      await axios.put(`/api/appointments/${id}/remark`, { remarks });
       toast.success("Marked as done!");
       fetchAppointments();
     } catch (error) {
@@ -44,8 +42,30 @@ const AppointmentsTab = () => {
     setRemarksMap((prev) => ({ ...prev, [id]: value }));
   };
 
+  const filteredAppointments = appointments.filter((appt) => {
+    if (filter === "done") return appt.remarks;
+    if (filter === "pending") return !appt.remarks;
+    return true;
+  });
+
   return (
     <Container fluid className="mt-3">
+      <Row className="mb-3">
+        <Col>
+          <ButtonGroup>
+            <Button variant={filter === "all" ? "primary" : "outline-primary"} onClick={() => setFilter("all")}>
+              All
+            </Button>
+            <Button variant={filter === "pending" ? "warning" : "outline-warning"} onClick={() => setFilter("pending")}>
+              Pending
+            </Button>
+            <Button variant={filter === "done" ? "success" : "outline-success"} onClick={() => setFilter("done")}>
+              Done
+            </Button>
+          </ButtonGroup>
+        </Col>
+      </Row>
+
       <div className="table-responsive">
         <Table striped bordered hover responsive="sm">
           <thead className="text-nowrap">
@@ -63,8 +83,8 @@ const AppointmentsTab = () => {
             </tr>
           </thead>
           <tbody>
-            {appointments.map((appt, index) => (
-              <tr key={index}>
+            {filteredAppointments.map((appt, index) => (
+              <tr key={index} className={appt.remarks ? "table-success" : ""}>
                 <td>{appt.name}</td>
                 <td>{appt.phone}</td>
                 <td>{appt.email}</td>
@@ -84,9 +104,7 @@ const AppointmentsTab = () => {
                         size="sm"
                         className="w-100"
                         value={remarksMap[appt.id] || ""}
-                        onChange={(e) =>
-                          handleRemarksChange(appt.id, e.target.value)
-                        }
+                        onChange={(e) => handleRemarksChange(appt.id, e.target.value)}
                       />
                       <Button
                         variant="success"

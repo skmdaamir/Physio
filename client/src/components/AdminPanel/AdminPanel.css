@@ -5,3 +5,23 @@
       padding: 8px;
     }
   }
+
+  @media (max-width: 576px) {
+    td {
+      vertical-align: top;
+    }
+  
+    .table td {
+      word-break: break-word;
+    }
+  
+    .table .form-control,
+    .table .btn {
+      font-size: 0.85rem;
+    }
+  
+    .table .btn {
+      padding: 0.35rem 0.5rem;
+    }
+  }
+  
