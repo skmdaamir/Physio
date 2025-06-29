@@ -21,13 +21,14 @@ const TopNav = () => {
   return (
     <Navbar
       expand="lg"
-      className={`py-2 fixed-top shadow-sm flex-wrap ${
+      className={`py-2 fixed-top shadow-sm ${
         darkMode ? "bg-dark navbar-dark" : "bg-light navbar-light"
       }`}
     >
-      <Container fluid className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <div className="d-flex align-items-center w-100 justify-content-between">
-          <Navbar.Brand as={Link} to="/" className="fw-bold fs-4">
+      <Container fluid className="d-flex justify-content-between align-items-center flex-wrap">
+        {/* Logo and Theme Toggle */}
+        <div className="d-flex align-items-center">
+          <Navbar.Brand as={Link} to="/" className="fw-bold fs-4 me-3">
             <img
               src={logo}
               alt="PPRS Logo"
@@ -35,18 +36,17 @@ const TopNav = () => {
               className="d-inline-block align-top"
             />
           </Navbar.Brand>
-
           <Form.Check
             type="switch"
             id="theme-switch"
             checked={darkMode}
             onChange={handleToggleTheme}
-            className="ms-auto me-2"
             label={darkMode ? "Dark" : "Light"}
           />
         </div>
 
-        <Nav className="w-100 justify-content-center mt-2 mt-md-0">
+        {/* Horizontal Nav */}
+        <Nav className="d-flex flex-row justify-content-center align-items-center mt-2 mt-lg-0 flex-wrap">
           {menuData.map((item) => (
             <Nav.Link
               as={Link}

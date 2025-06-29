@@ -1,9 +1,11 @@
-@media (max-width: 576px) {
-  .navbar-nav .nav-link {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
-  }
+/* TopNav.css */
+.navbar-nav .nav-link {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
 
+@media (max-width: 576px) {
   .navbar-brand img {
     height: 35px;
   }
