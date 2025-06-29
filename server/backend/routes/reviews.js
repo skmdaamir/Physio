@@ -4,7 +4,7 @@ const db = require("../dbConnection"); // Your MySQL connection setup
 
 router.post("/submit-review", (req, res) => {
   const { name, email, mobile, rating, description } = req.body;
-
+  console.log(req.body);
   const query = `INSERT INTO reviews (name, email, mobile, rating, description) VALUES (?, ?, ?, ?, ?)`;
   db.execute(query, [name, email, mobile, rating, description])
     .then(() =>
