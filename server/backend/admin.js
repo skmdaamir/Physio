@@ -21,8 +21,11 @@ router.post("/login", async (req, res) => {
     if (!user || user.role !== "admin") {
       return res.status(401).json({ message: "Unauthorized" });
     }
-
+console.log(password);
+console.log(user.password);
     const isMatch = await bcrypt.compare(password, user.password);
+
+    console.log(isMatch)
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
     }

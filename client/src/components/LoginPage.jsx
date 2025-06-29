@@ -22,9 +22,11 @@ const LoginPage = () => {
 
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
+        console.log(response.data.token);
         navigate("/admin");
       }
     } catch (err) {
+      console.log(err);
       setError("Invalid credentials");
     }
   };
