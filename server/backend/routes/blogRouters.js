@@ -152,7 +152,7 @@ router.get("/allBlogs", async (req, res) => {
 });
 
 
-router.get("/api/list-uploads", (req, res) => {
+router.get("/list-uploads", (req, res) => {
   const uploadsDir = "/opt/render/project/uploads";
   fs.readdir(uploadsDir, (err, files) => {
     if (err) {
