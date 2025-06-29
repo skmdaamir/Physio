@@ -1,7 +1,6 @@
-// AdminPanel/ReviewsTab.jsx
 import { useEffect, useState } from "react";
-import axios from '../../axiosInstance';
-import { Table, Button } from "react-bootstrap";
+import axios from "../../axiosInstance";
+import { Table, Button, Badge } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const ReviewsTab = () => {
@@ -33,6 +32,19 @@ const ReviewsTab = () => {
     }
   };
 
+  const handleToggleVisibility = async (id, currentStatus) => {
+    try {
+      await axios.put(`/api/reviewVisibility/${id}`, {
+        isActive: !currentStatus,
+      });
+      toast.success("Review visibility updated!");
+      fetchReviews();
+    } catch (err) {
+      console.error("Error updating review visibility:", err);
+      toast.error("Failed to update review visibility.");
+    }
+  };
+
   return (
     <Table striped bordered hover className="mt-3">
       <thead>
@@ -41,6 +53,7 @@ const ReviewsTab = () => {
           <th>Rating</th>
           <th>Comment</th>
           <th>Created At</th>
+          <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -49,9 +62,22 @@ const ReviewsTab = () => {
           <tr key={review.id}>
             <td>{review.name}</td>
             <td>{review.rating}</td>
-            <td>{review.comment}</td>
-            <td>{review.created_at}</td>
+            <td>{review.description}</td>
+            <td>{new Date(review.created_at).toLocaleString()}</td>
             <td>
+              <Badge bg={review.visible ? "success" : "secondary"}>
+                {review.visible ? "Active" : "Inactive"}
+              </Badge>
+            </td>
+            <td>
+              <Button
+                variant={review.visible ? "warning" : "success"}
+                size="sm"
+                className="me-2"
+                onClick={() => handleToggleVisibility(review.id, review.visible)}
+              >
+                {review.visible ? "Deactivate" : "Activate"}
+              </Button>
               <Button
                 variant="danger"
                 size="sm"
