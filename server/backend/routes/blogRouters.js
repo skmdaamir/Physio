@@ -27,7 +27,7 @@ const upload = multer({ storage });
 router.post("/blogs", upload.single("image"), async (req, res) => {
   try {
     const { title, content } = req.body;
-    const image_url = req.file ? req.file.path : null;
+    const image_url = req.file ? `/uploads/${req.file.filename}` : null;
 
     const sql = `
       INSERT INTO blog (title, content, image_url, is_active, created_at, updated_at) 
