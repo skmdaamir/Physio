@@ -21,17 +21,13 @@ router.post("/login", async (req, res) => {
     if (!user || user.role !== "admin") {
       return res.status(401).json({ message: "Unauthorized" });
     }
-console.log(password);
-console.log(user.password);
     const isMatch = await bcrypt.compare(password, user.password);
-
-    console.log(isMatch)
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const token = jwt.sign({ id: user.id, role: user.role }, SECRET_KEY, {
-      expiresIn: "1h",
+      expiresIn: "15m",
     });
     res.json({ token });
   } catch (err) {
