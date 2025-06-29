@@ -92,7 +92,7 @@ const AppContent = () => {
 };
 const App = () => {
   return (
-    <Router basename={process.env.REACT_APP_BASENAME || "/"}>
+    <Router>
       <AppContent />
     </Router>
   );
