@@ -151,4 +151,15 @@ router.get("/allBlogs", async (req, res) => {
   res.json({ blogs: results });
 });
 
+
+router.get("/api/list-uploads", (req, res) => {
+  const uploadsDir = "/opt/render/project/uploads";
+  fs.readdir(uploadsDir, (err, files) => {
+    if (err) {
+      return res.status(500).send("Error reading uploads folder.");
+    }
+    res.json(files);
+  });
+});
+
 module.exports = router;
