@@ -2,10 +2,14 @@ const express = require("express");
 const router = express.Router();
 const db = require("../dbConnection");
 const multer = require("multer");
+const fs = require("fs");
 const path = require("path");
 
 // Full absolute path to the uploads directory
 const uploadPath = path.join(__dirname, "..", "uploads");
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

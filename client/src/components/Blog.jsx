@@ -64,9 +64,9 @@ const handleCloseModal = () => {
                 data-aos-delay={index * 150}
               >
                 <Card className="blog-card">
-                  {blog.image_url && (
+                  {`${process.env.API_BASE_URL}/uploads/${blog.image_url}` && (
                     <div className="blog-img-container">
-                      <Card.Img variant="top" src={blog.image_url} />
+                      <Card.Img variant="top" src={`${process.env.API_BASE_URL}/uploads/${blog.image_url}`} />
                     </div>
                   )}
                   <Card.Body>

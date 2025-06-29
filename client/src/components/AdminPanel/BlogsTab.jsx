@@ -136,7 +136,7 @@ const BlogsTab = () => {
               {blog.image_url && (
                 <Card.Img
                   variant="top"
-                  src={blog.image_url}
+                  src={`${process.env.API_BASE_URL}/uploads/${process.env.blog.image_url}`}
                   style={{ height: "200px", objectFit: "cover" }}
                 />
               )}
