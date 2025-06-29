@@ -16,6 +16,7 @@ const appointmentRoute = require("./routes/appointment");
 const galleryRoute = require("./routes/uploadImageVideos");
 const reviewRoutes = require("./routes/reviews");
 const careerRoutes = require("./routes/careerRoutes");
+const conditionRoutes = require("./routes/conditionRoutes");
 
 
 // Session Configuration
@@ -72,6 +73,9 @@ app.use("/api", galleryRoute);
 app.use("/api", reviewRoutes);
 app.use("/api", careerRoutes);
 app.use("/api/admin", adminRoutes);
+
+app.use("/api", conditionRoutes);
+
 
 app.get("/test", (req, res) => {
   res.send("API working!");
