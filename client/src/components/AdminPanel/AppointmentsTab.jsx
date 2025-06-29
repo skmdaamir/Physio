@@ -1,6 +1,5 @@
-// AdminPanel/AppointmentsTab.jsx
 import { useEffect, useState } from "react";
-import { Table, Button, Form } from "react-bootstrap";
+import { Table, Button, Form, Container } from "react-bootstrap";
 import axios from '../../axiosInstance';
 import { toast } from "react-toastify";
 
@@ -45,63 +44,69 @@ const AppointmentsTab = () => {
   };
 
   return (
-    <Table striped bordered hover className="mt-3">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Mobile</th>
-          <th>Email</th>
-          <th>State</th>
-          <th>City</th>
-          <th>Treatment</th>
-          <th>Conditions</th>
-          <th>Appointment Received Date</th>
-          <th>Action</th>
-          <th>After Treatment Remarks</th>
-        </tr>
-      </thead>
-      <tbody>
-        {appointments.map((appt, index) => (
-          <tr key={index}>
-            <td>{appt.name}</td>
-            <td>{appt.phone}</td>
-            <td>{appt.email}</td>
-            <td>{appt.state}</td>
-            <td>{appt.city}</td>
-            <td>{appt.treatmentType}</td>
-            <td>{appt.conditions}</td>
-            <td>{appt.created_at}</td>
-            <td>
-              {appt.remarks ? (
-                "✔️ Done"
-              ) : (
-                <>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter remarks"
-                    size="sm"
-                    name="remarks"
-                    value={remarksMap[appt.id] || ""}
-                    onChange={(e) =>
-                      handleRemarksChange(appt.id, e.target.value)
-                    }
-                  />
-                  <Button
-                    variant="success"
-                    size="sm"
-                    className="mt-1"
-                    onClick={() => markAsDone(appt.id)}
-                  >
-                    Mark as Done
-                  </Button>
-                </>
-              )}
-            </td>
-            <td>{appt.remarks}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
+    <Container fluid className="mt-3">
+      <div className="table-responsive">
+        <Table striped bordered hover responsive="sm">
+          <thead className="text-nowrap">
+            <tr>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>Email</th>
+              <th>State</th>
+              <th>City</th>
+              <th>Treatment</th>
+              <th>Conditions</th>
+              <th>Appointment Date</th>
+              <th>Action</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            {appointments.map((appt, index) => (
+              <tr key={index}>
+                <td>{appt.name}</td>
+                <td>{appt.phone}</td>
+                <td>{appt.email}</td>
+                <td>{appt.state}</td>
+                <td>{appt.city}</td>
+                <td>{appt.treatmentType}</td>
+                <td>{appt.conditions}</td>
+                <td>{appt.created_at}</td>
+                <td>
+                  {appt.remarks ? (
+                    <span className="text-success fw-bold">✔️ Done</span>
+                  ) : (
+                    <>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter remarks"
+                        size="sm"
+                        className="mb-1"
+                        value={remarksMap[appt.id] || ""}
+                        onChange={(e) =>
+                          handleRemarksChange(appt.id, e.target.value)
+                        }
+                      />
+                      <Button
+                        variant="success"
+                        size="sm"
+                        className="w-100"
+                        onClick={() => markAsDone(appt.id)}
+                      >
+                        Mark as Done
+                      </Button>
+                    </>
+                  )}
+                </td>
+                <td className="text-wrap" style={{ minWidth: "120px" }}>
+                  {appt.remarks}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </Container>
   );
 };
 
