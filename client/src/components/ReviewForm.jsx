@@ -29,7 +29,7 @@ const ReviewForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("/api/appointments", formData);
+    await axios.post("/api/submit-review", formData);
         alert("Thank you for your feedback!");
         setFormData({
           name: "",
