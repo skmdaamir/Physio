@@ -16,7 +16,7 @@ const appointmentRoute = require("./routes/appointment");
 const galleryRoute = require("./routes/uploadImageVideos");
 const reviewRoutes = require("./routes/reviews");
 const careerRoutes = require("./routes/careerRoutes");
-const conditionRoutes = require("./routes/conditionRoutes");
+const conditionRoutes = require("./routes/conditionsRoutes");
 
 
 // Session Configuration
