@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Form, Container, Row, Col, ButtonGroup } from "react-bootstrap";
-import axios from '../../axiosInstance';
+import axios from "../../axiosInstance";
 import { toast } from "react-toastify";
 
 const AppointmentsTab = () => {
   const [appointments, setAppointments] = useState([]);
   const [remarksMap, setRemarksMap] = useState({});
-  const [filter, setFilter] = useState("all"); // all, done, pending
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     fetchAppointments();
@@ -49,83 +48,93 @@ const AppointmentsTab = () => {
   });
 
   return (
-    <Container fluid className="mt-3">
-      <Row className="mb-3">
-        <Col>
-          <ButtonGroup>
-            <Button variant={filter === "all" ? "primary" : "outline-primary"} onClick={() => setFilter("all")}>
-              All
-            </Button>
-            <Button variant={filter === "pending" ? "warning" : "outline-warning"} onClick={() => setFilter("pending")}>
-              Pending
-            </Button>
-            <Button variant={filter === "done" ? "success" : "outline-success"} onClick={() => setFilter("done")}>
-              Done
-            </Button>
-          </ButtonGroup>
-        </Col>
-      </Row>
+    <div className="w-full px-4 py-4">
+      {/* Filter Buttons */}
+      <div className="mb-4 flex flex-wrap gap-2">
+        {["all", "pending", "done"].map((type) => (
+          <button
+            key={type}
+            onClick={() => setFilter(type)}
+            className={`px-4 py-2 rounded text-sm font-medium transition ${
+              filter === type
+                ? type === "done"
+                  ? "bg-green-600 text-white"
+                  : type === "pending"
+                  ? "bg-yellow-500 text-white"
+                  : "bg-blue-600 text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
+          >
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </button>
+        ))}
+      </div>
 
-      <div className="table-responsive">
-        <Table striped bordered hover responsive="sm">
-          <thead className="text-nowrap">
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="w-full border border-gray-300 rounded-lg text-sm md:text-base">
+          <thead className="bg-gray-200 text-gray-800">
             <tr>
-              <th>Name</th>
-              <th>Mobile</th>
-              <th>Email</th>
-              <th>State</th>
-              <th>City</th>
-              <th>Treatment</th>
-              <th>Conditions</th>
-              <th>Appointment Date</th>
-              <th>Action</th>
-              <th>Remarks</th>
+              {[
+                "Name",
+                "Mobile",
+                "Email",
+                "State",
+                "City",
+                "Treatment",
+                "Conditions",
+                "Date",
+                "Action",
+                "Remarks",
+              ].map((head, i) => (
+                <th key={i} className="p-2 whitespace-nowrap text-left">
+                  {head}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {filteredAppointments.map((appt, index) => (
-              <tr key={index} className={appt.remarks ? "table-success" : ""}>
-                <td>{appt.name}</td>
-                <td>{appt.phone}</td>
-                <td>{appt.email}</td>
-                <td>{appt.state}</td>
-                <td>{appt.city}</td>
-                <td>{appt.treatmentType}</td>
-                <td>{appt.conditions}</td>
-                <td>{appt.created_at}</td>
+            {filteredAppointments.map((appt) => (
+              <tr
+                key={appt.id}
+                className={`border-t ${appt.remarks ? "bg-green-50" : "bg-white"}`}
+              >
+                <td className="p-2">{appt.name}</td>
+                <td className="p-2">{appt.phone}</td>
+                <td className="p-2">{appt.email}</td>
+                <td className="p-2">{appt.state}</td>
+                <td className="p-2">{appt.city}</td>
+                <td className="p-2">{appt.treatmentType}</td>
+                <td className="p-2 whitespace-pre-line">{appt.conditions}</td>
+                <td className="p-2">{appt.created_at}</td>
                 <td className="p-2">
                   {appt.remarks ? (
-                    <span className="text-success fw-bold">✔️ Done</span>
+                    <span className="text-green-600 font-semibold">✔ Done</span>
                   ) : (
-                    <div className="d-flex flex-column gap-1">
-                      <Form.Control
+                    <div className="flex flex-col gap-2">
+                      <input
                         type="text"
+                        className="border border-gray-300 rounded px-2 py-1 text-sm"
                         placeholder="Enter remarks"
-                        size="sm"
-                        className="w-100"
                         value={remarksMap[appt.id] || ""}
                         onChange={(e) => handleRemarksChange(appt.id, e.target.value)}
                       />
-                      <Button
-                        variant="success"
-                        size="sm"
-                        className="w-100"
+                      <button
+                        className="bg-green-600 text-white text-sm py-1 rounded hover:bg-green-700"
                         onClick={() => markAsDone(appt.id)}
                       >
                         Mark as Done
-                      </Button>
+                      </button>
                     </div>
                   )}
                 </td>
-                <td className="text-wrap" style={{ minWidth: "120px" }}>
-                  {appt.remarks}
-                </td>
+                <td className="p-2">{appt.remarks}</td>
               </tr>
             ))}
           </tbody>
-        </Table>
+        </table>
       </div>
-    </Container>
+    </div>
   );
 };
 

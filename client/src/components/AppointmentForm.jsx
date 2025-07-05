@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../axiosInstance";
 import { Helmet } from "react-helmet";
-const qs = require("qs");
 
 const AppointmentForm = ({ isModal = false }) => {
   const [form, setForm] = useState({
@@ -77,163 +75,134 @@ const AppointmentForm = ({ isModal = false }) => {
   };
 
   const formContent = (
-    <div data-aos="fade-up">
-      <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col md={6} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          </Col>
-          <Col md={6} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          </Col>
-          <Col md={6} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>Treatment Type</Form.Label>
-              <Form.Select
-                name="treatmentType"
-                value={form.treatmentType}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select</option>
-                {treatments.map((t) => (
-                  <option key={t.treatment_id} value={t.treatment_id}>
-                    {t.treatment_description}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>State</Form.Label>
-              <Form.Select
-                name="state"
-                value={form.state}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select</option>
-                {states.map((s) => (
-                  <option key={s.state_id} value={s.state_id}>
-                    {s.state_name}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-          <Col md={6} sm={12}>
-            <Form.Group className="mb-3">
-              <Form.Label>City</Form.Label>
-              <Form.Select
-                name="city"
-                value={form.city}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select</option>
-                {cities.map((c) => (
-                  <option key={c.city_id} value={c.city_id}>
-                    {c.city_name}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-        </Row>
-        <Form.Group className="mb-3">
-          <Form.Label>Brief About Your Condition</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={5}
-            name="conditions"
-            value={form.conditions}
+    <form onSubmit={handleSubmit} className="space-y-6" data-aos="fade-up">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label className="block mb-1 font-medium">Name</label>
+          <input
+            name="name"
+            value={form.name}
             onChange={handleChange}
-            maxLength={4000}
             required
+            className="w-full border border-gray-300 rounded-lg p-3 text-base"
           />
-        </Form.Group>
-        <div className="d-flex justify-content-center">
-          <Button type="submit">Submit Appointment</Button>
         </div>
-      </Form>
-    </div>
+        <div>
+          <label className="block mb-1 font-medium">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-lg p-3 text-base"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label className="block mb-1 font-medium">Phone</label>
+          <input
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-lg p-3 text-base"
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-medium">Treatment Type</label>
+          <select
+            name="treatmentType"
+            value={form.treatmentType}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-lg p-3 text-base"
+          >
+            <option value="">Select</option>
+            {treatments.map((t) => (
+              <option key={t.treatment_id} value={t.treatment_id}>
+                {t.treatment_description}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label className="block mb-1 font-medium">State</label>
+          <select
+            name="state"
+            value={form.state}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-lg p-3 text-base"
+          >
+            <option value="">Select</option>
+            {states.map((s) => (
+              <option key={s.state_id} value={s.state_id}>
+                {s.state_name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block mb-1 font-medium">City</label>
+          <select
+            name="city"
+            value={form.city}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-lg p-3 text-base"
+          >
+            <option value="">Select</option>
+            {cities.map((c) => (
+              <option key={c.city_id} value={c.city_id}>
+                {c.city_name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label className="block mb-1 font-medium">Brief About Your Condition</label>
+        <textarea
+          rows={5}
+          name="conditions"
+          value={form.conditions}
+          onChange={handleChange}
+          maxLength={4000}
+          required
+          className="w-full border border-gray-300 rounded-lg p-3 text-base"
+        />
+      </div>
+
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 text-lg w-full md:w-auto"
+        >
+          Submit Appointment
+        </button>
+      </div>
+    </form>
   );
 
   return isModal ? (
     formContent
   ) : (
-    <Container className="pt-5 mt-5">
+    <div className="max-w-4xl mx-auto px-4 py-10">
       <Helmet>
         <title>Appointment Form | Physio Pulse</title>
-        <style>{`
-          @media (max-width: 768px) {
-            form label,
-            form input,
-            form select,
-            form textarea,
-            button {
-              font-size: 16px !important;
-            }
-
-            form .form-control,
-            form .form-select,
-            form textarea {
-              padding: 12px !important;
-            }
-
-            button[type="submit"] {
-              width: 100%;
-              padding: 12px;
-            }
-
-            h2 {
-              font-size: 22px !important;
-              text-align: center;
-            }
-
-            .container {
-              padding-left: 15px;
-              padding-right: 15px;
-            }
-          }
-        `}</style>
       </Helmet>
-      <h2 className="mb-4">Book an Appointment</h2>
+      <h2 className="text-2xl md:text-3xl font-semibold text-center mb-6">
+        Book an Appointment
+      </h2>
       {formContent}
-    </Container>
+    </div>
   );
 };
 

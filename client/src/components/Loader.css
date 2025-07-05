@@ -1,25 +1,44 @@
-.loader-container {
+.dot-loader-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 200px;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid #007bff;
+  }
+  
+  .dot-spinner {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
+    position: absolute;
+    animation: scaleUp 1.2s infinite ease-in-out;
+    transform-origin: center;
+  }
+  
+  @keyframes scaleUp {
+    0%, 100% {
+      transform: scale(0.5);
+      opacity: 0.6;
     }
-
-    100% {
-        transform: rotate(360deg);
+    50% {
+      transform: scale(1.5);
+      opacity: 1;
     }
-}
+  }
+  
+  /* Position dots in a circle */
+  .dot-1  { top: 0; left: 45%; animation-delay: 0s; }
+  .dot-2  { top: 14%; left: 75%; animation-delay: 0.15s; }
+  .dot-3  { top: 45%; left: 90%; animation-delay: 0.3s; }
+  .dot-4  { top: 75%; left: 75%; animation-delay: 0.45s; }
+  .dot-5  { top: 90%; left: 45%; animation-delay: 0.6s; }
+  .dot-6  { top: 75%; left: 14%; animation-delay: 0.75s; }
+  .dot-7  { top: 45%; left: 0; animation-delay: 0.9s; }
+  .dot-8  { top: 14%; left: 14%; animation-delay: 1.05s; }
+  

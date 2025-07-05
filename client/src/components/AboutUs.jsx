@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import "./AboutUs.css";
 import doctor1 from "../assets/docs/doctor1.jpg";
 import doctor2 from "../assets/docs/doctor3.jpg";
 import doctor3 from "../assets/docs/doctor2.jpg";
 import physioMain from "../assets/docs/physiotherapy_main.jpg";
-import { Card, Col, Row, Container, Button, Modal } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 
 const doctors = [
@@ -31,181 +29,70 @@ const doctors = [
 
 const AboutUs = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
-  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
-    <div
-      className={`about-page ${
-        darkMode ? "bg-dark text-light" : "bg-light text-dark"
-      }`}
-    >
+    <div className="px-4 sm:px-8 md:px-16 py-8 bg-gray-50 text-gray-800">
       <Helmet>
-        <title>About Us | Physio Pulse & Rehabilitation Studio (PPRS)</title>
+        <title>About Us - Physio Pulse</title>
       </Helmet>
 
-      <div className="d-flex justify-content-end my-3 me-4">
-        <Button
-          variant={darkMode ? "light" : "dark"}
-          onClick={toggleDarkMode}
-          size="sm"
-        >
-          {darkMode ? "Light Mode" : "Dark Mode"}
-        </Button>
+      <div className="text-center mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4">About Us</h1>
+        <p className="text-lg sm:text-xl max-w-2xl mx-auto">
+          Meet our expert physiotherapy team committed to your recovery.
+        </p>
       </div>
 
-      <Container fluid className="py-4 px-3">
-        {/* About Section */}
-        <section className="about-section mb-5" data-aos="fade-up">
-          <Row className="align-items-center">
-            <Col xs={12} md={6}>
-              <h2>About Physio Pulse & Rehabilitation Studio (PPRS)</h2>
-              <p>
-                At Physio Pulse & Rehabilitation Studio, we are dedicated to
-                revitalizing lives through expert physiotherapy and holistic
-                wellness solutions. Our mission is to help individuals recover,
-                strengthen, and thrive—whether they're overcoming injury,
-                managing chronic pain, or enhancing physical performance.
-              </p>
-              <p>
-                We specialize in a range of services including manual therapy,
-                rehabilitation, posture correction, sports physiotherapy, and
-                injury prevention programs. Using the latest techniques and
-                technologies, we tailor each treatment plan to your unique
-                needs.
-              </p>
-            </Col>
-            <Col xs={12} md={6}>
-              <img
-                src={physioMain}
-                alt="Physiotherapy"
-                className="img-fluid rounded shadow w-100"
-                data-aos="zoom-in"
-              />
-            </Col>
-          </Row>
-        </section>
+      <div className="flex justify-center mb-12">
+        <img
+          src={physioMain}
+          alt="Physiotherapy"
+          className="rounded-2xl shadow-lg w-full max-w-4xl object-cover"
+        />
+      </div>
 
-        {/* Doctors Section */}
-        <section className="doctors-section mb-5" data-aos="fade-up">
-          <h2 className="text-center mb-4">Meet Our Doctors</h2>
-          <p className="text-center mb-4">
-            It’s the people who make PPRS what it is, and we are extremely proud
-            of the achievements of our professionals. We all work together to
-            help our patients through recovery, providing the best possible
-            care.
-          </p>
-          <Row className="g-4">
-            {doctors.map((doctor, index) => (
-              <Col key={index} xs={12} md={4}>
-                <div data-aos="zoom-in" data-aos-delay={index * 100}>
-                  <Card
-                    onClick={() => setSelectedDoctor(doctor)}
-                    className={`h-100 shadow doctor-card border-0 ${
-                      darkMode
-                        ? "bg-secondary text-light"
-                        : "bg-body-tertiary"
-                    }`}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <Card.Img
-                      variant="top"
-                      src={doctor.image}
-                      alt={doctor.name}
-                      className="img-fluid rounded-top"
-                      style={{
-                        height: "300px",
-                        objectFit: "contain",
-                        objectPosition: "top",
-                      }}
-                    />
-                    <Card.Body>
-                      <Card.Title className="mb-1 fs-5">
-                        {doctor.name}
-                      </Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted fs-6">
-                        {doctor.specialty}
-                      </Card.Subtitle>
-                      <Card.Text>{doctor.description}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
-              </Col>
-            ))}
-          </Row>
-
-          {/* Modal */}
-          <Modal
-            show={!!selectedDoctor}
-            onHide={() => setSelectedDoctor(null)}
-            centered
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {doctors.map((doc, index) => (
+          <div
+            key={index}
+            className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition duration-300"
+            onClick={() => setSelectedDoctor(doc)}
           >
-            {selectedDoctor && (
-              <>
-                <Modal.Header closeButton>
-                  <Modal.Title>{selectedDoctor.name}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="text-center">
-                  <img
-                    src={selectedDoctor.image}
-                    alt={selectedDoctor.name}
-                    className="img-fluid rounded mb-3"
-                    style={{ maxHeight: "300px", objectFit: "cover" }}
-                  />
-                  <h6 className="text-muted">{selectedDoctor.specialty}</h6>
-                  <p>{selectedDoctor.description}</p>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button
-                    variant="secondary"
-                    onClick={() => setSelectedDoctor(null)}
-                  >
-                    Close
-                  </Button>
-                </Modal.Footer>
-              </>
-            )}
-          </Modal>
-        </section>
+            <img src={doc.image} alt={doc.name} className="w-full h-64 object-cover" />
+            <div className="p-4">
+              <h2 className="text-xl font-semibold mb-1">{doc.name}</h2>
+              <p className="text-blue-600 font-medium mb-2">{doc.specialty}</p>
+              <p className="text-sm text-gray-600">{doc.description}</p>
+              <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
+                Read More
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
 
-        {/* Services Section */}
-        <section className="services-section mb-5" data-aos="fade-up">
-          <h2>Where We Provide Services</h2>
-          <Row className="g-4 text-center">
-            {[
-              {
-                title: "Downtown Clinic",
-                text: "State of the art facility with expert therapists available 7 days a week.",
-              },
-              {
-                title: "Uptown Center",
-                text: "Specialized care for sports injuries and pediatric physiotherapy treatments.",
-              },
-              {
-                title: "Suburban Rehab Center",
-                text: "Comprehensive rehabilitation and physiotherapy solutions closer to home.",
-              },
-            ].map((service, index) => (
-              <Col xs={12} md={4} key={index}>
-                <div data-aos="flip-left" data-aos-delay={index * 100}>
-                  <Card
-                    className={`h-100 shadow border-0 ${
-                      darkMode
-                        ? "bg-secondary text-light"
-                        : "bg-body-tertiary"
-                    }`}
-                  >
-                    <Card.Body>
-                      <Card.Title>{service.title}</Card.Title>
-                      <Card.Text>{service.text}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </section>
-      </Container>
+      {selectedDoctor && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full relative shadow-lg">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-black text-xl"
+              onClick={() => setSelectedDoctor(null)}
+            >
+              &times;
+            </button>
+            <img
+              src={selectedDoctor.image}
+              alt={selectedDoctor.name}
+              className="w-full h-64 object-cover rounded-md mb-4"
+            />
+            <h2 className="text-2xl font-bold mb-2">{selectedDoctor.name}</h2>
+            <p className="text-blue-600 font-medium mb-2">
+              {selectedDoctor.specialty}
+            </p>
+            <p className="text-gray-700">{selectedDoctor.description}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

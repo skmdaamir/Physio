@@ -1,10 +1,11 @@
 import React from "react";
 import { FaPhone, FaWhatsapp } from "react-icons/fa";
 import { Fab } from "@mui/material";
-import "./FloatingButtons.css"; // make sure this is imported
+import "./FloatingButtons.css"; // Ensure this includes zoom CSS as updated
 
 const FloatingButtons = () => (
   <>
+    {/* Phone FAB */}
     <Fab
       className="floating-fab phone-fab"
       color="primary"
@@ -14,6 +15,7 @@ const FloatingButtons = () => (
       <FaPhone />
     </Fab>
 
+    {/* WhatsApp FAB */}
     <Fab
       className="floating-fab whatsapp-fab"
       color="success"

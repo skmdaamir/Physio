@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
-import axios from '../axiosInstance';
+import axios from "../axiosInstance";
 import Loader from "./Loader";
 import { Helmet } from "react-helmet";
-
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -12,15 +10,15 @@ const Blog = () => {
   const [selectedBlog, setSelectedBlog] = useState(null);
   const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-const handleReadMore = (blog) => {
-  setSelectedBlog(blog);
-  setShowModal(true);
-};
+  const handleReadMore = (blog) => {
+    setSelectedBlog(blog);
+    setShowModal(true);
+  };
 
-const handleCloseModal = () => {
-  setShowModal(false);
-  setSelectedBlog(null);
-};
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedBlog(null);
+  };
 
   const fetchBlogs = async () => {
     try {
@@ -41,86 +39,100 @@ const handleCloseModal = () => {
   }, []);
 
   return (
-    <section className="blog-section pt-5 mt-5">
+    <section className="pt-24 pb-12 px-4 md:px-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
       <Helmet>
         <title>Blogs | Physio Pulse</title>
       </Helmet>
-      <Container>
-        <h2 className="text-center mb-5" data-aos="fade-up">
-          Our Latest Blogs
-        </h2>
-        {loading ? (
-          <div className="text-center py-5">
-            <Loader />
-          </div>
-        ) : blogs.length > 0 ? (
-          <Row>
-            {blogs.map((blog, index) => (
-              <Col
-                md={6}
-                lg={4}
-                className="mb-4"
-                key={blog.id}
-                data-aos="fade-up"
-                data-aos-delay={index * 150}
-              >
-                <Card className="blog-card">
-                {blog.image_url && (
-  <div className="blog-img-container">
-    <Card.Img
-      variant="top"
-      src={`${BASE_URL}/${blog.image_url.replace(/\\/g, "/")}`}
-    />
-  </div>
-)}
-                  <Card.Body>
-                    <Card.Title>{blog.title}</Card.Title>
-                    <Card.Text>
-                      {blog.content?.slice(0, 100) || "No description..."}
-                    </Card.Text>
-                    <Button
-                      variant="primary"
-                      className="read-more-btn"
-                      onClick={() => handleReadMore(blog)}
-                    >
-                      Read More
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        ) : (
-          <p className="text-center">No blogs available.</p>
-        )}
+      <h2
+        className="text-3xl md:text-4xl font-bold text-center mb-10 text-primary dark:text-green-400"
+        data-aos="fade-up"
+      >
+        Our Latest Blogs
+      </h2>
 
-        {/* Blog Modal */}
-        <Modal show={showModal} onHide={handleCloseModal} size="lg" centered>
-          {selectedBlog && (
-            <>
-              <Modal.Header closeButton>
-                <Modal.Title>{selectedBlog.title}</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                {selectedBlog.image_url && (
+      {loading ? (
+        <div className="text-center py-12">
+          <Loader />
+        </div>
+      ) : blogs.length > 0 ? (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {blogs.map((blog, index) => (
+            <div
+              key={blog.id}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition p-4"
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+            >
+              {blog.image_url && (
+                <div className="mb-4">
                   <img
-                  src={`${process.env.API_BASE_URL}/${selectedBlog.image_url.replace(/\\/g, "/")}`}
-                    alt={selectedBlog.title}
-                    style={{ maxWidth: "100%", borderRadius: "8px" }}
-                    className="img-fluid mb-3"
+                    src={`${BASE_URL}/${blog.image_url.replace(/\\/g, "/")}`}
+                    alt={blog.title}
+                    className="w-full h-48 object-cover rounded-md"
                   />
-                )}
-                <p>{selectedBlog.content}</p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseModal}>
-                  Close
-                </Button>
-              </Modal.Footer>
-            </>
-          )}
-        </Modal>
-      </Container>
+                </div>
+              )}
+              <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">
+                {blog.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                {blog.content?.slice(0, 100) || "No description..."}
+              </p>
+              <button
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md"
+                onClick={() => handleReadMore(blog)}
+              >
+                Read More
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-gray-600 dark:text-gray-300">
+          No blogs available.
+        </p>
+      )}
+
+      {/* Modal */}
+      {showModal && selectedBlog && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="bg-white dark:bg-gray-800 rounded-lg max-w-3xl w-full p-6 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 text-xl hover:text-red-500"
+            >
+              &times;
+            </button>
+            <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">
+              {selectedBlog.title}
+            </h2>
+            {selectedBlog.image_url && (
+              <img
+                src={`${BASE_URL}/${selectedBlog.image_url.replace(/\\/g, "/")}`}
+                alt={selectedBlog.title}
+                className="w-full max-h-[300px] object-cover rounded-md mb-4"
+              />
+            )}
+            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+              {selectedBlog.content}
+            </p>
+            <div className="mt-6 text-right">
+              <button
+                onClick={handleCloseModal}
+                className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

@@ -1,6 +1,4 @@
-// AdminPanel/GalleryTab.jsx
 import { useEffect, useState } from "react";
-import { Card, Button, Col, Row, Modal, Form } from "react-bootstrap";
 import axios from '../../axiosInstance';
 import { toast } from "react-toastify";
 
@@ -51,8 +49,7 @@ const GalleryTab = () => {
     const formData = new FormData();
     formData.append("title", newItem.title);
     if (newItem.image) formData.append("image", newItem.image);
-    if (newItem.youtubeLink)
-      formData.append("youtubeLink", newItem.youtubeLink);
+    if (newItem.youtubeLink) formData.append("youtubeLink", newItem.youtubeLink);
 
     try {
       await axios.post("/api/upload-photo", formData);
@@ -79,96 +76,110 @@ const GalleryTab = () => {
   };
 
   return (
-    <>
-      <div className="d-flex justify-content-between align-items-center mt-4">
-        <h4>Gallery</h4>
-        <Button onClick={() => setShowModal(true)}>Add Photo/Video</Button>
+    <div className="px-4 py-6">
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-semibold">Gallery</h3>
+        <button
+          onClick={() => setShowModal(true)}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Add Photo/Video
+        </button>
       </div>
 
-      <Row className="mt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
         {galleryItems.map((item) => (
-          <Col xs={12} sm={6} md={4} key={item.id} className="mb-4">
-            <Card>
-              {item.image_path && (
-                <Card.Img
-                  variant="top"
-                  src={`/${item.image_path}`}
-                  style={{ height: "200px", objectFit: "cover" }}
-                />
-              )}
+          <div key={item.id} className="bg-white shadow rounded overflow-hidden">
+            {item.image_path && (
+              <img
+                src={`/${item.image_path}`}
+                alt={item.title}
+                className="w-full h-48 object-cover"
+              />
+            )}
 
-              {item.youtube_link && (
-                <div className="ratio ratio-16x9">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${
-                      item.youtube_link.split("v=")[1]
-                    }`}
-                    title="YouTube video"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              )}
-              <Card.Body>
-                <Card.Title>{item.treatment_name}</Card.Title>
-                <Button
-                  variant="danger"
-                  size="sm"
-                  className="mt-2"
-                  onClick={() => handleDelete(item.id)}
-                >
-                  Delete
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
+            {item.youtube_link && (
+              <div className="relative w-full aspect-video">
+                <iframe
+                  src={`https://www.youtube.com/embed/${item.youtube_link.split("v=")[1]}`}
+                  title="YouTube video"
+                  allowFullScreen
+                  className="absolute w-full h-full top-0 left-0"
+                ></iframe>
+              </div>
+            )}
+
+            <div className="p-4">
+              <h4 className="text-md font-medium mb-2">{item.treatment_name}</h4>
+              <button
+                onClick={() => handleDelete(item.id)}
+                className="bg-red-500 text-white text-sm px-3 py-1 rounded hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         ))}
-      </Row>
+      </div>
 
-      <Modal show={showModal} onHide={resetModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Gallery Item</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="galleryTitle">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="text"
-                name="title"
-                value={newItem.title}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
+          <div className="bg-white w-full max-w-lg p-6 rounded shadow relative">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-red-600 text-lg"
+              onClick={resetModal}
+            >
+              &times;
+            </button>
+            <h3 className="text-xl font-semibold mb-4">Add Gallery Item</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block font-medium mb-1">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={newItem.title}
+                  onChange={handleChange}
+                  required
+                  className="w-full border px-3 py-2 rounded"
+                />
+              </div>
 
-            <Form.Group className="mt-3" controlId="galleryImage">
-              <Form.Label>Upload Image</Form.Label>
-              <Form.Control
-                type="file"
-                name="image"
-                accept="image/*"
-                onChange={handleChange}
-              />
-            </Form.Group>
+              <div>
+                <label className="block font-medium mb-1">Upload Image</label>
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleChange}
+                  className="w-full"
+                />
+              </div>
 
-            <Form.Group className="mt-3" controlId="youtubeLink">
-              <Form.Label>YouTube Video Link</Form.Label>
-              <Form.Control
-                type="url"
-                name="youtubeLink"
-                value={newItem.youtubeLink}
-                onChange={handleChange}
-                placeholder="https://www.youtube.com/watch?v=video_id"
-              />
-            </Form.Group>
+              <div>
+                <label className="block font-medium mb-1">YouTube Video Link</label>
+                <input
+                  type="url"
+                  name="youtubeLink"
+                  value={newItem.youtubeLink}
+                  onChange={handleChange}
+                  className="w-full border px-3 py-2 rounded"
+                  placeholder="https://www.youtube.com/watch?v=video_id"
+                />
+              </div>
 
-            <Button type="submit" className="mt-4" variant="primary">
-              Submit
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
-    </>
+              <button
+                type="submit"
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

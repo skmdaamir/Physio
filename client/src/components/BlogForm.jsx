@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import axios from '../axiosInstance';
-import { ToastContainer, toast } from "react-toastify"; // Import toast
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
-
-
-
+import axios from "../axiosInstance";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BlogForm = () => {
   const [title, setTitle] = useState("");
@@ -35,59 +32,53 @@ const BlogForm = () => {
     formData.append("image", image);
 
     try {
-      const response = await axios.post(
-        "/api/blogs",
-        formData
-      );
+      const response = await axios.post("/api/blogs", formData);
 
       if (response.status === 201) {
-        // Success
         fetchBlogs();
         setTitle("");
         setContent("");
         setImage(null);
         toast.success("Blog added successfully!");
       } else {
-        // Handle any unexpected status codes
         toast.error("Failed to add blog.");
       }
     } catch (err) {
       console.error("Error uploading blog:", err);
-
-      // Make sure to handle specific error responses from the server
-      if (err.response && err.response.data) {
-        toast.error(err.response.data.message || "Failed to add blog.");
-      } else {
-        toast.error("Failed to add blog.");
-      }
+      toast.error(err.response?.data?.message || "Failed to add blog.");
     }
   };
 
   return (
-    <div className="blog-form">
-      <h3>Add New Blog</h3>
-      <form onSubmit={handleSubmit}>
+    <div className="max-w-2xl mx-auto bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 mt-10">
+      <h3 className="text-2xl font-semibold mb-6 text-center text-green-600 dark:text-green-400">
+        Add New Blog
+      </h3>
+      <form onSubmit={handleSubmit} className="space-y-5">
         <input
           type="text"
-          className="form-control"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-800 dark:text-white"
         />
         <textarea
-          className="form-control"
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           required
-        ></textarea>
+          className="w-full px-4 py-2 h-32 border border-gray-300 dark:border-gray-700 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-800 dark:text-white"
+        />
         <input
           type="file"
-          className="form-control"
           onChange={handleFileChange}
+          className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-700 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-green-600 file:text-white hover:file:bg-green-700"
         />
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition duration-300"
+        >
           Submit
         </button>
       </form>

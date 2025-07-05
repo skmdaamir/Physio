@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Table, Button, Form, Row, Col } from "react-bootstrap";
-import axios from '../../axiosInstance';
+import axios from "../../axiosInstance";
 
 const CareersTab = () => {
   const [careers, setCareers] = useState([]);
@@ -32,67 +31,78 @@ const CareersTab = () => {
   };
 
   return (
-    <div>
-      <h5>Add New Job Opening</h5>
-      <Form onSubmit={handleAdd} className="mb-4">
-        <Row>
-          <Col>
-            <Form.Control
-              placeholder="Position"
-              required
-              value={form.position}
-              onChange={(e) => setForm({ ...form, position: e.target.value })}
-            />
-          </Col>
-          <Col>
-            <Form.Control
-              placeholder="Description"
-              required
-              value={form.description}
-              onChange={(e) =>
-                setForm({ ...form, description: e.target.value })
-              }
-            />
-          </Col>
-          <Col>
-            <Form.Control
-              placeholder="Experience (in years)"
-              required
-              type="number"
-              value={form.experience}
-              onChange={(e) => setForm({ ...form, experience: e.target.value })}
-            />
-          </Col>
-          <Col>
-            <Button type="submit">Add</Button>
-          </Col>
-        </Row>
-      </Form>
+    <div className="p-4">
+      <h3 className="text-xl font-semibold mb-4">Add New Job Opening</h3>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Position</th>
-            <th>Description</th>
-            <th>Experience</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {careers.map((job) => (
-            <tr key={job.id}>
-              <td>{job.position}</td>
-              <td>{job.description}</td>
-              <td>{job.experience} years</td>
-              <td>
-                <Button variant="danger" onClick={() => handleDelete(job.id)}>
-                  Delete
-                </Button>
-              </td>
+      <form onSubmit={handleAdd} className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <input
+          type="text"
+          placeholder="Position"
+          required
+          className="border rounded px-3 py-2 w-full"
+          value={form.position}
+          onChange={(e) => setForm({ ...form, position: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Description"
+          required
+          className="border rounded px-3 py-2 w-full"
+          value={form.description}
+          onChange={(e) => setForm({ ...form, description: e.target.value })}
+        />
+        <input
+          type="number"
+          placeholder="Experience (in years)"
+          required
+          className="border rounded px-3 py-2 w-full"
+          value={form.experience}
+          onChange={(e) => setForm({ ...form, experience: e.target.value })}
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 w-full"
+        >
+          Add
+        </button>
+      </form>
+
+      <div className="overflow-auto">
+        <table className="min-w-full border border-gray-300 text-sm">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="px-4 py-2 border">Position</th>
+              <th className="px-4 py-2 border">Description</th>
+              <th className="px-4 py-2 border">Experience</th>
+              <th className="px-4 py-2 border">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {careers.map((job) => (
+              <tr key={job.id} className="text-center">
+                <td className="px-4 py-2 border">{job.position}</td>
+                <td className="px-4 py-2 border">{job.description}</td>
+                <td className="px-4 py-2 border">{job.experience} years</td>
+                <td className="px-4 py-2 border">
+                  <button
+                    onClick={() => handleDelete(job.id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {careers.length === 0 && (
+              <tr>
+                <td colSpan="4" className="text-center py-4 text-gray-500">
+                  No openings added yet.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

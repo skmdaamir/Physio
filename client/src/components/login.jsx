@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import axios from '../axiosInstance';
+import axios from "../axiosInstance";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Container } from "react-bootstrap";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -14,9 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/admin/login", credentials);// Your Express login route
-
-      console.log(res.data.token);
+      const res = await axios.post("/api/admin/login", credentials);
       localStorage.setItem("token", res.data.token);
       navigate("/admin");
     } catch (err) {
@@ -25,32 +22,43 @@ const Login = () => {
   };
 
   return (
-    <Container className="mt-5" style={{ maxWidth: "400px" }}>
-      <h2>Admin Login</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mt-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" className="mt-4">
-          Login
-        </Button>
-      </Form>
-    </Container>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold text-center mb-6">Admin Login</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block font-medium mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block font-medium mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

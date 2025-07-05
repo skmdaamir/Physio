@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Card, Row, Col, Spinner } from "react-bootstrap";
-import axios from '../axiosInstance';
+import axios from "../axiosInstance";
 
 const Career = () => {
   const [jobs, setJobs] = useState([]);
@@ -22,33 +21,41 @@ const Career = () => {
   };
 
   return (
-    <Container className="pt-5 mt-5">
-      <h3 className="text-center mb-4">Current Job Openings</h3>
+    <div className="max-w-6xl mx-auto px-4 py-10 mt-16">
+      <h3 className="text-3xl font-semibold text-center text-green-600 dark:text-green-400 mb-8">
+        Current Job Openings
+      </h3>
+
       {loading ? (
-        <div className="text-center">
-          <Spinner animation="border" />
+        <div className="flex justify-center items-center h-40">
+          <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       ) : jobs.length > 0 ? (
-        <Row>
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {jobs.map((job) => (
-            <Col key={job.id} md={6} lg={4} className="mb-4" data-aos="fade-up">
-              <Card className="h-100 shadow-sm">
-                <Card.Body>
-                  <Card.Title>{job.position}</Card.Title>
-                  <Card.Text>{job.description}</Card.Text>
-                  <Card.Text>
-                    <strong>Experience:</strong> {job.experience} years
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
+            <div
+              key={job.id}
+              className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"
+              data-aos="fade-up"
+            >
+              <h4 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                {job.position}
+              </h4>
+              <p className="text-gray-700 dark:text-gray-300 mb-3">
+                {job.description}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                <strong>Experience:</strong> {job.experience} years
+              </p>
+            </div>
           ))}
-        </Row>
-      ): (
-        <p className="text-center">No jobs available.</p>
-      )
-      }
-    </Container>
+        </div>
+      ) : (
+        <p className="text-center text-gray-600 dark:text-gray-400">
+          No jobs available.
+        </p>
+      )}
+    </div>
   );
 };
 

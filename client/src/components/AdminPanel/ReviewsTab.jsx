@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "../../axiosInstance";
-import { Table, Button, Badge } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const ReviewsTab = () => {
@@ -46,50 +45,68 @@ const ReviewsTab = () => {
   };
 
   return (
-    <Table striped bordered hover className="mt-3">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Rating</th>
-          <th>Comment</th>
-          <th>Created At</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {reviews.map((review) => (
-          <tr key={review.id}>
-            <td>{review.name}</td>
-            <td>{review.rating}</td>
-            <td>{review.description}</td>
-            <td>{new Date(review.created_at).toLocaleString()}</td>
-            <td>
-              <Badge bg={review.visible ? "success" : "secondary"}>
-                {review.visible ? "Active" : "Inactive"}
-              </Badge>
-            </td>
-            <td>
-              <Button
-                variant={review.visible ? "warning" : "success"}
-                size="sm"
-                className="me-2"
-                onClick={() => handleToggleVisibility(review.id, review.visible)}
-              >
-                {review.visible ? "Deactivate" : "Activate"}
-              </Button>
-              <Button
-                variant="danger"
-                size="sm"
-                onClick={() => handleDelete(review.id)}
-              >
-                Delete
-              </Button>
-            </td>
+    <div className="overflow-x-auto mt-4">
+      <table className="min-w-full bg-white border border-gray-300 rounded shadow-sm text-sm">
+        <thead className="bg-gray-100 text-gray-700 font-medium text-nowrap">
+          <tr>
+            <th className="px-4 py-2 border">Name</th>
+            <th className="px-4 py-2 border">Rating</th>
+            <th className="px-4 py-2 border">Comment</th>
+            <th className="px-4 py-2 border">Created At</th>
+            <th className="px-4 py-2 border">Status</th>
+            <th className="px-4 py-2 border">Action</th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
+        </thead>
+        <tbody>
+          {reviews.map((review) => (
+            <tr key={review.id} className="text-center">
+              <td className="border px-4 py-2">{review.name}</td>
+              <td className="border px-4 py-2">{review.rating}</td>
+              <td className="border px-4 py-2 text-left">{review.description}</td>
+              <td className="border px-4 py-2">
+                {new Date(review.created_at).toLocaleString()}
+              </td>
+              <td className="border px-4 py-2">
+                <span
+                  className={`px-2 py-1 rounded text-xs font-medium ${
+                    review.visible
+                      ? "bg-green-200 text-green-800"
+                      : "bg-gray-300 text-gray-700"
+                  }`}
+                >
+                  {review.visible ? "Active" : "Inactive"}
+                </span>
+              </td>
+              <td className="border px-4 py-2 space-x-2">
+                <button
+                  onClick={() =>
+                    handleToggleVisibility(review.id, review.visible)
+                  }
+                  className={`px-3 py-1 rounded text-white text-xs ${
+                    review.visible ? "bg-yellow-500 hover:bg-yellow-600" : "bg-green-600 hover:bg-green-700"
+                  }`}
+                >
+                  {review.visible ? "Deactivate" : "Activate"}
+                </button>
+                <button
+                  onClick={() => handleDelete(review.id)}
+                  className="px-3 py-1 rounded bg-red-600 hover:bg-red-700 text-white text-xs"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+          {reviews.length === 0 && (
+            <tr>
+              <td colSpan="6" className="text-center py-4 text-gray-500">
+                No reviews found.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000 !important;
+  transition: transform 0.3s ease;
 }
 
 /* Phone button on the left */
@@ -25,18 +26,31 @@
   right: 20px !important;
 }
 
-/* Make sure the SVG icon inside scales up */
+/* Icon size */
 .floating-fab svg {
   width: 32px;
   height: 32px;
 }
 
+/* Zoom on hover/tap */
+.floating-fab:hover,
+.floating-fab:active {
+  transform: scale(1.1);
+}
+
+/* Mobile-specific override */
 @media (max-width: 576px) {
   .MuiFab-root {
     width: 64px !important;
     height: 64px !important;
   }
+
   .MuiSvgIcon-root, svg {
     font-size: 28px !important;
+  }
+
+  .floating-fab:hover,
+  .floating-fab:active {
+    transform: scale(1.15);
   }
 }

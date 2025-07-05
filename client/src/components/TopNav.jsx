@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { Container, Navbar, Nav, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import './TopNav.css';
+import { FaBars } from "react-icons/fa";
 import logo from "../assets/images/logo.bmp";
+import './TopNav.css';
 
 const TopNav = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleToggleTheme = () => setDarkMode(!darkMode);
+  const toggleTheme = () => setDarkMode(!darkMode);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const menuData = [
+  const menuItems = [
     { path: "/", name: "Home" },
     { path: "/about", name: "About Us" },
     { path: "/blog", name: "Blog" },
@@ -19,47 +21,74 @@ const TopNav = () => {
   ];
 
   return (
-    <Navbar
-      expand="lg"
-      className={`py-2 fixed-top shadow-sm ${
-        darkMode ? "bg-dark navbar-dark" : "bg-light navbar-light"
-      }`}
-    >
-      <Container fluid className="d-flex justify-content-between align-items-center flex-wrap">
-        {/* Logo and Theme Toggle */}
-        <div className="d-flex align-items-center">
-          <Navbar.Brand as={Link} to="/" className="fw-bold fs-4 me-3">
-            <img
-              src={logo}
-              alt="PPRS Logo"
-              height="40"
-              className="d-inline-block align-top"
+    <>
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 py-3 px-5 flex justify-between items-center shadow-md ${
+          darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+        }`}
+      >
+        <div className="flex items-center gap-4">
+          <Link to="/">
+            <img src={logo} alt="Logo" className="h-10" />
+          </Link>
+          <label className="flex items-center gap-1 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              checked={darkMode}
+              onChange={toggleTheme}
+              className="hidden"
             />
-          </Navbar.Brand>
-          <Form.Check
-            type="switch"
-            id="theme-switch"
-            checked={darkMode}
-            onChange={handleToggleTheme}
-            label={darkMode ? "Dark" : "Light"}
-          />
+            {darkMode ? "🌙" : "☀️"}
+          </label>
         </div>
 
-        {/* Horizontal Nav */}
-        <Nav className="d-flex flex-row justify-content-center align-items-center mt-2 mt-lg-0 flex-wrap">
-          {menuData.map((item) => (
-            <Nav.Link
-              as={Link}
+        {/* Desktop Nav */}
+        <ul className="hidden lg:flex gap-6">
+          {menuItems.map(({ path, name }) => (
+            <li key={path}>
+              <Link
+                to={path}
+                className="hover:text-green-500 transition duration-200"
+              >
+                {name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Hamburger for Mobile */}
+        <button onClick={toggleMenu} className="lg:hidden text-3xl">
+          <FaBars />
+        </button>
+      </nav>
+
+      {/* Slide-in Mobile Menu */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 z-50 bg-white dark:bg-gray-900 text-black dark:text-white shadow-lg transform transition-transform duration-500 ease-in-out ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <button
+          className="text-2xl absolute top-4 right-4"
+          onClick={toggleMenu}
+        >
+          ✕
+        </button>
+        <div className="mt-16 flex flex-col gap-6 px-6">
+          {menuItems.map((item, i) => (
+            <Link
+              key={item.path}
               to={item.path}
-              key={item.name}
-              className={`mx-2 ${darkMode ? "text-light" : "text-dark"}`}
+              onClick={() => setMenuOpen(false)}
+              className="text-lg transition-all duration-300 animate-slideInRight"
+              style={{ animationDelay: `${i * 100}ms` }}
             >
               {item.name}
-            </Nav.Link>
+            </Link>
           ))}
-        </Nav>
-      </Container>
-    </Navbar>
+        </div>
+      </div>
+    </>
   );
 };
 

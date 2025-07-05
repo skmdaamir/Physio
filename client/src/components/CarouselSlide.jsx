@@ -1,124 +1,79 @@
-import React from "react";
-import "./CarouselSlide.css";
-import { Carousel } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import "aos/dist/aos.css";
 
-//Dyanmic Import
+// Dynamic import of all images in the images folder
 const importAll = (r) => r.keys().map(r);
 const images = importAll(
   require.context("../assets/images", false, /\.(png|jpe?g|jpg|svg|avif)$/)
 );
 
-function CarouselSlide() {
+const CarouselSlide = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % images.length);
+  };
+
   return (
-    <>
-      <Carousel
-        interval={2000}
-        fade
-        nextIcon={
-          <span aria-hidden="true" className="custom-next-icon">
-            &#8250;
-          </span>
-        }
-        prevIcon={
-          <span aria-hidden="true" className="custom-prev-icon">
-            &#8249;
-          </span>
-        }
-        indicators={true}
+    <div className="relative w-full overflow-hidden h-[60vh] sm:h-[70vh]">
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute w-full h-full transition-opacity duration-1000 ease-in-out ${
+            index === activeIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <img
+            src={image}
+            alt={`Slide ${index}`}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center bg-black/40 px-4 py-2 rounded-lg text-white backdrop-blur-sm">
+            <h3 className="text-lg font-semibold">Slide {index + 1}</h3>
+            <p className="text-sm">Description for slide {index + 1}.</p>
+          </div>
+        </div>
+      ))}
+
+      {/* Prev/Next buttons */}
+      <button
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-4xl text-white bg-black/30 hover:bg-black/50 px-3 py-1 rounded-full"
+        onClick={handlePrev}
       >
-        {images.map((image, index) => (
-          <Carousel.Item key={index}>
-            <img className="d-block w-100" src={image} alt={`Slide ${index}`} />
-            <Carousel.Caption className="carousel-caption">
-              <h3>Slide {index + 1}</h3>
-              <p>Description for slide {index + 1}.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
+        ‹
+      </button>
+      <button
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-4xl text-white bg-black/30 hover:bg-black/50 px-3 py-1 rounded-full"
+        onClick={handleNext}
+      >
+        ›
+      </button>
+
+      {/* Indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all ${
+              index === activeIndex ? "bg-white" : "bg-white/50"
+            }`}
+          />
         ))}
-      </Carousel>
-      {/* About Section
-      <Container className="my-5">
-        <Row>
-          <Col md={12} className="text-center">
-            <h2>About Our Physiotherapy Clinic</h2>
-            <p>
-              We are committed to providing the best physiotherapy treatments to
-              help you regain mobility, relieve pain, and improve your quality
-              of life. Our experienced team ensures personalized care tailored
-              to your needs.
-            </p>
-          </Col>
-        </Row>
-      </Container>
-      {/* Reviews Section */}
-      {/* <Container className="my-5">
-        <h2 className="text-center mb-4">What Our Clients Say</h2>
-        <Row className="g-4">
-          <Col md={4}>
-            <Card className="h-100 shadow-sm">
-              <Card.Body>
-                <Card.Text>
-                  "The best physiotherapy center! Helped me recover quickly
-                  after my surgery."
-                </Card.Text>
-                <Card.Title>- John Doe</Card.Title>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-            <Card className="h-100 shadow-sm">
-              <Card.Body>
-                <Card.Text>
-                  "Friendly staff and excellent treatment plans. Highly
-                  recommend!"
-                </Card.Text>
-                <Card.Title>- Jane Smith</Card.Title>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-            <Card className="h-100 shadow-sm">
-              <Card.Body>
-                <Card.Text>
-                  "I felt stronger and healthier after each session. Thank you
-                  team!"
-                </Card.Text>
-                <Card.Title>- Michael Lee</Card.Title>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container> */}
-      {/* (Optional) Why Choose Us */}
-      {/* <Container className="my-5">
-        <h2 className="text-center mb-4">Why Choose Us</h2>
-        <Row className="g-4">
-          <Col md={6}>
-            <Card className="h-100 shadow-sm">
-              <Card.Body>
-                <Card.Title>Experienced Therapists</Card.Title>
-                <Card.Text>
-                  All our physiotherapists are certified with years of
-                  experience.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6}>
-            <Card className="h-100 shadow-sm">
-              <Card.Body>
-                <Card.Title>Advanced Techniques</Card.Title>
-                <Card.Text>
-                  We use the latest therapies and equipment to ensure effective
-                  treatment.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container> */}
-    </>
+      </div>
+    </div>
   );
-}
+};
 
 export default CarouselSlide;

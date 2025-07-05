@@ -1,12 +1,14 @@
-/* TopNav.css */
-.navbar-nav .nav-link {
-  padding: 0.25rem 0.75rem;
-  font-size: 0.95rem;
-  white-space: nowrap;
+@keyframes slideInRight {
+  0% {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-@media (max-width: 576px) {
-  .navbar-brand img {
-    height: 35px;
-  }
+.animate-slideInRight {
+  animation: slideInRight 0.4s ease forwards;
 }
