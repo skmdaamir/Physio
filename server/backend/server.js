@@ -6,7 +6,7 @@ const session = require("express-session");
 const blogRoutes = require("./routes/blogRouters");
 
 const app = express();
-const PORT = 43073;
+const PORT = 5000;
 const adminRoutes = require("./admin");
 const bodyParser = require("body-parser");
 const statesRoute = require("./routes/states");
@@ -55,12 +55,12 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-app.use(cors({
-  origin: "https://physio-56ld.vercel.app", // ✅ your GitHub Pages frontend
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-}));
+//{
+  // origin: "https://physio-56ld.vercel.app", // ✅ your GitHub Pages frontend
+  // methods: ["GET", "POST", "PUT", "DELETE"],
+  // credentials: true,
+// }
+app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "..", "..", "..","..", "uploads")));
 app.use("/api", blogRoutes);

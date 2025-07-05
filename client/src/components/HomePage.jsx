@@ -11,6 +11,10 @@ import {
 import Rating from "react-rating";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import axios from "../axiosInstance";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -157,45 +161,47 @@ const HomePage = () => {
             What Our Clients Say
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {reviews.map((review, index) => (
-              <div
-                key={index}
-                className={`p-5 rounded-xl shadow transition ${
-                  darkMode
-                    ? "bg-gray-700 text-white"
-                    : "bg-gray-50 text-gray-800"
-                }`}
-              >
-                <p className="text-lg italic">"{review.description}"</p>
-                <div className="mt-3">
-                  <Rating
-                    initialRating={review.rating}
-                    readonly
-                    emptySymbol={
-                      <FaRegStar
-                        color={darkMode ? "#bbb" : "#ccc"}
-                        size={20}
-                      />
-                    }
-                    fullSymbol={
-                      <FaStar
-                        color={darkMode ? "#ffd700" : "#f5b301"}
-                        size={20}
-                      />
-                    }
-                  />
-                </div>
-                <h4
-                  className={`mt-3 font-semibold ${
-                    darkMode ? "text-cyan-400" : "text-blue-600"
-                  }`}
-                >
-                  ~ {review.name}
-                </h4>
-              </div>
-            ))}
-          </div>
+          <Swiper
+  modules={[Autoplay, Pagination]}
+  spaceBetween={20}
+  slidesPerView={1}
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  pagination={{ clickable: true }}
+  breakpoints={{
+    768: { slidesPerView: 2 }, // 2 slides on md and up
+  }}
+>
+  {reviews.map((review, index) => (
+    <SwiperSlide key={index}>
+      <div
+        className={`p-5 rounded-xl shadow transition h-full ${
+          darkMode ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-800'
+        }`}
+      >
+        <p className="text-lg italic">"{review.description}"</p>
+        <div className="mt-3">
+          <Rating
+            initialRating={review.rating}
+            readonly
+            emptySymbol={
+              <FaRegStar color={darkMode ? '#bbb' : '#ccc'} size={20} />
+            }
+            fullSymbol={
+              <FaStar color={darkMode ? '#ffd700' : '#f5b301'} size={20} />
+            }
+          />
+        </div>
+        <h4
+          className={`mt-3 font-semibold ${
+            darkMode ? 'text-cyan-400' : 'text-blue-600'
+          }`}
+        >
+          ~ {review.name}
+        </h4>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
         </div>
         {/* WHAT WE TREAT */}
         <div className="px-4 max-w-7xl mx-auto mt-10">
@@ -292,7 +298,7 @@ const HomePage = () => {
             Why Choose PPRS?
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {[
               {
                 title: "Highly Qualified and Experienced Team",
@@ -332,6 +338,8 @@ const HomePage = () => {
                     ? "bg-gray-700 text-white"
                     : "bg-gray-50 text-gray-900"
                 }`}
+                data-aos="fade-up"
+                data-aos-delay={index*1000}
               >
                 <div className="mb-3">{item.icon}</div>
                 <h4 className="text-green-500 font-semibold mb-2">

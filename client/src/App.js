@@ -24,6 +24,7 @@ import ReviewForm from "./components/ReviewForm";
 import CustomerGallery from "./components/CustomerGallery";
 import Career from "./components/Career";
 
+
 const AppContent = () => {
   const location = useLocation();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
@@ -87,6 +88,8 @@ const AppContent = () => {
       {/* {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />} */}
       {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />}
       <FloatingButtons />
+
+
     </div>
   );
 };
