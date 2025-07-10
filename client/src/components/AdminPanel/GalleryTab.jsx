@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from '../../axiosInstance';
+import axios from "../../axiosInstance";
 import { toast } from "react-toastify";
 
 const GalleryTab = () => {
@@ -124,54 +124,55 @@ const GalleryTab = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
-          <div className="bg-white w-full max-w-lg p-6 rounded shadow relative">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center px-4">
+          <div className="bg-white w-full max-w-md sm:max-w-lg p-6 rounded-xl shadow-lg relative overflow-y-auto max-h-[90vh]">
             <button
               className="absolute top-2 right-2 text-gray-500 hover:text-red-600 text-lg"
               onClick={resetModal}
             >
               &times;
             </button>
-            <h3 className="text-xl font-semibold mb-4">Add Gallery Item</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <h3 className="text-xl font-bold mb-4 text-center">Add Gallery Item</h3>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div>
-                <label className="block font-medium mb-1">Title</label>
+                <label className="block font-medium mb-1 text-sm">Title</label>
                 <input
                   type="text"
                   name="title"
                   value={newItem.title}
                   onChange={handleChange}
                   required
-                  className="w-full border px-3 py-2 rounded"
+                  className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                 />
               </div>
 
               <div>
-                <label className="block font-medium mb-1">Upload Image</label>
+                <label className="block font-medium mb-1 text-sm">Upload Image</label>
                 <input
                   type="file"
                   name="image"
                   accept="image/*"
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full text-sm"
                 />
               </div>
 
               <div>
-                <label className="block font-medium mb-1">YouTube Video Link</label>
+                <label className="block font-medium mb-1 text-sm">YouTube Video Link</label>
                 <input
                   type="url"
                   name="youtubeLink"
                   value={newItem.youtubeLink}
                   onChange={handleChange}
-                  className="w-full border px-3 py-2 rounded"
-                  placeholder="https://www.youtube.com/watch?v=video_id"
+                  className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  placeholder="https://www.youtube.com/watch?v=..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded text-sm"
               >
                 Submit
               </button>

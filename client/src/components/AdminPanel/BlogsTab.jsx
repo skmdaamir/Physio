@@ -170,56 +170,56 @@ const BlogsTab = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white w-full max-w-lg p-6 rounded-lg shadow-lg relative">
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 px-4">
+          <div className="bg-white w-full max-w-lg sm:max-w-xl p-6 rounded-lg shadow-lg relative overflow-y-auto max-h-[90vh]">
             <button
-              className="absolute top-2 right-3 text-gray-500 text-xl"
+              className="absolute top-3 right-4 text-gray-600 text-2xl hover:text-red-600"
               onClick={resetModal}
             >
               &times;
             </button>
-            <h2 className="text-xl font-bold mb-4">
+            <h2 className="text-xl font-bold mb-4 text-center">
               {editMode ? "Edit Blog" : "Add Blog"}
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div>
-                <label className="block mb-1 font-medium">Title</label>
+                <label className="block mb-1 font-medium text-sm">Title</label>
                 <input
                   type="text"
                   name="title"
                   required
                   value={newBlog.title}
                   onChange={handleBlogChange}
-                  className="w-full px-3 py-2 border rounded"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">Content</label>
+                <label className="block mb-1 font-medium text-sm">Content</label>
                 <textarea
                   name="content"
                   required
                   rows={4}
                   value={newBlog.content}
                   onChange={handleBlogChange}
-                  className="w-full px-3 py-2 border rounded"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">Image</label>
+                <label className="block mb-1 font-medium text-sm">Image</label>
                 <input
                   type="file"
                   name="image"
                   onChange={handleBlogChange}
-                  className="w-full"
+                  className="w-full text-sm"
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">Status</label>
+                <label className="block mb-1 font-medium text-sm">Status</label>
                 <select
                   name="status"
                   value={newBlog.status}
                   onChange={handleBlogChange}
-                  className="w-full px-3 py-2 border rounded"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                 >
                   <option value="1">Published</option>
                   <option value="0">Draft</option>
@@ -228,7 +228,7 @@ const BlogsTab = () => {
               <div className="text-right">
                 <button
                   type="submit"
-                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm font-semibold"
                 >
                   {editMode ? "Update Blog" : "Submit Blog"}
                 </button>

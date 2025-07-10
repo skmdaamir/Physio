@@ -2,6 +2,17 @@ import React, { useState } from "react";
 import axios from "../axiosInstance";
 import { useNavigate } from "react-router-dom";
 
+// Utility function to decode JWT
+const isTokenExpired = (token) => {
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    const now = Math.floor(Date.now() / 1000);
+    return payload.exp < now;
+  } catch (e) {
+    return true;
+  }
+};
+
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -14,39 +25,46 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post("/api/admin/login", credentials);
-      localStorage.setItem("token", res.data.token);
+      const token = res.data.token;
+
+      if (isTokenExpired(token)) {
+        alert("Token already expired. Please try again.");
+        return;
+      }
+
+      localStorage.setItem("token", token);
       navigate("/admin");
     } catch (err) {
-      alert("Invalid login");
+      alert("Invalid login credentials");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">Admin Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 px-4">
+      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-xl border border-gray-200">
+        <h2 className="text-3xl font-bold text-center mb-6 text-blue-700">Admin Login</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block font-medium mb-1">
+            <label htmlFor="email" className="block font-medium mb-1 text-gray-700">
               Email
             </label>
             <input
               type="email"
               name="email"
-              onChange={handleChange}
               required
+              onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block font-medium mb-1">
+            <label htmlFor="password" className="block font-medium mb-1 text-gray-700">
               Password
             </label>
             <input
               type="password"
               name="password"
-              onChange={handleChange}
               required
+              onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>

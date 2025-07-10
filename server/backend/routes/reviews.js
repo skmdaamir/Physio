@@ -50,7 +50,7 @@ router.put("/reviewVisibility/:id", (req, res) => {
 
 router.get("/approved-reviews", async (req, res) => {
   const query =
-    "SELECT description,rating, name FROM reviews WHERE visible = 1 ORDER BY created_at DESC ";
+    "SELECT description,rating,created_at,name FROM reviews WHERE visible = 1 ORDER BY created_at DESC ";
   try {
     const [rows] = await db.execute(query);
     res.json(rows);

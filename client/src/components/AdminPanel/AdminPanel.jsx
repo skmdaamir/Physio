@@ -23,23 +23,28 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="w-full px-4 md:px-8 mt-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 px-4 py-6 md:px-10">
       <Helmet>
         <title>Admin Panel | Physio Pulse & Rehabilitation Studio (PPRS)</title>
       </Helmet>
 
-      <h2 className="text-2xl font-semibold mb-4">Dashboard</h2>
+      {/* Heading */}
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+        Admin Dashboard
+      </h2>
 
-      {/* Tabs */}
-      <div className="flex flex-wrap gap-2 border-b border-gray-300 mb-4">
+      {/* Tabs Navigation */}
+      <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-6">
         {tabItems.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`px-4 py-2 rounded-t-md text-sm sm:text-base font-medium transition-all duration-300
-              ${activeTab === tab.key
-                ? "bg-blue-500 text-white"
-                : "bg-gray-100 hover:bg-gray-200 text-gray-700"}`}
+            className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm sm:text-base font-medium transition-all duration-300 shadow 
+              ${
+                activeTab === tab.key
+                  ? "bg-blue-600 text-white shadow-md"
+                  : "bg-white text-gray-800 hover:bg-blue-100"
+              }`}
           >
             {tab.label}
           </button>
@@ -47,7 +52,7 @@ const AdminPanel = () => {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white p-4 rounded shadow-sm">
+      <div className="bg-white bg-opacity-90 backdrop-blur-lg rounded-xl shadow-lg p-4 md:p-6 border border-gray-200">
         {renderTabContent()}
       </div>
     </div>

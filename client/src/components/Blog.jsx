@@ -22,7 +22,7 @@ const Blog = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("/api/allBlogs");
+      const res = await axios.get("/api/blogs/active");
       const activeBlogs = (res.data.blogs || res.data).filter(
         (blog) => blog.is_active === "Published" || blog.is_active === 1
       );

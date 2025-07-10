@@ -9,6 +9,7 @@ import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
 import FloatingButtons from "./components/FloatingButtons";
 import AppointmentForm from "./components/AppointmentForm";
+import AppointmentModal from "./components/AppointmentModal";
 import AboutUs from "./components/AboutUs";
 import CarouselSlide from "./components/CarouselSlide";
 import AOS from "aos";
@@ -23,40 +24,44 @@ import ScrollToTop from "./components/ScrollToTop";
 import ReviewForm from "./components/ReviewForm";
 import CustomerGallery from "./components/CustomerGallery";
 import Career from "./components/Career";
-
+import ConditionDetails from "./components/ConditionDetails";
+import AddCondition from './components/AddCondition';
 
 const AppContent = () => {
   const location = useLocation();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(true); // ✅ Start as open
+
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
 
-    // Refresh slightly later for consistent rendering
     setTimeout(() => {
-      
       AOS.init({ duration: 1000 });
       AOS.refresh();
       setIsPageLoaded(true);
-    }, 100); // You can try 50ms to 300ms depending on render speed
-  }, [location]);
+    }, 100);
+  }, []);
+
+  // ✅ Show modal every time route changes
+  useEffect(() => {
+    setShowModal(true);
+  }, [location.pathname]);
 
   const isAdminRoute = location.pathname === "/admin";
   const isLoginRoute = location.pathname === "/login";
 
   return (
     <div className="app-wrapper">
-      {" "}
-      {/* 👈 Flex container starts here */}
       <Helmet>
         <title>Welcome to Physio Pulse</title>
       </Helmet>
+
       {!isAdminRoute && !isLoginRoute && <TopNav />}
       <ScrollToTop />
+
       <main className="main-content">
-        {" "}
-        {/* 👈 Main area gets flex: 1 */}
         <Routes>
           <Route
             path="/"
@@ -74,7 +79,8 @@ const AppContent = () => {
           <Route path="/review" element={<ReviewForm />} />
           <Route path="/gallery" element={<CustomerGallery />} />
           <Route path="/career" element={<Career />} />
-
+          <Route path="/conditions/:id" element={<ConditionDetails />} />
+          <Route path="/add-condition" element={<AddCondition />} />
           <Route
             path="/admin"
             element={
@@ -85,14 +91,16 @@ const AppContent = () => {
           />
         </Routes>
       </main>
-      {/* {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />} */}
+
       {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />}
-      <FloatingButtons />
+      {!isAdminRoute && !isLoginRoute && <FloatingButtons />}
 
-
+      {/* ✅ Modal appears every time on page load/navigation */}
+      <AppointmentModal show={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 };
+
 const App = () => {
   return (
     <Router>

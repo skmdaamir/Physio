@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa";
 import logo from "../assets/images/logo.bmp";
 import './TopNav.css';
 
-const TopNav = () => {
+const TopNav = ({ onOpenModal }) => {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -38,12 +38,12 @@ const TopNav = () => {
               onChange={toggleTheme}
               className="hidden"
             />
-            {darkMode ? "🌙" : "☀️"}
+            {/* {darkMode ? "🌙" : "☀️"} */}
           </label>
         </div>
 
         {/* Desktop Nav */}
-        <ul className="hidden lg:flex gap-6">
+        <ul className="hidden lg:flex gap-6 items-center">
           {menuItems.map(({ path, name }) => (
             <li key={path}>
               <Link

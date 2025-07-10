@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 
 // Ensure upload folder exists
-const uploadPath = path.join(__dirname, "..", "..", "client", "src", "uploads", "conditions");
+const uploadPath = path.join("./uploads");
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
 }
@@ -24,7 +24,6 @@ const upload = multer({ storage });
 router.post("/conditions", upload.single("image"), async (req, res) => {
   const { name, description, symptoms, causes, treatment } = req.body;
   const image = req.file ? req.file.filename : null;
-
   if (!name || !description || !symptoms || !causes || !treatment || !image) {
     return res.status(400).json({ message: "All fields including image are required." });
   }
@@ -35,7 +34,9 @@ router.post("/conditions", upload.single("image"), async (req, res) => {
   `;
 
   try {
-    await db.execute(query, [name, description, symptoms, causes, treatment, image]);
+    await db.execute(query, [name, description, JSON.stringify(symptoms),
+      JSON.stringify(causes),
+      JSON.stringify(treatment), image]);
     res.status(201).json({ message: "Condition added successfully." });
   } catch (err) {
     console.error("Insert Error:", err);
@@ -43,14 +44,23 @@ router.post("/conditions", upload.single("image"), async (req, res) => {
   }
 });
 
-// GET all conditions
-router.get("/conditions", async (req, res) => {
-  try {
-    const [rows] = await db.execute("SELECT * FROM conditions ORDER BY created_at DESC");
-    res.json(rows);
-  } catch (err) {
-    res.status(500).json({ message: "Failed to fetch conditions", error: err.message });
-  }
+//get conditions on basis of id
+router.get('/conditions/:id', async (req, res) => {
+  const { id } = req.params;
+  const [rows] = await db.query("SELECT * FROM conditions WHERE id = ?", [id]);
+  if (rows.length === 0) return res.status(404).send("Not found");
+  res.json(rows[0]);
 });
 
+//get conditions
+router.get('/conditions', async (req, res) => {
+  const result = await db.query("SELECT id, name FROM conditions");
+  res.json(result[0]);
+});
+
+//get conditions
+router.get('/symptoms', async (req, res) => {
+  const result = await db.query("SELECT id, name FROM symptoms");
+  res.json(result[0]);
+});
 module.exports = router;

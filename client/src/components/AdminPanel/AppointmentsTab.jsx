@@ -41,6 +41,10 @@ const AppointmentsTab = () => {
     setRemarksMap((prev) => ({ ...prev, [id]: value }));
   };
 
+  const allCount = appointments.length;
+  const doneCount = appointments.filter((appt) => appt.remarks).length;
+  const pendingCount = allCount - doneCount;
+
   const filteredAppointments = appointments.filter((appt) => {
     if (filter === "done") return appt.remarks;
     if (filter === "pending") return !appt.remarks;
@@ -49,13 +53,17 @@ const AppointmentsTab = () => {
 
   return (
     <div className="w-full px-4 py-4">
-      {/* Filter Buttons */}
+      {/* Filter Buttons with Counts */}
       <div className="mb-4 flex flex-wrap gap-2">
-        {["all", "pending", "done"].map((type) => (
+        {[
+          { type: "all", label: "All", count: allCount },
+          { type: "pending", label: "Pending", count: pendingCount },
+          { type: "done", label: "Done", count: doneCount },
+        ].map(({ type, label, count }) => (
           <button
             key={type}
             onClick={() => setFilter(type)}
-            className={`px-4 py-2 rounded text-sm font-medium transition ${
+            className={`px-4 py-2 rounded text-sm font-medium transition flex items-center gap-2 ${
               filter === type
                 ? type === "done"
                   ? "bg-green-600 text-white"
@@ -65,14 +73,17 @@ const AppointmentsTab = () => {
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
           >
-            {type.charAt(0).toUpperCase() + type.slice(1)}
+            {label}{" "}
+            <span className="text-xs bg-white text-black px-2 py-0.5 rounded-full">
+              {count}
+            </span>
           </button>
         ))}
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full border border-gray-300 rounded-lg text-sm md:text-base">
+      <div className="overflow-x-auto rounded-lg border border-gray-300">
+        <table className="min-w-full text-sm md:text-base">
           <thead className="bg-gray-200 text-gray-800">
             <tr>
               {[
@@ -87,7 +98,7 @@ const AppointmentsTab = () => {
                 "Action",
                 "Remarks",
               ].map((head, i) => (
-                <th key={i} className="p-2 whitespace-nowrap text-left">
+                <th key={i} className="p-2 text-left whitespace-nowrap">
                   {head}
                 </th>
               ))}
@@ -97,27 +108,32 @@ const AppointmentsTab = () => {
             {filteredAppointments.map((appt) => (
               <tr
                 key={appt.id}
-                className={`border-t ${appt.remarks ? "bg-green-50" : "bg-white"}`}
+                className={`border-t ${
+                  appt.remarks ? "bg-green-50" : "bg-white"
+                }`}
               >
-                <td className="p-2">{appt.name}</td>
-                <td className="p-2">{appt.phone}</td>
-                <td className="p-2">{appt.email}</td>
-                <td className="p-2">{appt.state}</td>
-                <td className="p-2">{appt.city}</td>
-                <td className="p-2">{appt.treatmentType}</td>
+                <td className="p-2 whitespace-nowrap">{appt.name}</td>
+                <td className="p-2 whitespace-nowrap">{appt.phone}</td>
+                <td className="p-2 whitespace-nowrap">{appt.email}</td>
+                <td className="p-2 whitespace-nowrap">{appt.state}</td>
+                <td className="p-2 whitespace-nowrap">{appt.city}</td>
+                <td className="p-2 whitespace-nowrap">{appt.treatmentType}</td>
                 <td className="p-2 whitespace-pre-line">{appt.conditions}</td>
-                <td className="p-2">{appt.created_at}</td>
-                <td className="p-2">
+                <td className="p-2 whitespace-nowrap">{appt.created_at}</td>
+                <td className="p-2 min-w-[200px]">
                   {appt.remarks ? (
                     <span className="text-green-600 font-semibold">✔ Done</span>
                   ) : (
                     <div className="flex flex-col gap-2">
-                      <input
-                        type="text"
-                        className="border border-gray-300 rounded px-2 py-1 text-sm"
-                        placeholder="Enter remarks"
+                      <textarea
+                        maxLength={1000}
+                        rows={3}
+                        className="border border-gray-300 rounded px-2 py-1 text-sm resize-none w-full"
+                        placeholder="Enter remarks (max 1000 chars)"
                         value={remarksMap[appt.id] || ""}
-                        onChange={(e) => handleRemarksChange(appt.id, e.target.value)}
+                        onChange={(e) =>
+                          handleRemarksChange(appt.id, e.target.value)
+                        }
                       />
                       <button
                         className="bg-green-600 text-white text-sm py-1 rounded hover:bg-green-700"
@@ -128,12 +144,18 @@ const AppointmentsTab = () => {
                     </div>
                   )}
                 </td>
-                <td className="p-2">{appt.remarks}</td>
+                <td className="p-2 break-words max-w-xs">{appt.remarks}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {filteredAppointments.length === 0 && (
+        <div className="text-center text-gray-600 mt-6">
+          No appointments found.
+        </div>
+      )}
     </div>
   );
 };
