@@ -1,52 +1,46 @@
 import React, { useState } from "react";
-import doctor1 from "../assets/docs/doctor1.jpg";
-import doctor2 from "../assets/docs/doctor3.jpg";
-import doctor3 from "../assets/docs/doctor2.jpg";
-import physioMain from "../assets/docs/physiotherapy_main.jpg";
+import doctor1 from "../assets/docs/Dr Kamran.jpg";
+// import doctor2 from "../assets/docs/doctor2.jpg";
+// import doctor3 from "../assets/docs/doctor2.jpg";
+import physioMain from "../assets/images/physiotherapy_main.jpg";
+import physioVision from "../assets/images/blog3.jpg"
 import { Helmet } from "react-helmet";
 
 const doctors = [
   {
-    name: "Dr. John Smith",
-    specialty: "Senior Physiotherapist",
+    name: "Dr. Kamran Hameed [PT]",
+    qualification:"(BPT MIAP,CSMT,CCT,CDNT,CKTT)",
+    specialty: "Orthopedic Physiotherapist Specialized in Rehab",
     description:
-      "Over 15 years of experience in orthopedic and sports physiotherapy.",
+      "Over 3+ years of experience in orthopedic physiotherapy.",
     image: doctor1,
   },
   {
-    name: "Dr. Emily Johnson",
-    specialty: "Rehabilitation Specialist",
-    description: "Expert in post-surgical rehab and pain management therapies.",
-    image: doctor2,
+    name: "Dr. Mohd Shoeb [PT]",
+    qualification:"(BPT MPT MIAP, CCT, CMOT,  CSMT, CVRT, CIASTM)",
+    specialty: "Specialized in MSK & Sports Injuries",
+    description: "Over 10+ years of experience in MSK & SPORTS INJURIES.",
+    image: doctor1,
   },
-  {
-    name: "Dr. David Lee",
-    specialty: "Sports Injury Specialist",
-    description: "Specialized in athletic injuries and performance therapy.",
-    image: doctor3,
-  },
+  // {
+  //   name: "Dr. David Lee",
+  //   specialty: "Sports Injury Specialist",
+  //   description: "Specialized in athletic injuries and performance therapy.",
+  //   image: doctor3,
+  // },
 ];
 
 const AboutUs = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   return (
-    <div className="px-4 sm:px-8 md:px-16 py-8 bg-gray-50 text-gray-800">
+    <div className="pt-24 px-4 sm:px-8 md:px-16 pb-8 bg-gray-50 text-gray-800">
       <Helmet>
         <title>About Us - Physio Pulse</title>
       </Helmet>
 
-      {/* Heading */}
-      <div className="text-center mb-8">
-        {/* <h1 className="text-3xl sm:text-4xl font-bold mb-4">About Us</h1> */}
-        {/* <p className="text-lg sm:text-xl max-w-2xl mx-auto">
-          Meet our expert physiotherapy team committed to your recovery.
-        </p> */}
-      </div>
-
-      {/* About + Image Side by Side */}
+      {/* About + Image Section */}
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-12">
-        {/* Image */}
         <div className="w-full md:w-1/2">
           <img
             src={physioMain}
@@ -55,7 +49,6 @@ const AboutUs = () => {
           />
         </div>
 
-        {/* Paragraph */}
         <div className="w-full md:w-1/2 text-center md:text-left">
           <h2 className="text-2xl font-bold mb-4">About Physio Pulse</h2>
           <p className="text-base text-gray-700 leading-relaxed">
@@ -73,39 +66,41 @@ const AboutUs = () => {
         </div>
       </div>
 
+      {/* Vision & Mission */}
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-12">
+        <div className="w-full md:w-1/2 text-center md:text-left">
+          <h2 className="text-2xl font-bold mb-4">Vision & Mission</h2>
+          <p className="text-base text-gray-700 leading-relaxed mb-4">
+            Our mission at <strong>Physio Pulse & Rehab Studio</strong> is to:
+          </p>
+          <ul className="space-y-3 mb-4">
+            {[
+              "Provide personalized and evidence-based physiotherapy treatments.",
+              "Focus on long-term recovery and sustainable wellness.",
+              "Leverage modern techniques and technology for better outcomes.",
+              "Create a healing environment with compassion and trust.",
+              "Empower patients through education and preventive care.",
+              "Collaborate with other healthcare experts for holistic treatment.",
+            ].map((point, index) => (
+              <li key={index} className="flex items-start gap-2 group hover:text-blue-600 transition-all">
+                <span className="text-green-600 mt-1">✔️</span>
+                <span className="leading-relaxed">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-
-{/* About + Image Side by Side */}
-<div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-12">
-        {/* Image */}
         <div className="w-full md:w-1/2">
           <img
-            src={physioMain}
+            src={physioVision}
             alt="Physiotherapy"
             className="w-full h-auto rounded-2xl shadow-lg object-cover"
           />
         </div>
-
-        {/* Paragraph */}
-        <div className="w-full md:w-1/2 text-center md:text-left">
-          <h2 className="text-2xl font-bold mb-4">About Physio Pulse</h2>
-          <p className="text-base text-gray-700 leading-relaxed">
-            At Physio Pulse, we are dedicated to revitalizing lives through expert physiotherapy and holistic wellness solutions.
-            Our mission is to help individuals recover, strengthen, and thrive—whether they're overcoming injury, managing chronic pain, or enhancing physical performance.
-            <br /><br />
-            Founded with a passion for movement and healing, Physio Pulse blends evidence-based treatments with personalized care.
-            Our team of licensed physiotherapists and health professionals are committed to delivering top-notch care in a supportive and welcoming environment.
-            <br /><br />
-            We specialize in a range of services including manual therapy, rehabilitation, posture correction, sports physiotherapy, and injury prevention programs.
-            Using the latest techniques and technologies, we tailor each treatment plan to your unique needs and goals.
-            <br /><br />
-            At Physio Pulse, your recovery is our priority—and your wellness is our pulse.
-          </p>
-        </div>
       </div>
+
       {/* Doctor Cards Section */}
       <div className="text-center mb-8">
-        {/* <h1 className="text-3xl sm:text-4xl font-bold mb-4">About Us</h1> */}
         <p className="text-lg sm:text-xl max-w-2xl mx-auto">
           Meet our expert physiotherapy team committed to your recovery.
         </p>
@@ -120,10 +115,11 @@ const AboutUs = () => {
             <img
               src={doc.image}
               alt={doc.name}
-              className="w-full h-48 object-cover"
+              className="w-full h-47 object-cover"
             />
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-1">{doc.name}</h2>
+              <p className="text-sm text-gray-500 mb-1">{doc.qualification}</p>
               <p className="text-blue-600 font-medium mb-2">{doc.specialty}</p>
               <p className="text-sm text-gray-600">{doc.description}</p>
               <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">

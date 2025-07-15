@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
-import logo from "../assets/images/logo.bmp";
+import logo from "../assets/logos/physio_logojpg.jpg";
 import './TopNav.css';
 
 const TopNav = ({ onOpenModal }) => {
@@ -28,19 +28,14 @@ const TopNav = ({ onOpenModal }) => {
         }`}
       >
         <div className="flex items-center gap-4">
-          <Link to="/">
-            <img src={logo} alt="Logo" className="h-10" />
-          </Link>
-          <label className="flex items-center gap-1 text-sm cursor-pointer">
-            <input
-              type="checkbox"
-              checked={darkMode}
-              onChange={toggleTheme}
-              className="hidden"
-            />
-            {/* {darkMode ? "🌙" : "☀️"} */}
-          </label>
-        </div>
+  <Link to="/">
+    <img
+      src={logo}
+      alt="Physio Pulse & Rehab Logo"
+      className="h-14 w-14 object-contain rounded-full"
+    />
+  </Link>
+</div>
 
         {/* Desktop Nav */}
         <ul className="hidden lg:flex gap-6 items-center">
@@ -64,10 +59,10 @@ const TopNav = ({ onOpenModal }) => {
 
       {/* Slide-in Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 z-50 bg-white dark:bg-gray-900 text-black dark:text-white shadow-lg transform transition-transform duration-500 ease-in-out ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+  className={`fixed top-0 right-0 h-full w-64 z-50 bg-white text-black shadow-lg transform transition-transform duration-500 ease-in-out ${
+    menuOpen ? "translate-x-0" : "translate-x-full"
+  }`}
+>
         <button
           className="text-2xl absolute top-4 right-4"
           onClick={toggleMenu}

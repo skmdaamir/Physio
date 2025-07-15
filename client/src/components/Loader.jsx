@@ -1,14 +1,14 @@
 import React from "react";
-import "./Loader.css";
+import logo from "../assets/logos/physio_logojpg.jpg"; // adjust path if needed
 
 const Loader = () => {
   return (
-    <div className="dot-loader-container">
-      <div className="dot-spinner">
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className={`dot dot-${i + 1}`}></div>
-        ))}
-      </div>
+    <div className="flex justify-center items-center h-screen bg-white dark:bg-gray-900">
+      <img
+        src={logo}
+        alt="Loading..."
+        className="w-20 h-20 animate-spin"
+      />
     </div>
   );
 };

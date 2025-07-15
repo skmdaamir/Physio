@@ -55,8 +55,8 @@ const Footer = ({ darkMode }) => {
         {/* Contact */}
         <div>
           <h5 className={`mb-4 font-semibold ${linkColor}`}>Contact</h5>
-          <p className={`${textColor}`}>Email: info@physio.com</p>
-          <p className={`${textColor}`}>Phone: +1 234 567 890</p>
+          <p className={`${textColor}`}>Email: physiopulserehab6@gmail.com</p>
+          <p className={`${textColor}`}>Phone: +91 916 725 2926</p>
         </div>
 
         {/* Social Media */}
@@ -65,7 +65,7 @@ const Footer = ({ darkMode }) => {
           <div className="flex space-x-4">
             {[
               { href: "https://facebook.com", icon: <FaFacebookF size={20} /> },
-              { href: "https://instagram.com", icon: <FaInstagram size={20} /> },
+              { href: "https://www.instagram.com/drmohdshoeb?igsh=MXBzaTI1dzd1cDlzbg==", icon: <FaInstagram size={20} /> },
               { href: "https://linkedin.com", icon: <FaLinkedinIn size={20} /> },
               { href: "https://twitter.com", icon: <FaTwitter size={20} /> },
             ].map(({ href, icon }, i) => (

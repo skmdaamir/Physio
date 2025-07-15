@@ -39,7 +39,7 @@ const Blog = () => {
   }, []);
 
   return (
-    <section className="pt-24 pb-12 px-4 md:px-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <section className="pt-24 pb-12 px-4 md:px-8 bg-gray-50 min-h-screen">
       <Helmet>
         <title>Blogs | Physio Pulse</title>
       </Helmet>
@@ -88,7 +88,7 @@ const Blog = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-600 dark:text-gray-300">
+        <p className="text-center text-black-600 dark:text-black-300">
           No blogs available.
         </p>
       )}

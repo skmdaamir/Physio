@@ -22,7 +22,7 @@ const Career = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 mt-16">
-      <h3 className="text-3xl font-semibold text-center text-green-600 dark:text-green-400 mb-8">
+      <h3 className="text-3xl font-semibold text-center text-green-600 mb-8">
         Current Job Openings
       </h3>
 
@@ -35,23 +35,21 @@ const Career = () => {
           {jobs.map((job) => (
             <div
               key={job.id}
-              className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"
+              className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"
               data-aos="fade-up"
             >
-              <h4 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+              <h4 className="text-xl font-semibold text-gray-800 mb-2">
                 {job.position}
               </h4>
-              <p className="text-gray-700 dark:text-gray-300 mb-3">
-                {job.description}
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-gray-700 mb-3">{job.description}</p>
+              <p className="text-sm text-gray-600">
                 <strong>Experience:</strong> {job.experience} years
               </p>
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-600 dark:text-gray-400">
+        <p className="text-center text-gray-600">
           No jobs available.
         </p>
       )}
