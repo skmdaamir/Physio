@@ -32,7 +32,7 @@ const TopNav = ({ onOpenModal }) => {
     <img
       src={logo}
       alt="Physio Pulse & Rehab Logo"
-      className="h-14 w-14 object-contain rounded-full"
+      className="h-16 w-16 object-contain rounded-full"
     />
   </Link>
 </div>
