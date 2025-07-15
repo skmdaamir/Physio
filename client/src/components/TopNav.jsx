@@ -23,7 +23,7 @@ const TopNav = ({ onOpenModal }) => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 py-3 px-5 flex justify-between items-center shadow-md ${
+        className={`fixed top-0 left-0 w-full z-50 py-1 px-5 flex justify-between items-center shadow-md ${
           darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
         }`}
       >
@@ -32,7 +32,7 @@ const TopNav = ({ onOpenModal }) => {
     <img
       src={logo}
       alt="Physio Pulse & Rehab Logo"
-      className="h-16 w-16 object-contain rounded-full"
+      className="h-20 w-20 object-cover rounded-full"
     />
   </Link>
 </div>
