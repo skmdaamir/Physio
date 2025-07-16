@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import doctor1 from "../assets/docs/Dr Kamran.jpg";
 // import doctor2 from "../assets/docs/doctor2.jpg";
 // import doctor3 from "../assets/docs/doctor2.jpg";
-import physioMain from "../assets/images/physiotherapy_main.jpg";
-import physioVision from "../assets/images/blog3.jpg"
+import physioMain from "../assets/images/aboutus.jpg";
+import physioVision from "../assets/images/aboutusvision.jpg"
 import { Helmet } from "react-helmet";
 
 const doctors = [
+  {
+name:"Dr. Mohd Shoeb [PT]",
+qualification:"(BPT MPT MIAP,CCT,CMOT,CSMT,CVRT,CIASTM)",
+specialty:"Specialized in MSK & Sports Injuries",
+description:"Over 10+ years of experience in MSK & Sports Injuries",
+image:doctor1,
+  },
   {
     name: "Dr. Kamran Hameed [PT]",
     qualification:"(BPT MIAP,CSMT,CCT,CDNT,CKTT)",
@@ -15,13 +22,13 @@ const doctors = [
       "Over 3+ years of experience in orthopedic physiotherapy.",
     image: doctor1,
   },
-  {
-    name: "Dr. Mohd Shoeb [PT]",
-    qualification:"(BPT MPT MIAP, CCT, CMOT,  CSMT, CVRT, CIASTM)",
-    specialty: "Specialized in MSK & Sports Injuries",
-    description: "Over 10+ years of experience in MSK & SPORTS INJURIES.",
-    image: doctor1,
-  },
+  // {
+  //   name: "Dr. Mohd Shoeb [PT]",
+  //   qualification:"(BPT MPT MIAP, CCT, CMOT,  CSMT, CVRT, CIASTM)",
+  //   specialty: "Specialized in MSK & Sports Injuries",
+  //   description: "Over 10+ years of experience in MSK & SPORTS INJURIES.",
+  //   image: doctor1,
+  // },
   // {
   //   name: "Dr. David Lee",
   //   specialty: "Sports Injury Specialist",
