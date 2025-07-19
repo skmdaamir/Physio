@@ -139,7 +139,7 @@ const BlogsTab = () => {
               <p className="text-sm text-gray-700 mb-3">
                 {blog.content ? `${blog.content.slice(0, 100)}...` : "No content"}
               </p>
-              <div className="flex gap-2 mt-auto">
+              <div className="flex gap-2 mt-auto flex-wrap items-center">
                 <button
                   onClick={() => handleEdit(blog)}
                   className="text-sm px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
@@ -152,16 +152,21 @@ const BlogsTab = () => {
                 >
                   Delete
                 </button>
-                <button
-                  onClick={() => toggleStatus(blog.id, blog.is_active)}
-                  className={`text-sm px-3 py-1 rounded ${
-                    blog.is_active
-                      ? "bg-yellow-500 text-white hover:bg-yellow-600"
-                      : "bg-green-500 text-white hover:bg-green-600"
-                  }`}
-                >
-                  {blog.is_active ? "Draft" : "Publish"}
-                </button>
+                <div className="flex items-center gap-2">
+                  <label className="text-sm font-medium">
+                    {blog.is_active ? "Published" : "Draft"}
+                  </label>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="sr-only peer"
+                      checked={blog.is_active === 1}
+                      onChange={() => toggleStatus(blog.id, blog.is_active)}
+                    />
+                    <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-green-500 transition-all"></div>
+                    <div className="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform peer-checked:translate-x-full"></div>
+                  </label>
+                </div>
               </div>
             </div>
           </div>

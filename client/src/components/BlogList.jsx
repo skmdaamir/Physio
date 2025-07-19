@@ -3,7 +3,7 @@ import axios from "../axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const BlogForm = () => {
+const BlogList = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
@@ -112,4 +112,4 @@ const BlogForm = () => {
   );
 };
 
-export default BlogForm;
+export default BlogList;

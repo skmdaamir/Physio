@@ -108,7 +108,7 @@ export default function AppointmentForm({ isModal = false, onClose }) {
                 <input
                   type="checkbox"
                   value={t.treatment_id}
-                  checked={form.treatmentType.includes(t.treatment_id)}
+                  checked={form.treatmentType.includes(String(t.treatment_id))}
                   onChange={(e) => {
                     const value = e.target.value;
                     setForm((prev) => {
