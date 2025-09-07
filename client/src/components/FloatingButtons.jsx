@@ -9,7 +9,7 @@ const FloatingButtons = () => (
     <Fab
       className="floating-fab phone-fab"
       color="primary"
-      href="tel:+919167252926"
+      href="tel:+917718891672"
       aria-label="Call Now"
     >
       <FaPhone />
@@ -19,7 +19,7 @@ const FloatingButtons = () => (
     <Fab
   className="floating-fab whatsapp-fab"
   color="success"
-  href="https://wa.me/919167252926?text=Hi%2C%20I%20came%20across%20Physio%20Pulse%20%26%20Rehabilitation%20Studio%20and%20I%27m%20interested%20in%20learning%20more%20about%20your%20physiotherapy%20services.%20Could%20you%20please%20provide%20details%20about%20appointment%20availability%3F"
+  href="https://wa.me/917718891672?text=Hi%2C%20I%20came%20across%20Physio%20Pulse%20%26%20Rehabilitation%20Studio%20and%20I%27m%20interested%20in%20learning%20more%20about%20your%20physiotherapy%20services.%20Could%20you%20please%20provide%20details%20about%20appointment%20availability%3F"
   target="_blank"
   rel="noopener noreferrer"
   aria-label="WhatsApp Chat"

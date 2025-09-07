@@ -85,10 +85,17 @@ const Footer = ({ darkMode }) => {
 
       {/* Footer Bottom */}
       <div className="text-center mt-6">
-        <small className={`${textColor}`}>
-          &copy; {new Date().getFullYear()} Physiotherapy App - All Rights Reserved.
-        </small>
-      </div>
+  <small className={`${textColor}`}>
+    &copy; {new Date().getFullYear()} Physiotherapy App - All Rights Reserved.
+  </small>
+  <br />
+  <small className={`${textColor}`}>
+    Website Development &amp; Maintenance by <strong>Amir Shaikh</strong> | 📞{" "}
+    <a href="tel:+918655319821" className="underline hover:text-blue-500">
+      +91 8655319821
+    </a>
+  </small>
+</div>
     </footer>
   );
 };
