@@ -64,8 +64,8 @@ const Footer = ({ darkMode }) => {
           <h5 className={`mb-4 font-semibold ${linkColor}`}>Follow Us</h5>
           <div className="flex space-x-4">
             {[
-              { href: "https://facebook.com", icon: <FaFacebookF size={20} /> },
-              { href: "https://www.instagram.com/drmohdshoeb?igsh=MXBzaTI1dzd1cDlzbg==", icon: <FaInstagram size={20} /> },
+              { href: "https://www.facebook.com/share/14LMiGUzPPL/", icon: <FaFacebookF size={20} /> },
+              { href: "https://www.instagram.com/physiopulserehab?igsh=MXJjcGh2N2xyYTJuag==", icon: <FaInstagram size={20} /> },
               { href: "https://linkedin.com", icon: <FaLinkedinIn size={20} /> },
               { href: "https://twitter.com", icon: <FaTwitter size={20} /> },
             ].map(({ href, icon }, i) => (

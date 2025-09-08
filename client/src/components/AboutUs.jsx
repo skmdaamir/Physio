@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import doctor1 from "../assets/docs/Dr Kamran.jpg";
-// import doctor2 from "../assets/docs/doctor2.jpg";
-// import doctor3 from "../assets/docs/doctor2.jpg";
+import doctor1 from "../assets/docs/Dr Mohd Shoeb.jpg";
+import doctor2 from "../assets/docs/Dr Kamran.jpg";
+import doctor3 from "../assets/docs/Dr Mohseneen Akhtar.jpg";
+import doctor4 from "../assets/docs/Dr Pratibha Singh.jpg";
+import doctor5 from "../assets/docs/Dr Yasmeen Manihar.jpg"
 import physioMain from "../assets/images/aboutus.jpg";
 import physioVision from "../assets/images/aboutusvision.jpg"
 import { Helmet } from "react-helmet";
@@ -20,21 +22,29 @@ image:doctor1,
     specialty: "Orthopedic Physiotherapist Specialized in Rehab",
     description:
       "Over 3+ years of experience in orthopedic physiotherapy.",
-    image: doctor1,
+    image: doctor2,
   },
-  // {
-  //   name: "Dr. Mohd Shoeb [PT]",
-  //   qualification:"(BPT MPT MIAP, CCT, CMOT,  CSMT, CVRT, CIASTM)",
-  //   specialty: "Specialized in MSK & Sports Injuries",
-  //   description: "Over 10+ years of experience in MSK & SPORTS INJURIES.",
-  //   image: doctor1,
-  // },
-  // {
-  //   name: "Dr. David Lee",
-  //   specialty: "Sports Injury Specialist",
-  //   description: "Specialized in athletic injuries and performance therapy.",
-  //   image: doctor3,
-  // },
+  {
+    name: "Dr. Mohseneen Akhtar [PT]",
+    qualification:"(BPT MPT MIAP)",
+    specialty: "Specialised in Musculoskeletal & Orthopaedic Fortis Hospital Mulund",
+    description: "Over 3+ years of experience in Musculoskeletal & Orthopaedic INJURIES.",
+    image: doctor3,
+  },
+  {
+    name: "Dr. Pratibha Singh [PT]",
+    qualification:"(BPT MIAP)",
+    specialty: "Neuro and Orthopedic Specialist and Ex.Physio Fortis Hospital Mulund",
+    description: "Specialize in Neuro and Orthopedic.",
+    image: doctor4,
+  },
+  {
+    name: "Dr. Yasmeen Manihar [PT]",
+    qualification:"(BPT)",
+    specialty: "Physiotherapist",
+    description: "Con Physiotherapist.",
+    image: doctor5,
+  },
 ];
 
 const AboutUs = () => {
@@ -90,7 +100,7 @@ const AboutUs = () => {
               "Collaborate with other healthcare experts for holistic treatment.",
             ].map((point, index) => (
               <li key={index} className="flex items-start gap-2 group hover:text-blue-600 transition-all">
-                <span className="text-green-600 mt-1">✔️</span>
+                <span className="text-green-600 mt-1">✨</span>
                 <span className="leading-relaxed">{point}</span>
               </li>
             ))}
