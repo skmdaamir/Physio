@@ -44,7 +44,7 @@ const Blog = () => {
         <title>Blogs | Physio Pulse</title>
       </Helmet>
       <h2
-        className="text-3xl md:text-4xl font-bold text-center mb-10 text-primary dark:text-green-400"
+        className="text-3xl md:text-4xl text-center mb-10 text-black"
         data-aos="fade-up"
       >
         Our Latest Blogs
@@ -59,23 +59,23 @@ const Blog = () => {
           {blogs.map((blog, index) => (
             <div
               key={blog.id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition p-4"
+              className="bg-white rounded-lg shadow hover:shadow-lg transition p-4"
               data-aos="fade-up"
               data-aos-delay={index * 150}
             >
               {blog.image_url && (
                 <div className="mb-4">
                   <img
-                    src={`${BASE_URL}/${blog.image_url.replace(/\\/g, "/")}`}
+                    src={`${blog.image_url.replace(/\\/g, "/")}`}
                     alt={blog.title}
                     className="w-full h-48 object-cover rounded-md"
                   />
                 </div>
               )}
-              <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">
+              <h3 className="text-lg font-semibold mb-2 text-black">
                 {blog.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray mb-4">
                 {blog.content?.slice(0, 100) || "No description..."}
               </p>
               <button
@@ -88,7 +88,7 @@ const Blog = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center text-black-600 dark:text-black-300">
+        <p className="text-center text-black-600">
           No blogs available.
         </p>
       )}
@@ -100,26 +100,26 @@ const Blog = () => {
           onClick={handleCloseModal}
         >
           <div
-            className="bg-white dark:bg-gray-800 rounded-lg max-w-3xl w-full p-6 relative"
+            className="bg-white rounded-lg max-w-3xl w-full p-6 relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={handleCloseModal}
-              className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 text-xl hover:text-red-500"
+              className="absolute top-2 right-3 text-gray-600 text-xl hover:text-red-500"
             >
               &times;
             </button>
-            <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">
+            <h2 className="text-xl font-bold mb-4 text-gray-800">
               {selectedBlog.title}
             </h2>
             {selectedBlog.image_url && (
               <img
-                src={`${BASE_URL}/${selectedBlog.image_url.replace(/\\/g, "/")}`}
+                src={`${selectedBlog.image_url.replace(/\\/g, "/")}`}
                 alt={selectedBlog.title}
                 className="w-full max-h-[300px] object-cover rounded-md mb-4"
               />
             )}
-            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+            <p className="text-gray-700 whitespace-pre-line">
               {selectedBlog.content}
             </p>
             <div className="mt-6 text-right">

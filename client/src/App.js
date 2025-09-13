@@ -25,7 +25,8 @@ import ReviewForm from "./components/ReviewForm";
 import CustomerGallery from "./components/CustomerGallery";
 import Career from "./components/Career";
 import ConditionDetails from "./components/ConditionDetails";
-import AddCondition from './components/AddCondition';
+import AddCondition from "./components/AddCondition";
+import Symptoms from "./components/Symptoms"; // ✅ Import Symptoms
 
 const AppContent = () => {
   const location = useLocation();
@@ -51,6 +52,7 @@ const AppContent = () => {
 
   const isAdminRoute = location.pathname === "/admin";
   const isLoginRoute = location.pathname === "/login";
+   const isReviewRoute = location.pathname === "/review"; // <--- added
 
   return (
     <div className="app-wrapper">
@@ -79,7 +81,8 @@ const AppContent = () => {
           <Route path="/review" element={<ReviewForm />} />
           <Route path="/gallery" element={<CustomerGallery />} />
           <Route path="/career" element={<Career />} />
-          <Route path="/conditions/:id" element={<ConditionDetails />} />
+          <Route path="/conditions/details/:id" element={<ConditionDetails />} />
+          <Route path="/symptoms/details/:id" element={<Symptoms />} /> {/* ✅ Added Route */}
           <Route path="/add-condition" element={<AddCondition />} />
           <Route
             path="/admin"
@@ -92,11 +95,14 @@ const AppContent = () => {
         </Routes>
       </main>
 
+      {/* Hide Footer & FloatingButtons on admin/login */}
       {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />}
       {!isAdminRoute && !isLoginRoute && <FloatingButtons />}
 
-      {/* ✅ Modal appears every time on page load/navigation */}
-      <AppointmentModal show={showModal} onClose={() => setShowModal(false)} />
+      {/* ✅ Modal shows everywhere except admin, login, review */}
+      {!isAdminRoute && !isLoginRoute && !isReviewRoute && (
+        <AppointmentModal show={showModal} onClose={() => setShowModal(false)} />
+      )}
     </div>
   );
 };

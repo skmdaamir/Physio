@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../../axiosInstance";
 import { toast } from "react-toastify";
+import BlogImagePreview from "./BlogImagePreview"
 
 const BlogsTab = () => {
   const [blogs, setBlogs] = useState([]);
@@ -13,20 +14,16 @@ const BlogsTab = () => {
     image: null,
     status: "0",
   });
-  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     fetchBlogs();
   }, []);
 
   const fetchBlogs = async () => {
+    debugger;
     try {
-      const res = await axios.get(`/api/allBlogs`);
-      if (Array.isArray(res.data.blogs)) {
-        setBlogs(res.data.blogs);
-      } else {
-        setBlogs([]);
-      }
+      const res = await axios.get(`/api/blogs/allBlogs`);
+        setBlogs(res.data);
     } catch (err) {
       console.error("Error fetching blogs:", err);
       setBlogs([]);
@@ -124,54 +121,59 @@ const BlogsTab = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {blogs.map((blog) => (
-          <div key={blog.id} className="bg-white shadow rounded overflow-hidden">
-            {blog.image_url && (
-              <img
-                src={`${BASE_URL}/uploads/${blog.image_url.split("/").pop()}`}
-                alt="Blog"
-                className="w-full h-48 object-cover"
-              />
-            )}
-            <div className="p-4 flex flex-col justify-between h-full">
-              <h3 className="font-semibold text-lg mb-2">{blog.title}</h3>
-              <p className="text-sm text-gray-700 mb-3">
-                {blog.content ? `${blog.content.slice(0, 100)}...` : "No content"}
-              </p>
-              <div className="flex gap-2 mt-auto flex-wrap items-center">
-                <button
-                  onClick={() => handleEdit(blog)}
-                  className="text-sm px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(blog.id)}
-                  className="text-sm px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                >
-                  Delete
-                </button>
-                <div className="flex items-center gap-2">
-                  <label className="text-sm font-medium">
-                    {blog.is_active ? "Published" : "Draft"}
-                  </label>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      className="sr-only peer"
-                      checked={blog.is_active === 1}
-                      onChange={() => toggleStatus(blog.id, blog.is_active)}
-                    />
-                    <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-green-500 transition-all"></div>
-                    <div className="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform peer-checked:translate-x-full"></div>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <div className="overflow-x-auto">
+  <table className="min-w-full border border-gray-200 bg-white shadow rounded">
+    <thead className="bg-gray-100">
+      <tr>
+        <th className="px-4 py-2 border">Image</th>
+        <th className="px-4 py-2 border">Title</th>
+        <th className="px-4 py-2 border">Content</th>
+        <th className="px-4 py-2 border">Status</th>
+        <th className="px-4 py-2 border">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {blogs.map((blog) => (
+        <tr key={blog.id} className="hover:bg-gray-50">
+          <td className="px-4 py-2 border">
+            {blog.image_url && <BlogImagePreview imageUrl={blog.image_url} />}
+          </td>
+          <td className="px-4 py-2 border">{blog.title}</td>
+          <td className="px-4 py-2 border text-sm">
+            {blog.content ? `${blog.content.slice(0, 60)}...` : "No content"}
+          </td>
+          <td className="px-4 py-2 border">
+            {blog.is_active ? "Published" : "Draft"}
+          </td>
+          <td className="px-4 py-2 border space-x-2">
+            <button
+              onClick={() => handleEdit(blog)}
+              className="text-sm px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => handleDelete(blog.id)}
+              className="text-sm px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Delete
+            </button>
+            <button
+              onClick={() => toggleStatus(blog.id, blog.is_active)}
+              className={`text-sm px-3 py-1 rounded ${
+                blog.is_active
+                  ? "bg-green-500 text-white hover:bg-green-600"
+                  : "bg-yellow-500 text-white hover:bg-yellow-600"
+              }`}
+            >
+              {blog.is_active ? "Unpublish" : "Publish"}
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
       {/* Modal */}
       {showModal && (

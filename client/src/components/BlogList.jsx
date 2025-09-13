@@ -97,7 +97,7 @@ const BlogList = () => {
               </p>
               {blog.imagePath && (
                 <img
-                  src={`/${blog.imagePath}`}
+                  src={`${blog.imagePath}`}
                   alt="Blog"
                   className="mt-2 w-40 h-auto rounded-md border border-gray-300 dark:border-gray-600"
                 />

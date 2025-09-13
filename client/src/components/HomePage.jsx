@@ -17,7 +17,6 @@ import 'swiper/css/pagination';
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
-  const [darkMode, setDarkMode] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [conditions, setConditions] = useState([]);
   const [symptoms, setSymptoms] = useState([]);
@@ -25,8 +24,6 @@ const HomePage = () => {
   const therapists = ["Post-COVID Physiotherapy", "Chest Physiotherapy", "Cryotherapy (Cold Therapy)", "Pelvic floor Physical Therapy", "Traction Therapy", "Soft Tissue Mobilization", "Myofascial Release (MFR)", "Cupping Therapy", "Kinesio Taping / Taping Therapy", "Chiropractic Therapy", "Dry Needling Therapy", "THERMOTHERAPY (Heat Therapy)", "Manual Therapy", "LASER Therapy", "Transcutaneous Electrical Nerve Stimulation (TENS) Therapy", "Interferential Therapy (IFT)", "Ultrasound Therapy"];
 
   const services = ["Home Care Physiotherapy", "Tele-physiotherapy (online)", "Therapeutic Massage", "Cardiac Rehabilitation", "Vestibular Rehabilitation (VR)", "Musculoskeletal Physiotherapy", "Pre and Post Surgery Rehabilitation", "Women's Health Physiotherapy", "Sports Physiotherapy", "Geriatric Physiotherapy", "Pediatric Physiotherapy", "Neuro Physiotherapy - Rehab", "Chiropractor Treatment"];
-
-  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   useEffect(() => {
     fetchApprovedReviews();
@@ -63,17 +60,16 @@ const HomePage = () => {
       console.error("Error fetching conditions", err);
     }
   };
-  const iconColor = darkMode ? "#4caf50" : "#198754";
+  const iconColor =  "#198754";
 
   return (
     <>
       
-      <div className={`min-h-screen w-full ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
+      <div className={`min-h-screen w-full  "bg-white text-gray-900"`}>
         {/* ✨ Centered Paragraph */}
-        <p className="text-center text-sm sm:text-base px-4 mt-4">
-          {/* Modify this content as per your needs */}
-          Welcome to Physio Pulse & Rehabilitation Studio – where your health is our priority.
-        </p>
+        <p className="text-center text-2xl sm:text-3xl font-bold px-4 mt-4">
+  Welcome to <span className="text-indigo-600">Physio Pulse & Rehabilitation</span> – where every step brings you closer to healing, strength, and a healthier tomorrow.
+</p>
         {/* ✅ REVIEWS SECTION */}
         <div className="mt-16 px-4 max-w-6xl mx-auto" data-aos="fade-up">
           <h2 className="text-2xl font-bold text-center mb-6 text-green-600 dark:text-green-400">
@@ -98,7 +94,7 @@ const HomePage = () => {
             >
               {reviews.map((review, index) => (
                 <SwiperSlide key={index}>
-                  <div className={`rounded-lg shadow-md p-4 h-full flex flex-col justify-between ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-800"}`}>
+                  <div className={`rounded-lg shadow-md p-4 h-full flex flex-col justify-between "bg-white text-gray-800"`}>
                     <p className="mb-3 text-sm italic">"{review.description}"</p>
                     <div className="flex items-center justify-between mt-auto">
                       <div>
@@ -119,15 +115,20 @@ const HomePage = () => {
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row flex-wrap justify-between gap-8 px-4 max-w-7xl mx-auto mt-10">
-  {[{ title: "Conditions", list: Array.isArray(conditions) ? conditions : [], basePath: "/conditions" },
-    { title: "Symptoms", list: Array.isArray(symptoms) ? symptoms : [], basePath: "" } // Note: basePath is now empty
+<div className="flex flex-col md:flex-row flex-wrap justify-between gap-8 px-4 max-w-7xl mx-auto mt-10">
+  {[
+    { title: "Conditions", list: Array.isArray(conditions) ? conditions : [], basePath: "/conditions/details" },
+    { title: "Symptoms", list: Array.isArray(symptoms) ? symptoms : [], basePath: "" }
   ].map((section, i) => (
     <div key={i} className="flex-1 min-w-[300px]">
-      <div className={`text-center font-semibold py-3 rounded-md shadow ${darkMode ? "bg-white text-gray-900" : "bg-gray-800 text-white"}`}>
+      
+      {/* Section Title */}
+      <div className="text-center font-semibold py-3 rounded-md shadow bg-gray-800 text-white">
         {section.title}
       </div>
-      <ul className={`mt-3 max-h-72 overflow-y-auto px-4 py-3 rounded-md shadow ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100"}`}>
+
+      {/* List */}
+      <ul className="mt-3 max-h-72 overflow-y-auto px-4 py-3 rounded-md shadow bg-gray-100">
         {section.list.length > 0 ? (
           section.list.map((item) => (
             <Link
@@ -135,7 +136,10 @@ const HomePage = () => {
               key={item.id}
             >
               <li
-                className={`py-2 px-3 mb-2 rounded-md transition duration-300 cursor-pointer ${darkMode ? "hover:bg-green-600 bg-gray-700" : "hover:bg-gray-200 bg-white"}`}
+                className="py-3 px-4 mb-3 rounded-lg border border-gray-200 bg-white shadow-sm
+                           transition duration-300 cursor-pointer 
+                           hover:bg-gradient-to-r hover:from-blue-100 hover:to-blue-50 
+                           hover:shadow-md hover:scale-[1.02]"
               >
                 {item.name}
               </li>
@@ -150,6 +154,7 @@ const HomePage = () => {
 </div>
 
 
+
         {/* OUR OFFERING */}
         <div className="w-full text-center px-4 py-8">
           <h2 className="text-3xl font-bold text-black">OUR OFFERINGS</h2>
@@ -161,14 +166,14 @@ const HomePage = () => {
 
           {[{ title: "Therapists Offered", list: therapists }, { title: "Services Offered", list: services }].map((section, i) => (
             <div key={i} className="flex-1 min-w-[300px]">
-              <div className={`text-center font-semibold py-3 rounded-md shadow ${darkMode ? "bg-white text-gray-900" : "bg-gray-800 text-white"}`}>
+              <div className={`text-center font-semibold py-3 rounded-md shadow bg-gray-800 text-white`}>
                 {section.title}
               </div>
-              <ul className={`mt-3 max-h-72 overflow-y-auto px-4 py-3 rounded-md shadow ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100"}`}>
+              <ul className={`mt-3 max-h-72 overflow-y-auto px-4 py-3 rounded-md shadow bg-gray-100`}>
                 {section.list.map((item, idx) => (
                   <li
                     key={idx}
-                    className={`py-2 px-3 mb-2 rounded-md transition duration-300 cursor-pointer ${darkMode ? "hover:bg-green-600 bg-gray-700" : "hover:bg-gray-200 bg-white"}`}
+                    className={`py-2 px-3 mb-2 rounded-md transition duration-300 cursor-pointer hover:bg-gray-200 bg-white`}
                   >
                     {item}
                   </li>
@@ -207,13 +212,13 @@ const HomePage = () => {
           }].map((item, index) => (
             <div
               key={index}
-              className={`flex flex-col p-5 rounded-xl shadow-md border-0 transition-all max-w-sm w-full ${darkMode ? "bg-gray-700 text-white" : "bg-gray-50 text-gray-900"}`}
+              className={`flex flex-col p-5 rounded-xl shadow-md border-0 transition-all max-w-sm w-full bg-gray-50 text-gray-900`}
               data-aos="fade-up"
               data-aos-delay={index * 1000}
             >
               <div className="mb-3">{item.icon}</div>
               <h4 className="text-green-500 font-semibold mb-2">{item.title}</h4>
-              <p className={`text-sm ${darkMode ? "text-gray-300" : "text-gray-600"}`}>{item.text}</p>
+              <p className={`text-sm text-gray-600`}>{item.text}</p>
             </div>
           ))}
         </div>

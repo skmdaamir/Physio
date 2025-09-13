@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "../axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
-// Utility function to decode JWT
+// Utility function to check expiry
 const isTokenExpired = (token) => {
   try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
+    const { exp } = jwtDecode(token);
     const now = Math.floor(Date.now() / 1000);
-    return payload.exp < now;
+    return exp < now;
   } catch (e) {
     return true;
   }
@@ -25,14 +26,23 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post("/api/admin/login", credentials);
-      const token = res.data.token;
+      const { token, exp } = res.data;
 
       if (isTokenExpired(token)) {
         alert("Token already expired. Please try again.");
         return;
       }
 
+      // Store token
       localStorage.setItem("token", token);
+
+      // Auto-logout when token expires
+      const expiryTime = exp * 1000 - Date.now();
+      setTimeout(() => {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }, expiryTime);
+
       navigate("/admin");
     } catch (err) {
       alert("Invalid login credentials");

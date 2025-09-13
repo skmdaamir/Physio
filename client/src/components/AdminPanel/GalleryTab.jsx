@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../../axiosInstance";
 import { toast } from "react-toastify";
+import BlogImagePreview from "./BlogImagePreview";
 
 const GalleryTab = () => {
   const [galleryItems, setGalleryItems] = useState([]);
@@ -92,12 +93,12 @@ const GalleryTab = () => {
           <div key={item.id} className="bg-white shadow rounded overflow-hidden">
             {item.image_path && (
               <img
-                src={`/${item.image_path}`}
+                src={`${item.image_path}`}
                 alt={item.title}
                 className="w-full h-48 object-cover"
               />
             )}
-
+{/* {item.image_path && <BlogImagePreview imageUrl={item.image_path}/>} */}
             {item.youtube_link && (
               <div className="relative w-full aspect-video">
                 <iframe

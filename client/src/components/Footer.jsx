@@ -45,18 +45,30 @@ const Footer = ({ darkMode }) => {
 
         {/* About Us */}
         <div>
-          <h5 className={`mb-4 font-semibold ${linkColor}`}>About Us</h5>
-          <p className={`${textColor}`}>
-            We are committed to providing the best physiotherapy care for a
-            healthier, stronger you.
-          </p>
-        </div>
+  <h5 className={`mb-4 font-semibold ${linkColor}`}>About Us</h5>
+  <p className={`${textColor} text-sm sm:text-base leading-relaxed`}>
+    At <span className="font-semibold">Physio Pulse & Rehabilitation Studio</span>, we are committed to helping you live a healthier, stronger, and pain-free life. Our skilled physiotherapists use advanced techniques and personalized care to support recovery, relieve pain, and restore mobility. Whether healing from injury, managing chronic conditions, or enhancing strength, we focus on long-term well-being with a compassionate, patient-first approach.
+  </p>
+</div>
 
         {/* Contact */}
         <div>
           <h5 className={`mb-4 font-semibold ${linkColor}`}>Contact</h5>
           <p className={`${textColor}`}>Email: physiopulserehab6@gmail.com</p>
           <p className={`${textColor}`}>Phone: +91 916 725 2926</p>
+        </div>
+
+        {/* Privacy Policy */}
+        <div>
+          <h5 className={`mb-4 font-semibold ${linkColor}`}>Privacy Policy</h5>
+          <p className={`${textColor} text-sm sm:text-base leading-relaxed`}>
+            We respect your privacy and are committed to protecting your personal information. 
+            Any data you share with us (such as your name, phone number, or email address) is 
+            collected solely for the purpose of contacting you and providing our services. 
+            We do not sell, rent, or share your personal details with third parties without 
+            your consent. All information is handled with strict confidentiality and in 
+            accordance with applicable data protection laws.
+          </p>
         </div>
 
         {/* Social Media */}
@@ -85,17 +97,23 @@ const Footer = ({ darkMode }) => {
 
       {/* Footer Bottom */}
       <div className="text-center mt-6">
-  <small className={`${textColor}`}>
-    &copy; {new Date().getFullYear()} Physiotherapy App - All Rights Reserved.
+        <small className={`${textColor}`}>
+          &copy; {new Date().getFullYear()} Physio Pulse & Rehab Studio - All Rights Reserved.
+        </small>
+        <br />
+        <div className="mt-4">
+  <small className={`${textColor} block`}>
+    Website Developed &amp; Maintained by <strong>Amir Shaikh</strong>
   </small>
-  <br />
-  <small className={`${textColor}`}>
-    Website Development &amp; Maintenance by <strong>Amir Shaikh</strong> | 📞{" "}
+  <div className="border-t border-gray-500 my-2 w-24 mx-auto"></div>
+  <small className={`${textColor} block`}>
+    📞{" "}
     <a href="tel:+918655319821" className="underline hover:text-blue-500">
       +91 8655319821
     </a>
   </small>
 </div>
+      </div>
     </footer>
   );
 };

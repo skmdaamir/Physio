@@ -7,6 +7,11 @@ import doctor5 from "../assets/docs/Dr Yasmeen Manihar.jpg"
 import physioMain from "../assets/images/aboutus.jpg";
 import physioVision from "../assets/images/aboutusvision.jpg"
 import { Helmet } from "react-helmet";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 
 const doctors = [
   {
@@ -117,35 +122,49 @@ const AboutUs = () => {
       </div>
 
       {/* Doctor Cards Section */}
-      <div className="text-center mb-8">
-        <p className="text-lg sm:text-xl max-w-2xl mx-auto">
-          Meet our expert physiotherapy team committed to your recovery.
-        </p>
+<div className="text-center mb-8">
+  <p className="text-lg sm:text-xl max-w-2xl mx-auto">
+    Meet our expert physiotherapy team committed to your recovery.
+  </p>
+</div>
+
+<Swiper
+  modules={[Autoplay, Pagination]}
+  spaceBetween={20}
+  slidesPerView={1}
+  autoplay={{ delay: 2500, disableOnInteraction: false }}
+  pagination={{ clickable: true }}
+  breakpoints={{
+    640: { slidesPerView: 2 }, // 2 slides on tablets
+    1024: { slidesPerView: 3 }, // 3 slides on desktops
+  }}
+  className="pb-10"
+>
+  {doctors.map((doc, index) => (
+    <SwiperSlide key={index}>
+      <div
+        className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition duration-300"
+        onClick={() => setSelectedDoctor(doc)}
+      >
+        <img
+          src={doc.image}
+          alt={doc.name}
+          className="w-full h-48 object-contain"
+        />
+        <div className="p-4">
+          <h2 className="text-xl font-semibold mb-1">{doc.name}</h2>
+          <p className="text-sm text-gray-500 mb-1">{doc.qualification}</p>
+          <p className="text-blue-600 font-medium mb-2">{doc.specialty}</p>
+          <p className="text-sm text-gray-600">{doc.description}</p>
+          <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
+            Read More
+          </button>
+        </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {doctors.map((doc, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition duration-300"
-            onClick={() => setSelectedDoctor(doc)}
-          >
-            <img
-              src={doc.image}
-              alt={doc.name}
-              className="w-full h-47 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-1">{doc.name}</h2>
-              <p className="text-sm text-gray-500 mb-1">{doc.qualification}</p>
-              <p className="text-blue-600 font-medium mb-2">{doc.specialty}</p>
-              <p className="text-sm text-gray-600">{doc.description}</p>
-              <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
-                Read More
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
 
       {/* Modal */}
       {selectedDoctor && (

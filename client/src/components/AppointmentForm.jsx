@@ -77,24 +77,29 @@ export default function AppointmentForm({ isModal = false, onClose }) {
       });
       onClose?.(); // Close modal if passed
     } catch (error) {
-      console.error("Submission error:", error);
+      // console.error("Submission error:", error);
       alert("Failed to submit appointment.");
     }
   };
 
   return (
-    <div className={`w-full ${isModal ? "px-1 py-2" : "min-h-screen px-3 py-6 flex justify-center items-start bg-white"}`}>
+    <div className={`w-full ${isModal ? "px-1 py-2" : "min-h-screen px-3 py-6 pt-24 flex justify-center items-start bg-white"}`}>
       <form
-        onSubmit={handleSubmit}
-        className={`
-          w-full
-          ${isModal ? "max-w-full shadow-none p-2" : "max-w-sm p-4 shadow"}
-          bg-white text-black rounded-lg space-y-4
-          ${isModal ? "text-xs" : "text-sm"}
-        `}
-        data-aos="fade-up"
-      >
-        <h2 className={`text-center ${isModal ? "text-sm" : "text-lg"} font-semibold`}>Book Appointment</h2>
+  onSubmit={handleSubmit}
+  className={`
+    w-full
+    ${isModal 
+      ? "max-w-full shadow-none p-2 text-xs" 
+      : "max-w-3xl p-8 shadow-lg text-base"}
+    bg-white text-black rounded-lg space-y-6
+  `}
+  data-aos="fade-up"
+>
+        {!isModal && (
+  <h2 className="text-center text-3xl font-semibold">
+    Book Appointment
+  </h2>
+)}
 
         {/* Treatment Field */}
         <div>

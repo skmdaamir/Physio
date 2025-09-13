@@ -33,7 +33,7 @@ const CustomerGallery = () => {
   const handleClose = () => setModalData(null);
 
   return (
-    <div className="pt-20 px-4 max-w-7xl mx-auto">
+    <div className="pt-24 px-4 max-w-7xl mx-auto">
       <h3 className="text-2xl font-semibold text-center mb-6">
         Our Treatment Gallery
       </h3>
@@ -53,7 +53,7 @@ const CustomerGallery = () => {
             >
               {item.image_path ? (
                 <img
-                  src={`/${item.image_path.replace(/\\/g, "/")}`}
+                  src={`${item.image_path.replace(/\\/g, "/")}`}
                   alt="Gallery"
                   className="w-full h-48 object-cover rounded-t hover:scale-105 transition-transform duration-300"
                 />
@@ -103,7 +103,7 @@ const CustomerGallery = () => {
             <div className="p-4 text-center">
               {modalData?.image_path ? (
                 <img
-                  src={`/${modalData.image_path.replace(/\\/g, "/")}`}
+                  src={`${modalData.image_path.replace(/\\/g, "/")}`}
                   alt="Enlarged"
                   className="w-full h-auto rounded"
                 />

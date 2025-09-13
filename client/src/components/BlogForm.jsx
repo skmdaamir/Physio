@@ -50,8 +50,8 @@ const BlogForm = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 mt-10">
-      <h3 className="text-2xl font-semibold mb-6 text-center text-green-600 dark:text-green-400">
+    <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 mt-10">
+      <h3 className="text-2xl font-semibold mb-6 text-center text-green-600">
         Add New Blog
       </h3>
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -61,19 +61,19 @@ const BlogForm = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-800 dark:text-white"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         <textarea
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           required
-          className="w-full px-4 py-2 h-32 border border-gray-300 dark:border-gray-700 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-800 dark:text-white"
+          className="w-full px-4 py-2 h-32 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         <input
           type="file"
           onChange={handleFileChange}
-          className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-700 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-green-600 file:text-white hover:file:bg-green-700"
+          className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-green-600 file:text-white hover:file:bg-green-700"
         />
         <button
           type="submit"

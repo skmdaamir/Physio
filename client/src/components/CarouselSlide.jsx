@@ -26,7 +26,7 @@ const CarouselSlide = () => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden h-[70vh] sm:h-[85vh] lg:h-screen">
+    <div className="relative w-full pt-5 overflow-hidden h-[70vh] sm:h-[85vh] lg:h-screen">
       {images.map((image, index) => (
         <div
           key={index}
@@ -37,7 +37,7 @@ const CarouselSlide = () => {
           <img
             src={image}
             alt={`Slide ${index}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center bg-black/40 px-4 py-2 rounded-lg text-white backdrop-blur-sm">
             {/* <h3 className="text-lg font-semibold">Slide {index + 1}</h3> */}
