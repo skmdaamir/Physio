@@ -55,7 +55,7 @@ const Footer = ({ darkMode }) => {
         <div>
           <h5 className={`mb-4 font-semibold ${linkColor}`}>Contact</h5>
           <p className={`${textColor}`}>Email: physiopulserehab6@gmail.com</p>
-          <p className={`${textColor}`}>Phone: +91 916 725 2926</p>
+          <p className={`${textColor}`}>Phone: +91 771 889 1672</p>
         </div>
 
         {/* Privacy Policy */}
