@@ -1,31 +1,33 @@
-name: "Deploy via FTP"    # name of the workflow
+name: Deploy Frontend via FTP
 
-# when to run
 on:
   push:
     branches:
-      - main              # or whichever branch you want
+      - main   # Deploy on push to main branch
 
 jobs:
-  ftp_deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout your repo
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # If you need build step (e.g. React)
+      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'    # or whatever version
+          node-version: '16'  # adjust if needed
 
-      - name: Build project
+      # 3️⃣ Install dependencies & build inside client/
+      - name: Install & Build React App
         run: |
+          cd client
           npm install
           npm run build
-        # Only include if you have a build step
 
+      # 4️⃣ Deploy build folder via FTP
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -41,4 +43,4 @@ jobs:
             **/.github*
             node_modules/**
             README.md
-            .htaccess          # ⚠️ prevents overwriting/deleting existing .htaccess on server
+            .htaccess          # prevents overwriting your existing .htaccess
