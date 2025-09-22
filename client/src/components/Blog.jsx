@@ -8,7 +8,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
-  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+  // const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const handleReadMore = (blog) => {
     setSelectedBlog(blog);

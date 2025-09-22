@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../../axiosInstance";
 import { toast } from "react-toastify";
-import BlogImagePreview from "./BlogImagePreview";
 
 const GalleryTab = () => {
   const [galleryItems, setGalleryItems] = useState([]);

@@ -5,10 +5,10 @@ import logo from "../assets/logos/physio_logojpg.jpg";
 import './TopNav.css';
 
 const TopNav = ({ onOpenModal }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleTheme = () => setDarkMode(!darkMode);
+  // const toggleTheme = () => setDarkMode(!darkMode);
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const menuItems = [
@@ -24,7 +24,7 @@ const TopNav = ({ onOpenModal }) => {
     <>
       <nav
         className={`fixed top-0 left-0 w-full z-50 py-1 px-5 flex justify-between items-center shadow-md ${
-          darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+          "bg-white text-black"
         }`}
       >
         <div className="flex items-center gap-4">
