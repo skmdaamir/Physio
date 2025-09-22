@@ -1,22 +1,25 @@
 {
   "files": {
-    "main.css": "/Physio/static/css/main.243e4848.css",
-    "main.js": "/Physio/static/js/main.87605e5d.js",
-    "static/media/doctor3.jpg": "/Physio/static/media/doctor3.a2a74db3b921e16f1201.jpg",
-    "static/media/physiotherapy_main.jpg": "/Physio/static/media/physiotherapy_main.37a3c9232704d03b0bae.jpg",
-    "static/media/Banner.jpeg": "/Physio/static/media/Banner.f39c199141c53379e96c.jpeg",
-    "static/media/doctor2.jpg": "/Physio/static/media/doctor2.d29edc6205b74c41c123.jpg",
-    "static/media/logo.bmp": "/Physio/static/media/logo.4879e3f647b98db196e1.bmp",
-    "static/media/medium-shot-man-helping-patient-physiotherapy_23-2149047562.avif": "/Physio/static/media/medium-shot-man-helping-patient-physiotherapy_23-2149047562.6f232cbd486862dfbeeb.avif",
-    "static/media/istockphoto-805089584-612x612.jpg": "/Physio/static/media/istockphoto-805089584-612x612.4d344b49317c8183f397.jpg",
-    "static/media/doctor1.jpg": "/Physio/static/media/doctor1.cb810c4ce83a08e99fc4.jpg",
-    "static/media/medical-assistant-helping-patient-with-physiotherapy-exercises_23-2149071510.avif": "/Physio/static/media/medical-assistant-helping-patient-with-physiotherapy-exercises_23-2149071510.85c8d1a235802e460fb3.avif",
-    "index.html": "/Physio/index.html",
-    "main.243e4848.css.map": "/Physio/static/css/main.243e4848.css.map",
-    "main.87605e5d.js.map": "/Physio/static/js/main.87605e5d.js.map"
+    "main.css": "/static/css/main.89075f04.css",
+    "main.js": "/static/js/main.99413b85.js",
+    "static/media/aboutusvision.jpg": "/static/media/aboutusvision.9c6d1d9ed5225c527bb2.jpg",
+    "static/media/Dr Mohseneen Akhtar.jpg": "/static/media/Dr Mohseneen Akhtar.810ca468bb63093d868c.jpg",
+    "static/media/Dr Mohd Shoeb.jpg": "/static/media/Dr Mohd Shoeb.72bf9082a0c9dc350162.jpg",
+    "static/media/4.jpg": "/static/media/4.d0625d38b8f57662157e.jpg",
+    "static/media/aboutus.jpg": "/static/media/aboutus.37a3c9232704d03b0bae.jpg",
+    "static/media/Dr Pratibha Singh.jpg": "/static/media/Dr Pratibha Singh.64fd07d033b150380e24.jpg",
+    "static/media/Dr Kamran.jpg": "/static/media/Dr Kamran.8b5e04eb52227d31a299.jpg",
+    "static/media/physio_logojpg.jpg": "/static/media/physio_logojpg.bc3c660ec06b4a75ea74.jpg",
+    "static/media/Dr Yasmeen Manihar.jpg": "/static/media/Dr Yasmeen Manihar.b782983790b2f573c275.jpg",
+    "static/media/3.avif": "/static/media/3.6f232cbd486862dfbeeb.avif",
+    "static/media/1.jpg": "/static/media/1.4d344b49317c8183f397.jpg",
+    "static/media/2.avif": "/static/media/2.85c8d1a235802e460fb3.avif",
+    "index.html": "/index.html",
+    "main.89075f04.css.map": "/static/css/main.89075f04.css.map",
+    "main.99413b85.js.map": "/static/js/main.99413b85.js.map"
   },
   "entrypoints": [
-    "static/css/main.243e4848.css",
-    "static/js/main.87605e5d.js"
+    "static/css/main.89075f04.css",
+    "static/js/main.99413b85.js"
   ]
 }
