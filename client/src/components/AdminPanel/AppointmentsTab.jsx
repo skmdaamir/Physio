@@ -117,7 +117,11 @@ const AppointmentsTab = () => {
                 <td className="p-2 whitespace-nowrap">{appt.email}</td>
                 <td className="p-2 whitespace-nowrap">{appt.state}</td>
                 <td className="p-2 whitespace-nowrap">{appt.city}</td>
-                <td className="p-2 whitespace-nowrap">{appt.treatmentType}</td>
+                <td className="p-2 whitespace-nowrap">
+  {Array.isArray(appt.treatmentType)
+    ? appt.treatmentType.join(", ")
+    : appt.treatmentType}
+</td>
                 <td className="p-2 whitespace-pre-line">{appt.conditions}</td>
                 <td className="p-2 whitespace-nowrap">{appt.created_at}</td>
                 <td className="p-2 min-w-[200px]">
