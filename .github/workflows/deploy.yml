@@ -1,0 +1,44 @@
+name: "Deploy via FTP"    # name of the workflow
+
+# when to run
+on:
+  push:
+    branches:
+      - main              # or whichever branch you want
+
+jobs:
+  ftp_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # If you need build step (e.g. React)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'    # or whatever version
+
+      - name: Build project
+        run: |
+          npm install
+          npm run build
+        # Only include if you have a build step
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./client/build/      # React build folder
+          server-dir: /public_html/       # your hosting root
+          protocol: ftp
+          port: 21
+          exclude: |
+            **/.git*
+            **/.github*
+            node_modules/**
+            README.md
+            .htaccess          # ⚠️ prevents overwriting/deleting existing .htaccess on server
