@@ -35,7 +35,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./client/build/      # React build folder
-          server-dir: /       # your hosting root
+          server-dir: .       # your hosting root
           protocol: ftp
           port: 21
           exclude: |
