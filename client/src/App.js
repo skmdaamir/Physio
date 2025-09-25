@@ -60,7 +60,7 @@ const AppContent = () => {
         <title>Welcome to Physio Pulse</title>
       </Helmet>
 
-      {!isAdminRoute && !isLoginRoute && <TopNav />}
+      {!isAdminRoute && !isLoginRoute && !isReviewRoute && <TopNav />}
       <ScrollToTop />
 
       <main className="main-content">
@@ -96,7 +96,7 @@ const AppContent = () => {
       </main>
 
       {/* Hide Footer & FloatingButtons on admin/login */}
-      {!isAdminRoute && !isLoginRoute && isPageLoaded && <Footer />}
+      {!isAdminRoute && !isLoginRoute && isPageLoaded && !isReviewRoute &&<Footer />}
       {!isAdminRoute && !isLoginRoute && <FloatingButtons />}
 
       {/* ✅ Modal shows everywhere except admin, login, review */}

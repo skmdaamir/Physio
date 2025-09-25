@@ -70,7 +70,6 @@ const ReviewForm = () => {
           <input
             type="email"
             name="email"
-            required
             value={formData.email}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-green-300"
@@ -88,6 +87,19 @@ const ReviewForm = () => {
             onChange={handleChange}
             className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-green-300"
             placeholder="Enter your mobile number"
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 font-medium">Place</label>
+          <input
+            type="text"
+            name="place"
+            required
+            value={formData.place}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-green-300"
+            placeholder="Enter your place"
           />
         </div>
 

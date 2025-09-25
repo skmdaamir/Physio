@@ -8,45 +8,20 @@ export default function AppointmentForm({ isModal = false, onClose }) {
     name: "",
     email: "",
     phone: "",
-    state: "",
-    city: "",
+    place: "",
     treatmentType: [],
     conditions: "",
   });
-
-  const [states, setStates] = useState([]);
-  const [cities, setCities] = useState([]);
   const [treatments, setTreatments] = useState([]);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
     fetchTreatments();
-    fetchStates();
   }, []);
-
-  useEffect(() => {
-    if (form.state) {
-      fetchCities(form.state);
-    }
-  }, [form.state]);
 
   const fetchTreatments = async () => {
     const res = await axios.get("/api/treatment");
     setTreatments(res.data);
-  };
-
-  const fetchStates = async () => {
-    const res = await axios.get("/api/states");
-    setStates(res.data);
-  };
-
-  const fetchCities = async (stateId) => {
-    try {
-      const res = await axios.get(`/api/cities/${stateId}`);
-      setCities(res.data);
-    } catch (error) {
-      console.error("Error fetching cities:", error);
-    }
   };
 
   const handleChange = (e) => {
@@ -71,8 +46,7 @@ export default function AppointmentForm({ isModal = false, onClose }) {
         email: "",
         phone: "",
         treatmentType: [],
-        state: "",
-        city: "",
+        place: "",
         conditions: "",
       });
       onClose?.(); // Close modal if passed
@@ -167,38 +141,14 @@ export default function AppointmentForm({ isModal = false, onClose }) {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="font-medium">State</label>
-            <select
-              name="state"
-              value={form.state}
+            <label className="font-medium">Place</label>
+            <input
+              name="place"
+              value={form.place}
               onChange={handleChange}
               required
               className="p-1.5 rounded border border-gray-300"
-            >
-              <option value="">Select State</option>
-              {states.map((s) => (
-                <option key={s.state_id} value={s.state_id}>
-                  {s.state_name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="font-medium">City</label>
-            <select
-              name="city"
-              value={form.city}
-              onChange={handleChange}
-              required
-              className="p-1.5 rounded border border-gray-300"
-            >
-              <option value="">Select City</option>
-              {cities.map((c) => (
-                <option key={c.city_id} value={c.city_id}>
-                  {c.city_name}
-                </option>
-              ))}
-            </select>
+            />
           </div>
         </div>
         <div className="grid grid-cols-1 gap-1">

@@ -143,7 +143,7 @@ const HomePage = () => {
                     <p className="mb-3 text-sm italic">"{review.description}"</p>
                     <div className="flex items-center justify-between mt-auto">
                       <div>
-                        <p className="font-semibold text-sm">{review.name}</p>
+                        <p className="font-semibold text-sm">{review.name} ({review.place})</p>
                         <Rating
                           initialRating={review.rating}
                           readonly
