@@ -90,8 +90,7 @@ const AppointmentsTab = () => {
                 "Name",
                 "Mobile",
                 "Email",
-                "State",
-                "City",
+                "Place",
                 "Treatment",
                 "Conditions",
                 "Date",
@@ -115,8 +114,7 @@ const AppointmentsTab = () => {
                 <td className="p-2 whitespace-nowrap">{appt.name}</td>
                 <td className="p-2 whitespace-nowrap">{appt.phone}</td>
                 <td className="p-2 whitespace-nowrap">{appt.email}</td>
-                <td className="p-2 whitespace-nowrap">{appt.state}</td>
-                <td className="p-2 whitespace-nowrap">{appt.city}</td>
+                <td className="p-2 whitespace-nowrap">{appt.place}</td>
                 <td className="p-2 whitespace-nowrap">
   {Array.isArray(appt.treatmentType)
     ? appt.treatmentType.join(", ")

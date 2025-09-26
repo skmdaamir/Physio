@@ -98,8 +98,9 @@ const BlogsTab = () => {
   };
 
   const toggleStatus = async (id, currentStatus) => {
+    console.log(currentStatus);
     try {
-      await axios.patch(`/api/blogs/${id}/status`, {
+      await axios.put(`/api/blogs/${id}/status`, {
         is_active: currentStatus === 1 ? 0 : 1,
       });
       toast.success("Status updated!");

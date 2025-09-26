@@ -52,6 +52,7 @@ const ReviewsTab = () => {
             <th className="px-4 py-2 border">Name</th>
             <th className="px-4 py-2 border">Rating</th>
             <th className="px-4 py-2 border">Comment</th>
+              <th className="px-4 py-2 border">Place</th>
             <th className="px-4 py-2 border">Created At</th>
             <th className="px-4 py-2 border">Status</th>
             <th className="px-4 py-2 border">Action</th>
@@ -63,6 +64,7 @@ const ReviewsTab = () => {
               <td className="border px-4 py-2">{review.name}</td>
               <td className="border px-4 py-2">{review.rating}</td>
               <td className="border px-4 py-2 text-left">{review.description}</td>
+              <td className="border px-4 py-2 text-left">{ review.place}</td>
               <td className="border px-4 py-2">
                 {new Date(review.created_at).toLocaleString()}
               </td>

@@ -17,6 +17,7 @@ import doctor2 from "../assets/docs/Dr Kamran.jpg";
 import doctor3 from "../assets/docs/Dr Mohseneen Akhtar.jpg";
 import doctor4 from "../assets/docs/Dr Pratibha Singh.jpg";
 import doctor5 from "../assets/docs/Dr Yasmeen Manihar.jpg"
+import doctor6 from "../assets/docs/Dr Laiba Yusuf khan.jpg"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Link } from "react-router-dom";
@@ -63,6 +64,13 @@ const HomePage = () => {
       specialty: "Physiotherapist",
       description: "Con Physiotherapist.",
       image: doctor5,
+    },
+    {
+      name: "Dr. Laiba Yusuf khan [PT]",
+      qualification:"(BPT, MIAP,CDNS, CTTP, CRCT, IASTM)",
+      specialty: "Physiotherapist",
+      description: "Con Physiotherapist.",
+      image: doctor6,
     },
   ];
 

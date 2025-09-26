@@ -29,7 +29,7 @@ const AddCondition = () => {
       setImage(null);
     } catch (err) {
       console.error(err);
-      setSuccess("Failed to add condition.");
+      setSuccess("Failed to add condition.");;
     }
   };
 

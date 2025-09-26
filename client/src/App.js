@@ -5,6 +5,8 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
 import FloatingButtons from "./components/FloatingButtons";
@@ -27,6 +29,8 @@ import Career from "./components/Career";
 import ConditionDetails from "./components/ConditionDetails";
 import AddCondition from "./components/AddCondition";
 import Symptoms from "./components/Symptoms"; // ✅ Import Symptoms
+console.log({ Login, ProtectedRoute, Symptoms, ToastContainer });
+
 
 const AppContent = () => {
   const location = useLocation();
@@ -103,6 +107,13 @@ const AppContent = () => {
       {!isAdminRoute && !isLoginRoute && !isReviewRoute && (
         <AppointmentModal show={showModal} onClose={() => setShowModal(false)} />
       )}
+      <ToastContainer
+  position="top-right"
+  autoClose={3000}
+  toastClassName="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-md p-3"
+  bodyClassName="text-sm flex items-center"
+  progressClassName="bg-blue-500"
+/>
     </div>
   );
 };
