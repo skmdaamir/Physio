@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "../axiosInstance";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import Swal from 'sweetalert2';
 
 // Utility function to check expiry
 const isTokenExpired = (token) => {
@@ -42,7 +43,13 @@ const Login = () => {
       const { token, exp } = res.data;
 
       if (isTokenExpired(token)) {
-        alert("Token already expired. Please try again.");
+       Swal.fire({
+  icon: 'warning',
+  title: 'Session Expired',
+  text: 'Token already expired. Please try again.',
+  confirmButtonColor: '#f8bb86',
+  confirmButtonText: 'OK'
+});
         return;
       }
 
@@ -58,7 +65,13 @@ const Login = () => {
 
       navigate("/admin");
     } catch (err) {
-      alert("Invalid login credentials");
+    Swal.fire({
+  icon: 'error',
+  title: 'Invalid Login',
+  text: 'Invalid login credentials.',
+  confirmButtonColor: '#d33',
+  confirmButtonText: 'Try Again'
+});
     }
   };
 

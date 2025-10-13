@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import axios from "../axiosInstance";
+import Swal from 'sweetalert2';
 
 export default function AppointmentForm({ isModal = false, onClose }) {
   const [form, setForm] = useState({
@@ -35,12 +36,24 @@ export default function AppointmentForm({ isModal = false, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.treatmentType.length === 0) {
-      alert("Please select at least one treatment.");
+      Swal.fire({
+  icon: 'warning',
+  title: 'No Treatment Selected',
+  text: 'Please select at least one treatment.',
+  confirmButtonColor: '#3085d6',
+  confirmButtonText: 'OK'
+});
       return;
     }
     try {
       await axios.post("/api/appointments", form);
-      alert("Appointment submitted successfully!");
+      Swal.fire({
+  icon: 'success',
+  title: 'Success!',
+  text: 'Appointment submitted successfully!',
+  confirmButtonColor: '#3085d6',
+  confirmButtonText: 'OK'
+});
       setForm({
         name: "",
         email: "",
@@ -52,7 +65,13 @@ export default function AppointmentForm({ isModal = false, onClose }) {
       onClose?.(); // Close modal if passed
     } catch (error) {
       // console.error("Submission error:", error);
-      alert("Failed to submit appointment.");
+      Swal.fire({
+  icon: 'error',
+  title: 'Failed!',
+  text: 'Failed to submit appointment.',
+  confirmButtonColor: '#d33',
+  confirmButtonText: 'OK'
+});
     }
   };
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../../axiosInstance";
 import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
 
 const ReviewsTab = () => {
   const [reviews, setReviews] = useState([]);
@@ -19,8 +20,17 @@ const ReviewsTab = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this review?")) return;
-
+    Swal.fire({
+  title: 'Are you sure?',
+  text: 'Are you sure you want to delete this review?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#d33',
+  cancelButtonColor: '#3085d6',
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'Cancel'
+}).then(async (result) => {
+  if (result.isConfirmed) {
     try {
       await axios.delete(`/api/reviews/${id}`);
       toast.success("Review deleted!");
@@ -29,6 +39,8 @@ const ReviewsTab = () => {
       console.error("Error deleting review:", err);
       toast.error("Failed to delete review.");
     }
+  }
+});
   };
 
   const handleToggleVisibility = async (id, currentStatus) => {

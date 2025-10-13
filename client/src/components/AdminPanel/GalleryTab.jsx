@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../../axiosInstance";
 import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
 
 const GalleryTab = () => {
   const [galleryItems, setGalleryItems] = useState([]);
@@ -63,16 +64,38 @@ const GalleryTab = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this item?")) return;
-
+    Swal.fire({
+  title: 'Are you sure?',
+  text: 'Are you sure you want to delete this item?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#d33',
+  cancelButtonColor: '#3085d6',
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'Cancel'
+}).then(async (result) => {
+  if (result.isConfirmed) {
     try {
       await axios.delete(`/api/gallery/${id}`);
-      toast.success("Item deleted!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: 'Item deleted successfully!',
+        timer: 2000,
+        showConfirmButton: false
+      });
       fetchGallery();
     } catch (err) {
-      console.error("Delete error:", err);
-      toast.error("Failed to delete item.");
+      console.error('Delete error:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed',
+        text: 'Failed to delete item.',
+        confirmButtonColor: '#d33'
+      });
     }
+  }
+});
   };
 
   return (

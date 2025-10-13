@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "../../axiosInstance";
 import { toast } from "react-toastify";
 import BlogImagePreview from "./BlogImagePreview"
+import Swal from 'sweetalert2';
 
 const BlogsTab = () => {
   const [blogs, setBlogs] = useState([]);
@@ -60,14 +61,37 @@ const BlogsTab = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this blog?")) return;
+   Swal.fire({
+  title: 'Are you sure?',
+  text: 'Are you sure you want to delete this blog?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#d33',
+  cancelButtonColor: '#3085d6',
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'Cancel'
+}).then(async (result) => {
+  if (result.isConfirmed) {
     try {
       await axios.delete(`/api/blogs/${id}`);
-      toast.success("Blog deleted!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: 'Blog deleted successfully!',
+        timer: 2000,
+        showConfirmButton: false
+      });
       fetchBlogs();
     } catch (err) {
-      toast.error("Error deleting blog.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error deleting blog.',
+        confirmButtonColor: '#d33'
+      });
     }
+  }
+});
   };
 
   const handleSubmit = async (e) => {
