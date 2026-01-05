@@ -35,7 +35,7 @@ console.log({ Login, ProtectedRoute, Symptoms, ToastContainer });
 const AppContent = () => {
   const location = useLocation();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(true); // ✅ Start as open
+  const [showModal, setShowModal] = useState(false); // ✅ Start as open
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -51,7 +51,16 @@ const AppContent = () => {
 
   // ✅ Show modal every time route changes
   useEffect(() => {
+    // setShowModal(true);
+    const isHomePage = location.pathname === "/";
+  const modalShown = localStorage.getItem("appointmentModalShown");
+
+  if (isHomePage && !modalShown) {
     setShowModal(true);
+    localStorage.setItem("appointmentModalShown", "true");
+  } else {
+    setShowModal(false);
+  }
   }, [location.pathname]);
 
   const isAdminRoute = location.pathname === "/admin";
