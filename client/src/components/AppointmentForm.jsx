@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 export default function AppointmentForm({ isModal = false, onClose }) {
   const [form, setForm] = useState({
     name: "",
-    email: "",
+    // email: "",
     phone: "",
     place: "",
     treatmentType: [],
@@ -35,16 +35,16 @@ export default function AppointmentForm({ isModal = false, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.treatmentType.length === 0) {
-      Swal.fire({
-  icon: 'warning',
-  title: 'No Treatment Selected',
-  text: 'Please select at least one treatment.',
-  confirmButtonColor: '#3085d6',
-  confirmButtonText: 'OK'
-});
-      return;
-    }
+//     if (form.treatmentType.length === 0) {
+//       Swal.fire({
+//   icon: 'warning',
+//   title: 'No Treatment Selected',
+//   text: 'Please select at least one treatment.',
+//   confirmButtonColor: '#3085d6',
+//   confirmButtonText: 'OK'
+// });
+//       return;
+//     }
     try {
       await axios.post("/api/appointments", form);
       Swal.fire({
@@ -56,7 +56,7 @@ export default function AppointmentForm({ isModal = false, onClose }) {
 });
       setForm({
         name: "",
-        email: "",
+        // email: "",
         phone: "",
         treatmentType: [],
         place: "",
@@ -138,6 +138,7 @@ export default function AppointmentForm({ isModal = false, onClose }) {
               className="p-1.5 rounded border border-gray-300"
             />
           </div>
+          {/*
           <div className="flex flex-col gap-1">
             <label className="font-medium">Email</label>
             <input
@@ -147,7 +148,8 @@ export default function AppointmentForm({ isModal = false, onClose }) {
               onChange={handleChange}
               className="p-1.5 rounded border border-gray-300"
             />
-          </div>
+          </div> 
+          */}
           <div className="flex flex-col gap-1">
             <label className="font-medium">Phone</label>
             <input
