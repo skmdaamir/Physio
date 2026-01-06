@@ -89,7 +89,7 @@ const AppointmentsTab = () => {
               {[
                 "Name",
                 "Mobile",
-                "Email",
+                // "Email",
                 "Place",
                 "Treatment",
                 "Conditions",
@@ -113,7 +113,7 @@ const AppointmentsTab = () => {
               >
                 <td className="p-2 whitespace-nowrap">{appt.name}</td>
                 <td className="p-2 whitespace-nowrap">{appt.phone}</td>
-                <td className="p-2 whitespace-nowrap">{appt.email}</td>
+                {/* <td className="p-2 whitespace-nowrap">{appt.email}</td> */}
                 <td className="p-2 whitespace-nowrap">{appt.place}</td>
                 <td className="p-2 whitespace-nowrap">
   {Array.isArray(appt.treatmentType)
