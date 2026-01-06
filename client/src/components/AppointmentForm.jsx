@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import axios from "../axiosInstance";
+import Loader from "./Loader";
 import Swal from 'sweetalert2';
 
 export default function AppointmentForm({ isModal = false, onClose }) {
@@ -14,6 +15,7 @@ export default function AppointmentForm({ isModal = false, onClose }) {
     conditions: "",
   });
   const [treatments, setTreatments] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -46,6 +48,7 @@ export default function AppointmentForm({ isModal = false, onClose }) {
 //       return;
 //     }
     try {
+      setLoading(true);
       await axios.post("/api/appointments", form);
       Swal.fire({
   icon: 'success',
@@ -72,6 +75,8 @@ export default function AppointmentForm({ isModal = false, onClose }) {
   confirmButtonColor: '#d33',
   confirmButtonText: 'OK'
 });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -184,11 +189,21 @@ export default function AppointmentForm({ isModal = false, onClose }) {
         </div>
 
         <button
-          type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-medium"
-        >
-          Submit
-        </button>
+  type="submit"
+  disabled={loading}
+  className={`w-full flex justify-center items-center gap-2
+    ${loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}
+    text-white py-2 rounded-md font-medium`}
+>
+  {loading ? (
+    <>
+      <Loader size="sm" />
+      Submitting...
+    </>
+  ) : (
+    "Submit"
+  )}
+</button>
       </form>
     </div>
   );
