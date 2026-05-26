@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #135bec;
+  --color-surface: #ffffff;
+  --color-bg-gray: #f6f6f8;
+}
+
+body {
+  /* Set light mode as the default and only theme */
+  background-color: #f6f6f8; 
+  color: #0f172a; /* Use slate-900 for high readability text */
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Blur-up effect styles */
+.blur-up-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #e2e8f0; /* slate-200 placeholder */
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.blur-up-img {
+  transition: filter 0.6s ease-out, opacity 0.6s ease-out, transform 0.6s ease-out;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blur-up-img.loading {
+  filter: blur(20px);
+  opacity: 0;
+  transform: scale(1.05); /* Prevents white edges when blurred */
+}
+
+.blur-up-img.loaded {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
