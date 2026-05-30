@@ -82,9 +82,9 @@ const BlogDetailModal = ({ isOpen, onClose, blog, onNavigate }) => {
               onClick={() => {
                 onClose();
                 if (typeof onNavigate === 'function') {
-                  onNavigate(`blog/${blog.id}`);
+                  onNavigate(`${blog.slug}`);
                 } else {
-                  navigate(`/blog/${blog.id}`);
+                  navigate(`/${blog.slug}`);
                 }
               }}
               className="w-full bg-[#135bec] text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"

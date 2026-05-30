@@ -46,7 +46,7 @@ function App() {
     if (location.pathname !== "/") return;
 
     // Reset SEO Metadata for the main landing page
-    document.title = "Best Physiotherapy Clinic | Pain Relief & Rehab Center";
+    document.title = "Best Physiotherapy Clinic & Home Service  | Pain Relief & Rehab Center";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute("content", "Looking for the best physiotherapy clinic? Get expert physiotherapy treatment, sports injury physiotherapy, pain relief therapy & rehabilitation services.");
@@ -96,9 +96,12 @@ function App() {
   };
 
   const handleNavigate = (id) => {
-    const isFullPage = Object.keys(pageComponents).includes(id) || id.startsWith('blog/');
+    // Define IDs that should trigger a scroll on the home page
+    const sectionIds = ['home', 'services', 'testimonials', 'aboutus', 'whychooseus', 'team', 'contact'];
+    const isSection = sectionIds.includes(id);
+    const isKnownPage = Object.keys(pageComponents).includes(id);
 
-    if (isFullPage) {
+    if (isKnownPage || (!isSection && id !== 'home')) {
       // Navigation to a separate page/route
       setIsLoading(true);
       setTimeout(() => {
@@ -161,7 +164,7 @@ function App() {
               }
             />
             <Route path="/blog" element={<Blog onNavigate={handleNavigate} />} />
-            <Route path="/blog/:blogid" element={<BlogDetail onNavigate={handleNavigate} />} />
+            <Route path="/:slug" element={<BlogDetail onNavigate={handleNavigate} />} />
             <Route path="/bookappointment" element={<BookAppointment onNavigate={handleNavigate} />} />
             <Route path="/gallery" element={<PhotoGallery onNavigate={handleNavigate} />} />
             <Route path="/career" element={<Careers onNavigate={handleNavigate} />} />

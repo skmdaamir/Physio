@@ -101,7 +101,7 @@ const Blog = ({ onNavigate }) => {
               </p>
 
               <button
-                onClick={() => onNavigate(`blog/${blog.id}`)}
+                onClick={() => onNavigate(`${blog.slug}`)}
                 className="flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all group/btn"
               >
                 Read Full Article 

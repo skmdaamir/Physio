@@ -29,7 +29,8 @@ const BlogDetail = ({ onNavigate }) => {
           category: (response.data.category || response.data.categories || "Uncategorized").trim(),
           views: Number(response.data.views) || 0,
           imageUrl: response.data.banner_image || response.data.imageUrl || response.data.image_url || 
-            (response.data.image ? `http://googleusercontent.com/profile/picture/${response.data.image}` : null)
+            (response.data.image ? `http://googleusercontent.com/profile/picture/${response.data.image}` : null),
+          relatedServiceSlug: response.data.related_service_slug || null, // Assuming your API response includes this field
         };
         
         // Parse JSON fields safely if they come as strings from DB
@@ -44,22 +45,6 @@ const BlogDetail = ({ onNavigate }) => {
 
         // SEO and metadata update
         document.title = `${blogData.title} | Physio Pulse & Rehab Blog`;
-        
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-          let descText = blogData.subtitle || "";
-          if (!descText) {
-            if (Array.isArray(blogData.content)) {
-              const firstPara = blogData.content.find(b => b.type === 'paragraph');
-              if (firstPara) descText = firstPara.value;
-            } else if (typeof blogData.content === 'string') {
-              descText = blogData.content.replace(/<[^>]*>?/gm, '');
-            }
-          }
-          const finalDesc = (descText || "").substring(0, 160).trim() || 
-            `Expert physiotherapy and rehabilitation services for ${blogData.title} at Physio Pulse. Serving Mumbai, Thane, Delhi, and Lucknow.`;
-          metaDesc.setAttribute("content", finalDesc);
-        }
         
         // Handle View Tracking (Wrapped in try/catch so failure doesn't block the blog load)
         try {
@@ -278,6 +263,22 @@ const BlogDetail = ({ onNavigate }) => {
                   </article>
                 ))}
               </div>
+            </section>
+          )}
+
+          {/* Related Service Link (if available) */}
+          {blog.relatedServiceSlug && (
+            <section className="bg-blue-50 p-8 rounded-2xl border border-blue-100 shadow-sm text-center">
+              <h2 className="text-2xl font-bold mb-4 text-blue-800">Explore Related Service</h2>
+              <p className="text-blue-700 mb-6">
+                This article is related to our <span className="font-semibold">{blog.relatedServiceSlug.replace(/-/g, ' ')}</span> service.
+              </p>
+              <button
+                onClick={() => navigate(`/services/${blog.relatedServiceSlug}`)}
+                className="bg-[#135bec] text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 active:scale-95"
+              >
+                View Service Details
+              </button>
             </section>
           )}
         </div>

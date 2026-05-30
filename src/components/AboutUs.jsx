@@ -45,9 +45,9 @@ const AboutUs = forwardRef(({ teamRef, onNavigate }, ref) => {
     {
       id: "4",
       name: "Dr Mohseneen Akhtar [PT]",
-      role: "[BPT, MPT, MIAP]",
+      role: "[BPT, MPT, MIAP CNDT, CKTP, CAOM]",
       mobileRole:
-        "Specialised in Musculoskeletal & Orthopaedic Fortis Hospital Mulund",
+        "Specialised in Musculoskeletal & Orthopaedic Gleneagles Hospital Mumbai, Ex Fortis Hospital Mulund.",
       desc: "Over 3+ years of experience in Musculoskeletal & Orthopaedic Injuries..",
       image: drMoh,
       objectPosition: "top",
@@ -66,7 +66,7 @@ const AboutUs = forwardRef(({ teamRef, onNavigate }, ref) => {
       id: "6",
       name: "Dr Yasmeen Manihar [PT]",
       role: "[BPT]",
-      mobileRole: "Physiotherapy Intern",
+      mobileRole: "Physiotherapist",
       desc: "",
       image: drYasmeen,
       objectPosition: "top",
@@ -134,13 +134,22 @@ const AboutUs = forwardRef(({ teamRef, onNavigate }, ref) => {
               About Physio Pulse
             </h2>
             <p className="text-slate-600 text-base leading-relaxed mb-4">
-              Physio Pulse has a mission to heal lives with the help of professional physiotherapy and complete wellness services. We believe that people can recover, get strong and flourish, no matter whether they are going through the process of overcoming the injury, living with chronic pain or improving their athletic performance.
+              Physio Pulse has a mission to heal lives with the help of
+              professional physiotherapy and complete wellness services. We
+              believe that people can recover, get strong and flourish, no
+              matter whether they are going through the process of overcoming
+              the injury, living with chronic pain or improving their athletic
+              performance.
             </p>
             <p className="text-slate-600 text-base leading-relaxed mb-4">
-              Established with a love for movement and curing, we offer evidence-based interventions and customized care provided by a team of certified professionals in a friendly and supportive atmosphere.
+              Established with a love for movement and curing, we offer
+              evidence-based interventions and customized care provided by a
+              team of certified professionals in a friendly and supportive
+              atmosphere.
             </p>
             <p className="text-slate-900 text-base font-bold italic border-l-4 border-[#135bec] pl-4 py-2 bg-[#135bec]/5 rounded-r-lg">
-              "Physio pulse is all about your recovery, it is our pulse, and we focus on your wellness."
+              "Physio pulse is all about your recovery, it is our pulse, and we
+              focus on your wellness."
             </p>
           </div>
 
@@ -157,7 +166,10 @@ const AboutUs = forwardRef(({ teamRef, onNavigate }, ref) => {
                 "Empower the patients with education and prevention.",
                 "Work with other healthcare specialists in order to treat holistically.",
               ].map((point, i) => (
-                <div key={i} className="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm border border-slate-100">
+                <div
+                  key={i}
+                  className="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm border border-slate-100"
+                >
                   <span className="text-[#135bec] text-xs mt-1">✨</span>
                   <p className="text-sm text-slate-700 font-medium">{point}</p>
                 </div>
@@ -184,8 +196,13 @@ const AboutUs = forwardRef(({ teamRef, onNavigate }, ref) => {
                 "Empower the patients with education and prevention.",
                 "Work with other healthcare specialists in order to treat holistically.",
               ].map((point, i) => (
-                <li key={i} className="flex items-center gap-3 text-slate-600 group">
-                  <span className="text-[#135bec] text-xl group-hover:scale-125 transition-transform">✨</span>
+                <li
+                  key={i}
+                  className="flex items-center gap-3 text-slate-600 group"
+                >
+                  <span className="text-[#135bec] text-xl group-hover:scale-125 transition-transform">
+                    ✨
+                  </span>
                   <span className="text-lg leading-snug">{point}</span>
                 </li>
               ))}
@@ -203,21 +220,29 @@ const AboutUs = forwardRef(({ teamRef, onNavigate }, ref) => {
           </div>
           <div className="space-y-6">
             <div className="flex items-center gap-3 text-[#135bec]">
-              <span className="material-symbols-outlined text-3xl">
-                info
-              </span>
+              <span className="material-symbols-outlined text-3xl">info</span>
               <h2 className="text-slate-900 text-2xl font-bold tracking-tight">
                 About Physio Pulse
               </h2>
             </div>
             <p className="text-slate-600 text-lg leading-relaxed">
-              Physio Pulse has a mission to heal lives with the help of professional physiotherapy and complete wellness services. We believe that people can recover, get strong and flourish, no matter whether they are going through the process of overcoming the injury, living with chronic pain or improving their athletic performance.
+              Physio Pulse has a mission to heal lives with the help of
+              professional physiotherapy and complete wellness services. We
+              believe that people can recover, get strong and flourish, no
+              matter whether they are going through the process of overcoming
+              the injury, living with chronic pain or improving their athletic
+              performance.
             </p>
             <p className="text-slate-600 text-lg leading-relaxed">
-              We deal with a variety of services such as manual treatment, rehabilitation, posture therapy, sports physiotherapy, and injury prevention programs. We customize your treatment plans based on your individual needs and objectives with the help of the newest techniques and technologies.
+              We deal with a variety of services such as manual treatment,
+              rehabilitation, posture therapy, sports physiotherapy, and injury
+              prevention programs. We customize your treatment plans based on
+              your individual needs and objectives with the help of the newest
+              techniques and technologies.
             </p>
             <p className="text-slate-900 text-xl font-black italic border-l-4 border-[#135bec] pl-4 py-2 bg-[#135bec]/5 rounded-r-lg">
-              "Physio pulse is all about your recovery, it is our pulse, and we focus on your wellness."
+              "Physio pulse is all about your recovery, it is our pulse, and we
+              focus on your wellness."
             </p>
           </div>
         </div>
@@ -234,12 +259,21 @@ const AboutUs = forwardRef(({ teamRef, onNavigate }, ref) => {
             in the following cities:
           </p>
           <div className="flex flex-wrap justify-center gap-x-4 md:gap-x-6 gap-y-2">
-            <span className="font-semibold text-primary">Navi Mumbai</span>
-            <span className="font-semibold text-primary">Mumbai</span>
-            <span className="font-semibold text-primary">Thane</span>
-            <span className="font-semibold text-primary">Delhi</span>
-
-            <span className="font-semibold text-primary">Lucknow</span>
+            {[
+              { name: "Navi Mumbai", slug: "physiotherapy-clinic-navi-mumbai" },
+              { name: "Mumbai", slug: "physiotherapy-at-home-mumbai" },
+              { name: "Thane", slug: "physiotherapy-at-home-thane" },
+              { name: "Delhi", slug: "physiotherapy-at-home-delhi" },
+              { name: "Lucknow", slug: "physiotherapy-clinic-lucknow" },
+            ].map((city) => (
+              <button
+                key={city.slug}
+                onClick={() => onNavigate(city.slug)}
+                className="font-semibold text-primary hover:text-[#135bec] hover:underline transition-all"
+              >
+                {city.name}
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -281,20 +315,20 @@ const AboutUs = forwardRef(({ teamRef, onNavigate }, ref) => {
         {/* Team Grid / Slider */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 px-4 md:px-10 lg:px-20 xl:px-32">
           {team.map((member, index) => (
-            <DoctorCard 
-              key={member.id} 
-              member={member} 
+            <DoctorCard
+              key={member.id}
+              member={member}
               index={index}
-              onClick={handleDoctorClick} 
+              onClick={handleDoctorClick}
             />
           ))}
         </div>
       </section>
 
-      <DoctorDetailModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        member={selectedDoctor} 
+      <DoctorDetailModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        member={selectedDoctor}
       />
 
       {/* 4. Call to Action Section */}

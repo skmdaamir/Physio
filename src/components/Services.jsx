@@ -1,8 +1,10 @@
 import { forwardRef } from 'react';
+import pulmonaryImg from '../assets/pulmonary.jpeg';
+import orthoImg from '../assets/ortho.jpeg';
 
 const services = [
-  { title: 'Cardio-pulmonary', desc: 'Heart and lung recovery', img: 'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=800' },
-  { title: 'Orthopedic', desc: 'Bone and joint health', img: 'https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=800' },
+  { title: 'Cardio-pulmonary', desc: 'Heart and lung recovery', img: pulmonaryImg },
+  { title: 'Orthopedic', desc: 'Bone and joint health', img: orthoImg },
   { title: 'Neuro', desc: 'Neurological rehab', img: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800' },
   { title: 'Sports', desc: 'Athletic performance', img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800' },
   { title: 'Pediatric', desc: 'Childhood development', img: 'https://images.unsplash.com/photo-1502781252888-9143ba7f074e?auto=format&fit=crop&q=80&w=800' },

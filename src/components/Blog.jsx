@@ -104,7 +104,7 @@ const Blog = ({ onNavigate }) => {
   }, []);
 
   const handleArticleClick = (blog) => {
-    const target = `blog/${blog.id}`;
+    const target = `${blog.slug}`;
     if (typeof onNavigate === 'function') {
       onNavigate(target);
     } else {
