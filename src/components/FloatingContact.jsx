@@ -26,7 +26,7 @@ const FloatingContact = () => {
   }, [lastScrollY]);
 
   // Mobile number: +91 9167252926
-  const phoneNumber = "919167252926";
+  const phoneNumber = "917718891672";
   const message = encodeURIComponent("Hi Physio Pulse team, I'd like to know more about your physiotherapy services and schedule an assessment.");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
   const callUrl = `tel:+${phoneNumber}`;
