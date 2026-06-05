@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const BottomNav = ({ activeSection, onNavigate }) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      // Hide if scrolling down and not at the very top
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   const handleNavClick = (e, id) => {
     e.preventDefault();
     onNavigate(id);
@@ -48,7 +67,7 @@ const BottomNav = ({ activeSection, onNavigate }) => {
   );
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 flex justify-around items-center px-4 py-3 z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+    <nav className={`md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 flex justify-around items-center px-4 py-3 z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] transition-transform duration-500 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
       {isAboutPage ? aboutNav : homeNav}
     </nav>
   );

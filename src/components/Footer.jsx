@@ -12,9 +12,9 @@ const Footer = forwardRef(({ onNavigate }, ref) => {
     <footer
       ref={ref}
       id="contact"
-      className="bg-slate-300 text-slate-700 pt-20 pb-28 md:pb-10 px-6 lg:px-10"
+      className="bg-slate-300 text-slate-700 pt-20 pb-28 md:pb-20 px-6 lg:px-10"
     >
-      <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
         {/* Brand & Socials */}
         <div className="space-y-6">
           <div>
@@ -80,31 +80,18 @@ const Footer = forwardRef(({ onNavigate }, ref) => {
               <span className="material-symbols-outlined text-sm mt-0.5">location_on</span>
               Damgi Building, Ground Floor, Main Road Dargah Gate, Amrut Nagar - ShilRoad
             </p>
-            <p className="flex items-center gap-2">
+            <a href="tel:+919167252926" className="flex items-center gap-2 hover:text-[#135bec] transition-colors w-fit">
               <span className="material-symbols-outlined text-sm">call</span>
               +91 9167252926
-            </p>
+            </a>
+            <a href="https://wa.me/919167252926?text=Hi%20Physio%20Pulse%20team%2C%20I'd%20like%20to%20know%20more%20about%20your%20physiotherapy%20services%20and%20schedule%20an%20assessment." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#25D366] transition-colors w-fit">
+              <span className="material-symbols-outlined text-sm text-[#25D366]">chat</span>
+              WhatsApp Us
+            </a>
             <div className="mt-4 pt-4 border-t border-slate-400/30">
               <h5 className="font-bold text-xs text-slate-800 uppercase mb-2">Service Areas</h5>
               <p className="text-xs leading-relaxed opacity-80">Mumbai, Thane, Navi Mumbai, Delhi, Lucknow</p>
             </div>
-          </div>
-        </div>
-
-        {/* Newsletter Column */}
-        <div>
-          <h4 className="text-slate-900 font-bold mb-6 text-xs uppercase tracking-widest">
-            Newsletter
-          </h4>
-          <div className="space-y-4">
-            <p className="text-xs font-medium opacity-80">Stay updated with our latest health tips.</p>
-            <input
-              className="w-full bg-white/50 border border-slate-400/50 rounded-lg p-3 text-sm focus:border-[#135bec] focus:bg-white outline-none transition-all"
-              placeholder="Email Address"
-            />
-            <button className="w-full bg-[#135bec] text-white py-2 rounded-lg text-sm font-bold hover:bg-blue-700 transition-colors">
-              Subscribe
-            </button>
           </div>
         </div>
       </div>
@@ -116,19 +103,21 @@ const Footer = forwardRef(({ onNavigate }, ref) => {
               © 2026 Physio Pulse & Rehab. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1 text-[10px] font-bold uppercase tracking-wider text-slate-500">
-              <span>Privacy Policy</span>
-              <span>Terms of Service</span>
+              <a 
+                href="/privacy-policy" 
+                onClick={(e) => { e.preventDefault(); onNavigate('privacy-policy'); }}
+                className="hover:text-[#135bec] transition-colors cursor-pointer"
+              >
+                Privacy Policy
+              </a>
+              <a 
+                href="/terms-of-service" 
+                onClick={(e) => { e.preventDefault(); onNavigate('terms-of-service'); }}
+                className="hover:text-[#135bec] transition-colors cursor-pointer"
+              >
+                Terms of Service
+              </a>
             </div>
-          </div>
-          
-          <div className="text-center md:text-right space-y-1">
-            <p className="text-xs font-bold text-slate-800">
-              Developed By <span className="text-[#135bec]">Amir Shaikh</span> • 
-              <a href="tel:+918655319821" className="ml-1 hover:underline">+91 8655319821</a>
-            </p>
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-              Managed by <a href="https://zomeagency.com" target="_blank" rel="noopener noreferrer" className="text-slate-700 hover:text-[#135bec] transition-colors">zome Agency</a>
-            </p>
           </div>
         </div>
       </div>

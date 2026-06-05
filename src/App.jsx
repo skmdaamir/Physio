@@ -10,15 +10,20 @@ import AboutUs from "./components/AboutUs";
 import BottomNav from './components/BottomNav';
 import Loader from './components/Loader';
 import BlogDetail from "./components/BlogDetail";
+import FloatingContact from "./components/FloatingContact";
+import MedicalDisclaimerModal from "./components/MedicalDisclaimerModal";
 
 const BookAppointment = lazy(() => import("./components/BookAppointment"));
 const Blog = lazy(() => import("./components/Blog"));
 const SubmitReview = lazy(() => import("./components/SubmitReview"));
 const PhotoGallery = lazy(() => import("./components/PhotoGallery"));
 const Careers = lazy(() => import("./components/Careers"));
+const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./components/TermsOfService"));
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,6 +46,13 @@ function App() {
     team: useRef(null),
     contact: useRef(null),
   };
+
+  useEffect(() => {
+    const accepted = localStorage.getItem('medical_disclaimer_accepted');
+    if (!accepted) {
+      setShowDisclaimer(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (location.pathname !== "/") return;
@@ -93,6 +105,8 @@ function App() {
     gallery: PhotoGallery,
     career: Careers,
     'submit-review': SubmitReview,
+    'privacy-policy': PrivacyPolicy,
+    'terms-of-service': TermsOfService,
   };
 
   const handleNavigate = (id) => {
@@ -137,8 +151,18 @@ function App() {
     }
   };
 
+  const handleAcceptDisclaimer = () => {
+    localStorage.setItem('medical_disclaimer_accepted', 'true');
+    setShowDisclaimer(false);
+  };
+
   return (
     <div className="min-h-screen bg-[#f6f6f8] font-sans text-slate-900">
+      <MedicalDisclaimerModal 
+        isOpen={showDisclaimer} 
+        onAccept={handleAcceptDisclaimer} 
+      />
+      
       {isLoading && <Loader />}
       <Navbar onNavigate={handleNavigate} />
       <main className="pb-20 md:pb-0">
@@ -164,6 +188,11 @@ function App() {
               }
             />
             <Route path="/blog" element={<Blog onNavigate={handleNavigate} />} />
+            
+            {/* Policy Routes */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy onNavigate={handleNavigate} />} />
+            <Route path="/terms-of-service" element={<TermsOfService onNavigate={handleNavigate} />} />
+
             <Route path="/:slug" element={<BlogDetail onNavigate={handleNavigate} />} />
             <Route path="/bookappointment" element={<BookAppointment onNavigate={handleNavigate} />} />
             <Route path="/gallery" element={<PhotoGallery onNavigate={handleNavigate} />} />
@@ -172,6 +201,7 @@ function App() {
           </Routes>
         </Suspense>
       </main>
+      <FloatingContact />
       <Footer ref={sectionRefs.contact} onNavigate={handleNavigate} />
       {location.pathname === "/" && (
         <BottomNav activeSection={activeSection} onNavigate={handleNavigate} />
